@@ -69,6 +69,9 @@ INSTALLED_APPS = [
     # Checkout
     'checkout',
 
+    # Profiles
+    'profiles',
+
     # Forms
     'crispy_forms',
     'crispy_bootstrap5',
