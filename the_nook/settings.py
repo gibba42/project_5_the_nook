@@ -18,10 +18,16 @@ if os.path.isfile('env.py'):
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 STRIPE_CURRENCY = 'gbp'
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+ALLOWED_HOSTS = [
+    '127.0.0.1', # Local preview
+    'localhost', # listen for stripe webhooks
+]
 
 
 # Quick-start development settings - unsuitable for production
