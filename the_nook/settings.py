@@ -52,6 +52,9 @@ INSTALLED_APPS = [
 
     # Bag
     "bag",
+
+    # Checkout
+    "checkout",
 ]
 
 SITE_ID = 1
