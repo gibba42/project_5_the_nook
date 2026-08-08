@@ -25,6 +25,8 @@
   {% endblock %}
 
   {% block corejs %}
+  <!-- Add your kit code -->
+  <script src="https://kit.fontawesome.com<ADD YOUR KIT CODE HERE>.js" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"
     integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
@@ -38,7 +40,7 @@
   {% block extra_js %}
   {% endblock %}
 
-  <title>The Nook {% block extra_title %}{% endblock %}</title>
+  <title>Boutique Ado {% block extra_title %}{% endblock %}</title>
 </head>
 
 <body>
@@ -50,7 +52,8 @@
         </a>
       </div>
       <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-        <form method="GET" action="">
+        <form method="GET" action="{% url 'products' %}">
+          {% csrf_token %}
           <div class="input-group w-100">
             <input class="form-control border border-black rounded-0" type="text" name="q"
               placeholder="Search our site">
