@@ -154,7 +154,8 @@
                 <aside
                     id="catalogue-filters"
                     class="col-12 col-lg-2
-                    collapse d-lg-block catalogue-sidebar">
+                    collapse{% if show_filters %} show{% endif %}
+                    d-lg-block catalogue-sidebar">
 
                     <div class="catalogue-filter-inner">
 

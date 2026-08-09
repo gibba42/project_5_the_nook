@@ -142,28 +142,28 @@ class NavigationTests(TestCase):
                     count=1,
                 )
 
-def test_genres_navigation_opens_filter_panel(self):
-    """The Genres link should reveal the collapsible genre controls."""
+    def test_genres_navigation_opens_filter_panel(self):
+        """The Genres link should reveal the collapsible genre controls."""
 
-    response = self.client.get(
-        reverse('book_list'),
-        {'show_filters': '1'},
-    )
+        response = self.client.get(
+            reverse('book_list'),
+            {'show_filters': '1'},
+        )
 
-    self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.status_code, 200)
 
-    self.assertContains(
-        response,
-        'collapse show',
-    )
+        self.assertContains(
+            response,
+            'collapse show',
+        )
 
-    self.assertContains(
-        response,
-        'aria-expanded="true"',
-    )
+        self.assertContains(
+            response,
+            'aria-expanded="true"',
+        )
 
-    self.assertContains(
-        response,
-        'aria-current="page"',
-        count=1,
-    )
+        self.assertContains(
+            response,
+            'aria-current="page"',
+            count=1,
+        )
