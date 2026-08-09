@@ -1,0 +1,152 @@
+{% extends "base.html" %}
+
+{% block extra_title %}
+| Review {{ book.title }}
+{% endblock %}
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <a
+        href="{% url 'approval_dashboard' %}"
+        class="d-inline-block mb-4">
+        ← Return to approval queue
+    </a>
+
+    <div class="row g-5">
+
+        <div class="col-12 col-md-4">
+
+            {% if book.cover_image %}
+
+                <img
+                    src="{{ book.cover_image.url }}"
+                    class="img-fluid rounded"
+                    alt="Cover of {{ book.title }}">
+
+            {% else %}
+
+                <div class="book-cover book-cover-placeholder">
+
+                    <span class="placeholder-line"></span>
+                    <span class="placeholder-circle"></span>
+
+                    <span class="placeholder-title logo-font">
+                        {{ book.title }}
+                    </span>
+
+                </div>
+
+            {% endif %}
+
+        </div>
+
+        <div class="col-12 col-md-8">
+
+            <p class="section-eyebrow">
+                Pending approval
+            </p>
+
+            <h1 class="logo-font">
+                {{ book.title }}
+            </h1>
+
+            <p>
+                By <strong>{{ book.author.display_name }}</strong>
+            </p>
+
+            {% if book.genre %}
+
+                <p>
+                    <strong>Genre:</strong>
+                    {{ book.genre.name }}
+                </p>
+
+            {% endif %}
+
+            <p>
+                <strong>Price:</strong>
+                £{{ book.price }}
+            </p>
+
+            {% if book.isbn %}
+
+                <p>
+                    <strong>ISBN:</strong>
+                    {{ book.isbn }}
+                </p>
+
+            {% endif %}
+
+            <hr>
+
+            <h2 class="h4 logo-font">
+                Description
+            </h2>
+
+            <div class="mb-5">
+                {{ book.description|linebreaks }}
+            </div>
+
+            <div class="d-flex flex-column gap-4">
+
+                <form
+                    method="POST"
+                    action="{% url 'approve_book' book.id %}">
+
+                    {% csrf_token %}
+
+                    <button
+                        type="submit"
+                        class="btn btn-success">
+                        Approve book
+                    </button>
+
+                </form>
+
+                <form
+                    method="POST"
+                    action="{% url 'reject_book' book.id %}">
+
+                    {% csrf_token %}
+
+                    <div class="mb-3">
+
+                        <label
+                            for="rejection-reason"
+                            class="form-label">
+                            Rejection reason
+                            <span class="text-muted">(optional)</span>
+                        </label>
+
+                        <textarea
+                            id="rejection-reason"
+                            name="rejection_reason"
+                            class="form-control"
+                            rows="4"
+                            placeholder="Explain what the author needs to change"></textarea>
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="btn btn-danger">
+                        Reject book
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

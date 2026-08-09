@@ -178,6 +178,16 @@
 
               {% if request.user.is_authenticated %}
 
+                {% if request.user.is_staff %}
+
+                  <a
+                    href="{% url 'approval_dashboard' %}"
+                    class="dropdown-item">
+                    Book Approvals
+                  </a>
+
+                {% endif %}
+
                 {% if request.user.is_superuser %}
 
                   <a

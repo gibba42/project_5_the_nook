@@ -1,7 +1,8 @@
 <li class="list-inline-item dropdown">
 
+    <!-- Mobile search button -->
     <a
-        class="text-black nav-link d-block d-lg-none"
+        class="nook-header-link nav-link d-block d-lg-none"
         href="#"
         id="mobile-search"
         data-bs-toggle="dropdown"
@@ -10,39 +11,49 @@
         <div class="text-center">
 
             <div>
-                <i class="fas fa-search fa-lg"></i>
+                <i
+                    class="fa-solid fa-magnifying-glass fa-lg"
+                    aria-hidden="true">
+                </i>
             </div>
 
-            <p class="my-0">Search</p>
+            <p class="my-0">
+                Search
+            </p>
 
         </div>
 
     </a>
 
+    <!-- Mobile search form -->
     <div
         class="dropdown-menu border-0 w-100 p-3 rounded-0 my-0"
         aria-labelledby="mobile-search">
 
         <form
-            class="form"
             method="GET"
-            action="{% url 'book_list' %}">
+            action="{% url 'book_list' %}"
+            role="search">
 
             <div class="input-group w-100">
 
                 <input
-                    class="form-control border border-black rounded-0"
-                    type="text"
+                    class="form-control"
+                    type="search"
                     name="q"
-                    placeholder="Search our site">
+                    placeholder="Search books or authors"
+                    aria-label="Search books">
 
                 <button
-                    class="btn btn-black border border-black rounded-0"
+                    class="btn nook-search-button"
                     type="submit"
-                    aria-label="Search">
+                    aria-label="Submit search">
 
                     <span class="icon">
-                        <i class="fas fa-search"></i>
+                        <i
+                            class="fa-solid fa-magnifying-glass"
+                            aria-hidden="true">
+                        </i>
                     </span>
 
                 </button>
@@ -55,10 +66,12 @@
 
 </li>
 
+
 <li class="list-inline-item dropdown">
 
+    <!-- Mobile account button -->
     <a
-        class="text-black nav-link d-block d-lg-none"
+        class="nook-header-link nav-link d-block d-lg-none"
         href="#"
         id="mobile-user-options"
         data-bs-toggle="dropdown"
@@ -67,31 +80,49 @@
         <div class="text-center">
 
             <div>
-                <i class="fas fa-user fa-lg"></i>
+                <i
+                    class="fa-regular fa-user fa-lg"
+                    aria-hidden="true">
+                </i>
             </div>
 
-            <p class="my-0">My Account</p>
+            <p class="my-0">
+                My Account
+            </p>
 
         </div>
 
     </a>
 
+    <!-- Mobile account dropdown -->
     <div
         class="dropdown-menu border-0"
         aria-labelledby="mobile-user-options">
 
         {% if request.user.is_authenticated %}
 
-            {% if request.user.is_superuser %}
+            {% if request.user.is_staff %}
+
                 <a
-                    href="#"
+                    href="{% url 'approval_dashboard' %}"
+                    class="dropdown-item">
+                    Book Approvals
+                </a>
+
+            {% endif %}
+
+            {% if request.user.is_superuser %}
+
+                <a
+                    href="{% url 'add_product' %}"
                     class="dropdown-item">
                     Product Management
                 </a>
+
             {% endif %}
 
             <a
-                href="#"
+                href="{% url 'profile' %}"
                 class="dropdown-item">
                 My Profile
             </a>
@@ -122,16 +153,27 @@
 
 </li>
 
+
 <li class="list-inline-item">
 
+    <!-- Mobile basket -->
     <a
-        class="{% if grand_total %}text-primary fw-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none"
+        class="
+        {% if grand_total %}
+            nook-basket-active
+        {% else %}
+            nook-header-link
+        {% endif %}
+        nav-link d-block d-lg-none"
         href="{% url 'view_bag' %}">
 
         <div class="text-center">
 
             <div>
-                <i class="fas fa-shopping-bag fa-lg"></i>
+                <i
+                    class="fa-solid fa-bag-shopping fa-lg"
+                    aria-hidden="true">
+                </i>
             </div>
 
             <p class="my-0">

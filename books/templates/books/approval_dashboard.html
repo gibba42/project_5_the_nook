@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block extra_title %}
+| Book Approvals
+{% endblock %}
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="mb-5">
+
+        <p class="section-eyebrow">
+            Staff area
+        </p>
+
+        <h1 class="logo-font">
+            Book approval queue
+        </h1>
+
+        <p>
+            Review books submitted by independent authors before
+            they appear in The Nook.
+        </p>
+
+    </div>
+
+    {% if pending_books %}
+
+        <div class="row g-4">
+
+            {% for book in pending_books %}
+
+                <div class="col-12 col-md-6 col-lg-4">
+
+                    <article class="card h-100">
+
+                        {% if book.cover_image %}
+
+                            <img
+                                src="{{ book.cover_image.url }}"
+                                class="card-img-top"
+                                alt="Cover of {{ book.title }}">
+
+                        {% endif %}
+
+                        <div class="card-body">
+
+                            <h2 class="h4 logo-font">
+                                {{ book.title }}
+                            </h2>
+
+                            <p>
+                                By {{ book.author.display_name }}
+                            </p>
+
+                            {% if book.genre %}
+                                <p>
+                                    <strong>Genre:</strong>
+                                    {{ book.genre.name }}
+                                </p>
+                            {% endif %}
+
+                            <p>
+                                <strong>Submitted:</strong>
+                                {{ book.created_at|date:"j F Y" }}
+                            </p>
+
+                            <a
+                                href="{% url 'approval_detail' book.id %}"
+                                class="btn nook-primary-button">
+                                Review book
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+
+        <div class="alert alert-info">
+
+            There are currently no books awaiting approval.
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
