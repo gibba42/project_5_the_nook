@@ -1955,3 +1955,169 @@ textarea:focus-visible {
         font-size: 0.9rem;
     }
 }
+
+/* ------------------------------------------------ Account pages */
+
+.account-body {
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(124, 143, 118, 0.12),
+            transparent 35%
+        ),
+        var(--nook-cream);
+    min-height: 100vh;
+}
+
+.account-brand-header {
+    background-color: var(--nook-paper);
+    border-bottom: 1px solid var(--nook-border);
+    padding: 1.25rem 0;
+}
+
+.account-brand-link {
+    color: var(--nook-ink);
+    font-size: 1.7rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.account-brand-link:hover {
+    color: var(--nook-sage-dark);
+}
+
+.account-page {
+    padding: 4rem 0 6rem;
+}
+
+.account-card {
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 1.25rem;
+    box-shadow: 0 20px 50px rgba(47, 51, 45, 0.08);
+    padding: clamp(1.5rem, 5vw, 3rem);
+}
+
+.account-card h1 {
+    font-family: 'Libre Baskerville', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.account-card h2 {
+    font-family: 'Libre Baskerville', serif;
+}
+
+.account-card p {
+    color: var(--nook-muted);
+    line-height: 1.7;
+}
+
+.account-card form > p {
+    margin-bottom: 1.25rem;
+}
+
+.account-card label {
+    color: var(--nook-ink);
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 0.45rem;
+}
+
+.account-card input:not([type="checkbox"]):not([type="radio"]),
+.account-card select,
+.account-card textarea {
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 0.6rem;
+    color: var(--nook-ink);
+    min-height: 48px;
+    padding: 0.75rem 0.9rem;
+    width: 100%;
+}
+
+.account-card textarea {
+    min-height: 130px;
+}
+
+.account-card input:focus,
+.account-card select:focus,
+.account-card textarea:focus {
+    border-color: var(--nook-sage);
+    box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.18);
+    outline: none;
+}
+
+.account-card .helptext {
+    color: var(--nook-muted);
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 0.4rem;
+}
+
+.account-card ul.errorlist {
+    color: #9b3f35;
+    font-size: 0.85rem;
+    list-style: none;
+    margin: 0 0 0.5rem;
+    padding: 0;
+}
+
+.account-button {
+    margin-top: 0.75rem;
+    min-height: 48px;
+    width: 100%;
+}
+
+.account-card a {
+    color: var(--nook-sage-dark);
+}
+
+.account-return-link {
+    margin-top: 1.5rem;
+    text-align: center;
+}
+
+.account-return-link a {
+    color: var(--nook-sage-dark);
+    text-decoration: none;
+}
+
+.account-management-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.5rem;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+}
+
+.account-management-nav a {
+    color: var(--nook-sage-dark);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.account-message-container {
+    margin-top: 1.5rem;
+}
+
+@media (max-width: 576px) {
+
+    .account-page {
+        padding: 2.5rem 0 4rem;
+    }
+
+    .account-card {
+        border-radius: 1rem;
+        padding: 1.5rem;
+    }
+
+    .account-management-nav {
+        align-items: center;
+        flex-direction: column;
+    }
+}

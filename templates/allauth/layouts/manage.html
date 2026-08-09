@@ -1,2 +1,50 @@
 {% extends "allauth/layouts/base.html" %}
-{% block content %}{% endblock %}
+
+{% block body %}
+
+<section class="account-page">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-lg-9">
+
+                <nav
+                    class="account-management-nav"
+                    aria-label="Account management">
+
+                    <a href="{% url 'account_email' %}">
+                        Email addresses
+                    </a>
+
+                    <a href="{% url 'account_change_password' %}">
+                        Change password
+                    </a>
+
+                    <a href="{% url 'author_dashboard' %}">
+                        Author dashboard
+                    </a>
+
+                    <a href="{% url 'home' %}">
+                        Return to shop
+                    </a>
+
+                </nav>
+
+                <div class="account-card">
+
+                    {% block content %}
+                    {% endblock content %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock body %}
