@@ -1,54 +1,222 @@
+/* ------------------------------------------------ Brand variables */
+
+:root {
+    --nook-cream: #f7f3eb;
+    --nook-paper: #fffdf8;
+    --nook-sage: #7c8f76;
+    --nook-sage-dark: #53664f;
+    --nook-rose: #c99186;
+    --nook-gold: #c5a15b;
+    --nook-ink: #2f332d;
+    --nook-muted: #6f746d;
+    --nook-border: #ddd6c9;
+}
+
+
+/* ------------------------------------------------ General */
+
 html {
-    height: 100%;
+    min-height: 100%;
 }
 
 body {
-    background: url('/media/homepage_background_cropped.jpg') no-repeat center center fixed;
-    background-size: cover;
-    height: calc(100vh - 164px);
-    color: #555;
-    font-family: 'Lato';
+    background-color: var(--nook-cream);
+    color: var(--nook-ink);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
 }
 
-/* from Bulma */
-.icon {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    height: 1.5rem;
-    width: 1.5rem;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--nook-ink);
 }
+
+a {
+    color: var(--nook-sage-dark);
+}
+
+a:hover {
+    color: var(--nook-sage);
+}
+
+
+/* ------------------------------------------------ Typography */
 
 .logo-font {
-    text-transform: uppercase;
+    font-family: 'Libre Baskerville', serif;
+    font-weight: 700;
+}
+
+.nook-logo {
+    color: var(--nook-sage-dark);
+    font-size: 2rem;
+    letter-spacing: -0.04em;
+}
+
+
+/* ------------------------------------------------ Header */
+
+header {
+    background-color: var(--nook-paper);
+    border-bottom: 1px solid var(--nook-border);
+}
+
+#topnav {
+    background-color: var(--nook-paper);
+}
+
+.nook-navbar-row {
+    background-color: var(--nook-paper);
 }
 
 .main-logo-link {
     width: fit-content;
+    text-decoration: none;
 }
 
-.shop-now-button {
-    background: black;
-    color: white;
-    min-width: 260px;
+.main-logo-link:hover .nook-logo,
+.main-logo-link:focus .nook-logo {
+    color: var(--nook-sage);
 }
 
+.nook-header-link {
+    color: var(--nook-ink);
+}
+
+.nook-header-link:hover,
+.nook-header-link:focus {
+    color: var(--nook-sage-dark);
+}
+
+.nook-basket-active {
+    color: var(--nook-sage-dark);
+    font-weight: 700;
+}
+
+
+/* ------------------------------------------------ Search */
+
+.nook-search-input {
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 999px 0 0 999px;
+    color: var(--nook-ink);
+    padding: 0.7rem 1rem;
+}
+
+.nook-search-input::placeholder {
+    color: var(--nook-muted);
+}
+
+.nook-search-input:focus {
+    background-color: var(--nook-paper);
+    border-color: var(--nook-sage);
+    box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.15);
+    color: var(--nook-ink);
+}
+
+.nook-search-button {
+    background-color: var(--nook-sage-dark);
+    border: 1px solid var(--nook-sage-dark);
+    border-radius: 0 999px 999px 0;
+    color: #fff;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.nook-search-button:hover,
+.nook-search-button:active,
+.nook-search-button:focus {
+    background-color: var(--nook-sage);
+    border-color: var(--nook-sage);
+    color: #fff;
+}
+
+
+/* ------------------------------------------------ Main navigation */
+
+.navbar {
+    background-color: var(--nook-paper);
+}
+
+.navbar .nav-link {
+    color: var(--nook-ink);
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: var(--nook-sage-dark);
+}
+
+.navbar-toggler {
+    border-color: var(--nook-border);
+}
+
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.15);
+}
+
+
+/* ------------------------------------------------ Dropdowns */
+
+.nook-dropdown,
+.dropdown-menu {
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 0.5rem;
+    box-shadow: 0 8px 24px rgba(47, 51, 45, 0.08);
+}
+
+.dropdown-item {
+    color: var(--nook-ink);
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(124, 143, 118, 0.12);
+    color: var(--nook-sage-dark);
+}
+
+
+/* ------------------------------------------------ Delivery banner */
+
+#delivery-banner {
+    background-color: var(--nook-sage-dark);
+}
+
+#delivery-banner .col {
+    background-color: transparent;
+}
+
+.delivery-message {
+    color: #fff;
+    font-size: 0.9rem;
+    letter-spacing: 0.02em;
+}
+
+
+/* ------------------------------------------------ Icons */
+
+.icon {
+    align-items: center;
+    display: inline-flex;
+    height: 1.5rem;
+    justify-content: center;
+    width: 1.5rem;
+}
+
+
+/* ------------------------------------------------ Buttons */
+
+.shop-now-button,
 .btn-black {
-    background: black;
-    color: white;
-}
-
-.btn-outline-black {
-    background: white;
-    color: black !important; /* use important to override link colors for <a> elements */
-    border: 1px solid black;
-}
-
-.btn-outline-black:hover,
-.btn-outline-black:active,
-.btn-outline-black:focus {
-    background: black;
-    color: white !important;
+    background-color: var(--nook-sage-dark);
+    border: 1px solid var(--nook-sage-dark);
+    color: #fff;
 }
 
 .shop-now-button:hover,
@@ -57,43 +225,75 @@ body {
 .btn-black:hover,
 .btn-black:active,
 .btn-black:focus {
-    background: #222;
-    color: white;
+    background-color: var(--nook-sage);
+    border-color: var(--nook-sage);
+    color: #fff;
 }
 
-.text-black {
-    color: #000 !important;
+.shop-now-button {
+    border-radius: 999px;
+    min-width: 220px;
 }
 
-.border-black {
-    border: 1px solid black !important;
+.btn-outline-black {
+    background-color: transparent;
+    border: 1px solid var(--nook-sage-dark);
+    color: var(--nook-sage-dark) !important;
 }
 
-.bg-black {
-    background: #000 !important;
-}
-
-.overlay {
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	position: fixed;
-	background: white;
-	z-index: -1;
-}
-
-a.category-badge > span.badge:hover {
-    background: #212529 !important;
+.btn-outline-black:hover,
+.btn-outline-black:active,
+.btn-outline-black:focus {
+    background-color: var(--nook-sage-dark);
+    border-color: var(--nook-sage-dark);
     color: #fff !important;
 }
 
-.btt-button {
-    height: 42px;
-    width: 42px;
+
+/* ------------------------------------------------ Existing utility classes */
+
+.text-black {
+    color: var(--nook-ink) !important;
+}
+
+.border-black {
+    border: 1px solid var(--nook-ink) !important;
+}
+
+.bg-black {
+    background-color: var(--nook-ink) !important;
+}
+
+
+/* ------------------------------------------------ General page overlay */
+
+.overlay {
+    background-color: var(--nook-paper);
+    height: 100%;
+    left: 0;
     position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+}
+
+
+/* ------------------------------------------------ Category badges */
+
+a.category-badge > span.badge:hover {
+    background-color: var(--nook-sage-dark) !important;
+    color: #fff !important;
+}
+
+
+/* ------------------------------------------------ Back to top */
+
+.btt-button {
     bottom: 10px;
+    height: 42px;
+    position: fixed;
     right: 10px;
+    width: 42px;
 }
 
 .btt-link,
@@ -102,17 +302,14 @@ a.category-badge > span.badge:hover {
     cursor: pointer;
 }
 
-input[name='q']::placeholder {
-    color: #aab7c4;
-}
 
-/* ------------------------------- bootstrap toasts */
+/* ------------------------------------------------ Bootstrap toasts */
 
 .message-container {
     position: fixed;
-    top: 72px;
     right: 15px;
-    z-index: 99999999999;
+    top: 170px;
+    z-index: 9999;
 }
 
 .custom-toast {
@@ -123,21 +320,22 @@ input[name='q']::placeholder {
     height: 2px;
 }
 
-/* from CSS-tricks.com: https://css-tricks.com/snippets/css/css-triangle/ */
+
+/* ------------------------------------------------ Toast arrows */
+
 .arrow-up {
-    width: 0; 
-    height: 0; 
+    border-bottom: 10px solid var(--nook-ink);
     border-left: 4px solid transparent;
-    border-right: 4px solid transparent; 
-    border-bottom: 10px solid black;
+    border-right: 4px solid transparent;
+    height: 0;
     position: absolute;
-    top: -10px;
     right: 36px;
+    top: -10px;
+    width: 0;
 }
 
-/* Convenience classes - colors copied from Bootstrap */
 .arrow-primary {
-    border-bottom-color: #007bff !important;
+    border-bottom-color: #0d6efd !important;
 }
 
 .arrow-secondary {
@@ -145,7 +343,7 @@ input[name='q']::placeholder {
 }
 
 .arrow-success {
-    border-bottom-color: #28a745 !important;
+    border-bottom-color: #198754 !important;
 }
 
 .arrow-danger {
@@ -157,7 +355,7 @@ input[name='q']::placeholder {
 }
 
 .arrow-info {
-    border-bottom-color: #17a2b8 !important;
+    border-bottom-color: #0dcaf0 !important;
 }
 
 .arrow-light {
@@ -165,8 +363,11 @@ input[name='q']::placeholder {
 }
 
 .arrow-dark {
-    border-bottom-color: #343a40 !important;
+    border-bottom-color: #212529 !important;
 }
+
+
+/* ------------------------------------------------ Basket notifications */
 
 .bag-notification-wrapper {
     height: 100px;
@@ -174,25 +375,27 @@ input[name='q']::placeholder {
     overflow-y: auto;
 }
 
-/* -------------------------------- Media Queries */
 
-/* Slightly larger container on xl screens */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 80%;
-  }
+/* ------------------------------------------------ Allauth */
+
+.allauth-form-inner-content {
+    background-color: var(--nook-paper);
 }
 
-/* Allauth form formatting */
-
 .allauth-form-inner-content p {
-    margin-top: 1.5rem; /* mt-4 */
-    color: #6c757d; /* text-secondary */
+    color: var(--nook-muted);
+    margin-top: 1.5rem;
 }
 
 .allauth-form-inner-content input {
-    border-color: #000;
-    border-radius: 0;
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 0.4rem;
+}
+
+.allauth-form-inner-content input:focus {
+    border-color: var(--nook-sage);
+    box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.15);
 }
 
 .allauth-form-inner-content label:not([for='id_remember']) {
@@ -200,78 +403,104 @@ input[name='q']::placeholder {
 }
 
 .allauth-form-inner-content input::placeholder {
-    color: #aab7c4;
+    color: var(--nook-muted);
 }
 
 .allauth-form-inner-content button,
 .allauth-form-inner-content input[type='submit'] {
-	/* btn */
-	display: inline-block;
-    font-weight: 400;
+    background-color: var(--nook-sage-dark);
+    border: 1px solid var(--nook-sage-dark);
+    border-radius: 999px;
     color: #fff;
-    text-align: center;
-    vertical-align: middle;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-    background-color: #000;
-    border: 1px solid #000;
-    padding: .375rem .75rem;
+    display: inline-block;
     font-size: 1rem;
+    font-weight: 600;
     line-height: 1.5;
-    border-radius: 0;
-
-    /* standard bootstrap btn transitions */
-    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+    padding: 0.5rem 1.25rem;
+    text-align: center;
+    transition:
+        background-color 0.15s ease-in-out,
+        border-color 0.15s ease-in-out;
+    user-select: none;
+    vertical-align: middle;
 }
 
 .allauth-form-inner-content button:hover,
-.allauth-form-inner-content input[type='submit']:hover {	
-	color: #fff;
-    background-color: #222;
-    border-color: #222;
+.allauth-form-inner-content input[type='submit']:hover {
+    background-color: var(--nook-sage);
+    border-color: var(--nook-sage);
+    color: #fff;
 }
 
 .allauth-form-inner-content a {
-	color: #17a2b8; /* text-info */
+    color: var(--nook-sage-dark);
 }
 
-/* Product Form */
+
+/* ------------------------------------------------ Product forms */
 
 .btn-file {
-    position: relative;
     overflow: hidden;
+    position: relative;
 }
 
 .btn-file input[type="file"] {
-    position: absolute;
-    top: 0;
-    right: 0;
-    min-width: 100%;
-    min-height: 100%;
-    opacity: 0;
     cursor: pointer;
+    min-height: 100%;
+    min-width: 100%;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 
 .custom-checkbox .custom-control-label::before {
-    border-radius: 0;
-    border-color: #dc3545;
-}
-
-.custom-checkbox .custom-control-input:checked~.custom-control-label::before {
-    background-color: #dc3545;
-    border-color: #dc3545;
+    border-color: var(--nook-sage-dark);
     border-radius: 0;
 }
 
-/* fixed top navbar only on medium and up */
+.custom-checkbox
+.custom-control-input:checked
+~ .custom-control-label::before {
+    background-color: var(--nook-sage-dark);
+    border-color: var(--nook-sage-dark);
+    border-radius: 0;
+}
+
+
+/* ------------------------------------------------ Focus accessibility */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid var(--nook-gold);
+    outline-offset: 2px;
+}
+
+
+/* ------------------------------------------------ Media queries */
+
+/* Slightly larger container on XL screens */
+
+@media (min-width: 1200px) {
+
+    .container {
+        max-width: 80%;
+    }
+}
+
+
+/* Desktop header spacing */
+
 @media (min-width: 992px) {
+
     .fixed-top-desktop-only {
-        position: fixed;
-        top: 0;
-        right: 0;
         left: 0;
+        position: fixed;
+        right: 0;
+        top: 0;
         z-index: 1030;
     }
 
@@ -280,13 +509,21 @@ input[name='q']::placeholder {
     }
 }
 
-/* pad the top a bit when navbar is collapsed on mobile */
+
+/* Mobile */
+
 @media (max-width: 991px) {
+
     .header-container {
         padding-top: 116px;
     }
 
-    body {
-        height: calc(100vh - 116px);
+    .nook-logo {
+        font-size: 1.6rem;
+    }
+
+    .message-container {
+        right: 10px;
+        top: 120px;
     }
 }

@@ -8,106 +8,271 @@
   {% block meta %}
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta
+    name="description"
+    content="The Nook is an independent online bookshop helping readers discover books and support independent authors.">
   {% endblock %}
 
   {% block extra_meta %}
   {% endblock %}
 
   {% block corecss %}
+
+  <!-- Bootstrap -->
   <link
     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
     rel="stylesheet">
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato&display=swap">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+  <!-- Custom CSS -->
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
+
   {% endblock %}
 
   {% block extra_css %}
   {% endblock %}
 
   {% block corejs %}
-  <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+
+  <!-- jQuery -->
   <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+    src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js">
   </script>
+
+  <!-- Bootstrap -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js">
+  </script>
+
   <!-- Stripe -->
   <script src="https://js.stripe.com/v3/"></script>
+
   {% endblock %}
 
   {% block extra_js %}
   {% endblock %}
 
-  <title>The Nook {% block extra_title %}{% endblock %}</title>
+  <title>
+    The Nook
+    {% block extra_title %}
+    {% endblock %}
+  </title>
+
 </head>
 
 <body>
+
   <header class="container-fluid fixed-top">
-    <div id="topnav" class="row bg-white pt-lg-2 d-none d-lg-flex">
-      <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
-        <a href="{% url 'home' %}" class="nav-link main-logo-link">
-          <h2 class="logo-font text-black my-0"><strong>The</strong> Nook</h2>
+
+    <!-- Desktop top navigation -->
+    <div
+      id="topnav"
+      class="row pt-lg-2 d-none d-lg-flex">
+
+      <!-- Logo -->
+      <div
+        class="col-12 col-lg-4 my-auto py-1 py-lg-0
+        text-center text-lg-start">
+
+        <a
+          href="{% url 'home' %}"
+          class="nav-link main-logo-link">
+
+          <h2 class="logo-font nook-logo my-0">
+            The Nook
+          </h2>
+
         </a>
+
       </div>
-      <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-        <form method="GET" action="{% url 'products' %}">
-          {% csrf_token %}
+
+      <!-- Search -->
+      <div
+        class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+
+        <form
+          method="GET"
+          action="{% url 'products' %}"
+          role="search">
+
           <div class="input-group w-100">
-            <input class="form-control border border-black rounded-0" type="text" name="q"
-              placeholder="Search our site">
-            <div class="input-group-append">
-              <button class="form-control btn btn-black border border-black rounded-0" type="submit">
-                <span class="icon">
-                  <i class="fas fa-search"></i>
-                </span>
-              </button>
-            </div>
+
+            <input
+              class="form-control nook-search-input"
+              type="text"
+              name="q"
+              placeholder="Search books, authors or genres"
+              aria-label="Search books">
+
+            <button
+              class="btn nook-search-button"
+              type="submit"
+              aria-label="Submit search">
+
+              <span class="icon">
+                <i
+                  class="fa-solid fa-magnifying-glass"
+                  aria-hidden="true">
+                </i>
+              </span>
+
+            </button>
+
           </div>
+
         </form>
+
       </div>
-      <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-        <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+
+      <!-- Account and basket -->
+      <div
+        class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+
+        <ul
+          class="list-inline list-unstyled
+          text-center text-lg-end my-0">
+
+          <!-- Account -->
           <li class="list-inline-item dropdown">
-            <a class="text-black nav-link" href="#" id="user-options" data-bs-toggle="dropdown" aria-haspopup="true"
+
+            <a
+              class="nook-header-link nav-link"
+              href="#"
+              id="user-options"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
               aria-expanded="false">
+
               <div class="text-center">
-                <div><i class="fas fa-user fa-lg"></i></div>
-                <p class="my-0">My Account</p>
-              </div>
-            </a>
-            <div class="dropdown-menu border-0" aria-labelledby="user-options">
-              {% if request.user.is_authenticated %}
-              {% if request.user.is_superuser %}
-              <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
-              {% endif %}
-              <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-              <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
-              {% else %}
-              <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-              <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
-              {% endif %}
-            </div>
-          </li>
-          <li class="list-inline-item">
-            <a class="{% if grand_total %}text-info fw-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
-              <div class="text-center">
-                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+
+                <div>
+                  <i
+                    class="fa-regular fa-user fa-lg"
+                    aria-hidden="true">
+                  </i>
+                </div>
+
                 <p class="my-0">
-                  {% if grand_total %}
-                  ${{ grand_total|floatformat:2 }}
-                  {% else %}
-                  $0.00
-                  {% endif %}
+                  My Account
                 </p>
+
               </div>
+
             </a>
+
+            <div
+              class="dropdown-menu nook-dropdown"
+              aria-labelledby="user-options">
+
+              {% if request.user.is_authenticated %}
+
+                {% if request.user.is_superuser %}
+
+                  <a
+                    href="{% url 'add_product' %}"
+                    class="dropdown-item">
+                    Product Management
+                  </a>
+
+                {% endif %}
+
+                <a
+                  href="{% url 'profile' %}"
+                  class="dropdown-item">
+                  My Profile
+                </a>
+
+                <a
+                  href="{% url 'account_logout' %}"
+                  class="dropdown-item">
+                  Logout
+                </a>
+
+              {% else %}
+
+                <a
+                  href="{% url 'account_signup' %}"
+                  class="dropdown-item">
+                  Register
+                </a>
+
+                <a
+                  href="{% url 'account_login' %}"
+                  class="dropdown-item">
+                  Login
+                </a>
+
+              {% endif %}
+
+            </div>
+
           </li>
+
+          <!-- Basket -->
+          <li class="list-inline-item">
+
+            <a
+              class="
+              {% if grand_total %}
+                nook-basket-active
+              {% else %}
+                nook-header-link
+              {% endif %}
+              nav-link"
+              href="{% url 'view_bag' %}">
+
+              <div class="text-center">
+
+                <div>
+                  <i
+                    class="fa-solid fa-bag-shopping fa-lg"
+                    aria-hidden="true">
+                  </i>
+                </div>
+
+                <p class="my-0">
+
+                  {% if grand_total %}
+                    £{{ grand_total|floatformat:2 }}
+                  {% else %}
+                    £0.00
+                  {% endif %}
+
+                </p>
+
+              </div>
+
+            </a>
+
+          </li>
+
         </ul>
+
       </div>
+
     </div>
-    <div class="row bg-white">
-      <nav class="navbar navbar-expand-lg navbar-light w-100">
+
+    <!-- Main navigation -->
+    <div class="row nook-navbar-row">
+
+      <nav
+        class="navbar navbar-expand-lg navbar-light w-100"
+        aria-label="Main navigation">
+
         <button
-          class="navbar-toggler"
+          class="navbar-toggler ms-2"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#main-nav"
@@ -118,44 +283,79 @@
           <span class="navbar-toggler-icon"></span>
 
         </button>
+
         {% include 'includes/mobile-top-header.html' %}
+
         {% include 'includes/main-nav.html' %}
+
       </nav>
+
     </div>
-    <div id="delivery-banner" class="row text-center">
-      <div class="col bg-black text-white">
-        <h4 class="logo-font my-1">Free delivery on orders over ${{ free_delivery_threshold }}!</h4>
+
+    <!-- Delivery banner -->
+    <div
+      id="delivery-banner"
+      class="row text-center">
+
+      <div class="col">
+
+        <p class="delivery-message my-2">
+          Free UK delivery on orders over
+          £{{ free_delivery_threshold }}
+        </p>
+
       </div>
+
     </div>
+
   </header>
 
+  <!-- Django messages -->
   {% if messages %}
-  <div class="message-container">
+
+    <div class="message-container">
+
       {% for message in messages %}
-          {% with message.level as level %}
-              {% if level == 40 %}
-                  {% include 'includes/toasts/toast_error.html' %}
-              {% elif level == 30 %}
-                  {% include 'includes/toasts/toast_warning.html' %}
-              {% elif level == 25 %}
-                  {% include 'includes/toasts/toast_success.html' %}
-              {% else %}
-                  {% include 'includes/toasts/toast_info.html' %}
-              {% endif %}
-          {% endwith %}
+
+        {% with message.level as level %}
+
+          {% if level == 40 %}
+
+            {% include 'includes/toasts/toast_error.html' %}
+
+          {% elif level == 30 %}
+
+            {% include 'includes/toasts/toast_warning.html' %}
+
+          {% elif level == 25 %}
+
+            {% include 'includes/toasts/toast_success.html' %}
+
+          {% else %}
+
+            {% include 'includes/toasts/toast_info.html' %}
+
+          {% endif %}
+
+        {% endwith %}
+
       {% endfor %}
-  </div>
+
+    </div>
+
   {% endif %}
 
   {% block page_header %}
   {% endblock %}
 
-  {% block content %}
-  {% endblock %}
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
 
   {% block postloadjs %}
 
-  <script type="text/javascript">
+  <script>
     $('.toast').toast('show');
   </script>
 
