@@ -1,0 +1,388 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block extra_title %}
+| Browse Books
+{% endblock %}
+
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="catalogue-page">
+
+    <div class="container">
+
+        <!-- Page heading -->
+        <div class="catalogue-heading">
+
+            <p class="section-eyebrow">
+                Our shelves
+            </p>
+
+            <h1 class="catalogue-title logo-font">
+                Browse books
+            </h1>
+
+            <p class="catalogue-intro">
+                Independent fiction chosen for readers who like
+                finding something unexpected.
+            </p>
+
+        </div>
+
+
+        <!-- Search and controls -->
+        <form
+            method="GET"
+            action="{% url 'book_list' %}"
+            class="catalogue-controls">
+
+            <div class="row g-3 align-items-end">
+
+                <!-- Search -->
+                <div class="col-12 col-lg-6">
+
+                    <label
+                        for="catalogue-search"
+                        class="catalogue-label">
+                        Search by title, author or keyword
+                    </label>
+
+                    <input
+                        id="catalogue-search"
+                        class="form-control catalogue-search"
+                        type="search"
+                        name="q"
+                        value="{{ search_term }}"
+                        placeholder="Search The Nook">
+
+                </div>
+
+
+                <!-- Mobile filters button -->
+                <div class="col-6 col-lg-3">
+
+                    <button
+                        class="btn catalogue-filter-button d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#catalogue-filters"
+                        aria-expanded="false"
+                        aria-controls="catalogue-filters">
+
+                        Filters
+
+                        {% if selected_genres %}
+                            ({{ selected_genres|length }})
+                        {% endif %}
+
+                    </button>
+
+                </div>
+
+
+                <!-- Sort -->
+                <div class="col-6 col-lg-3">
+
+                    <label
+                        for="catalogue-sort"
+                        class="catalogue-label">
+                        Sort
+                    </label>
+
+                    <select
+                        id="catalogue-sort"
+                        class="form-select catalogue-sort"
+                        name="sort">
+
+                        <option
+                            value="newest"
+                            {% if current_sort == 'newest' %}
+                                selected
+                            {% endif %}>
+                            Newest
+                        </option>
+
+                        <option
+                            value="price_low"
+                            {% if current_sort == 'price_low' %}
+                                selected
+                            {% endif %}>
+                            Price: Low to High
+                        </option>
+
+                        <option
+                            value="price_high"
+                            {% if current_sort == 'price_high' %}
+                                selected
+                            {% endif %}>
+                            Price: High to Low
+                        </option>
+
+                        <option
+                            value="rating"
+                            {% if current_sort == 'rating' %}
+                                selected
+                            {% endif %}>
+                            Highest Rated
+                        </option>
+
+                        <option
+                            value="title"
+                            {% if current_sort == 'title' %}
+                                selected
+                            {% endif %}>
+                            Title A–Z
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="row catalogue-content">
+
+                <!-- Filters -->
+                <aside
+                    id="catalogue-filters"
+                    class="col-12 col-lg-2
+                    collapse d-lg-block catalogue-sidebar">
+
+                    <div class="catalogue-filter-inner">
+
+                        <p class="catalogue-filter-title">
+                            Filter books
+                        </p>
+
+                        <fieldset>
+
+                            <legend>
+                                Genre
+                            </legend>
+
+                            {% for genre in genres %}
+
+                                <div class="form-check">
+
+                                    <input
+                                        class="form-check-input"
+                                        type="checkbox"
+                                        name="genre"
+                                        value="{{ genre.id }}"
+                                        id="genre-{{ genre.id }}"
+                                        {% if genre.id|stringformat:"s" in selected_genres %}
+                                            checked
+                                        {% endif %}>
+
+                                    <label
+                                        class="form-check-label"
+                                        for="genre-{{ genre.id }}">
+                                        {{ genre.name }}
+                                    </label>
+
+                                </div>
+
+                            {% empty %}
+
+                                <p class="catalogue-muted">
+                                    No genres available yet.
+                                </p>
+
+                            {% endfor %}
+
+                        </fieldset>
+
+
+                        <button
+                            type="submit"
+                            class="btn nook-primary-button catalogue-apply">
+                            Apply filters
+                        </button>
+
+
+                        {% if search_term or selected_genres %}
+
+                            <a
+                                href="{% url 'book_list' %}"
+                                class="catalogue-clear">
+                                Clear filters
+                            </a>
+
+                        {% endif %}
+
+                    </div>
+
+                </aside>
+
+
+                <!-- Books -->
+                <div class="col-12 col-lg-10">
+
+                    <p class="catalogue-results-count">
+
+                        {{ books|length }}
+
+                        {% if books|length == 1 %}
+                            book found
+                        {% else %}
+                            books found
+                        {% endif %}
+
+                    </p>
+
+
+                    <div class="row g-4">
+
+                        {% for book in books %}
+
+                            <div class="col-6 col-md-4">
+
+                                <article class="book-card">
+
+                                    <a
+                                        href="#"
+                                        class="book-cover-link">
+
+                                        {% if book.cover_image %}
+
+                                            <img
+                                                src="{{ book.cover_image.url }}"
+                                                alt="Cover of {{ book.title }}"
+                                                class="book-cover">
+
+                                        {% else %}
+
+                                            <div
+                                                class="
+                                                book-cover
+                                                book-cover-placeholder
+                                                book-cover-{{ forloop.counter|divisibleby:3|yesno:'sage,rose' }}">
+
+                                                <span class="placeholder-line"></span>
+
+                                                <span class="placeholder-circle"></span>
+
+                                                <span class="placeholder-title logo-font">
+                                                    {{ book.title }}
+                                                </span>
+
+                                            </div>
+
+                                        {% endif %}
+
+                                    </a>
+
+
+                                    <div class="book-card-body">
+
+                                        <h2 class="book-card-title logo-font">
+                                            {{ book.title }}
+                                        </h2>
+
+
+                                        <p class="book-card-meta">
+
+                                            by {{ book.author }}
+
+                                            {% if book.average_rating %}
+
+                                                <span aria-hidden="true">
+                                                    ·
+                                                </span>
+
+                                                <span
+                                                    aria-label="
+                                                    Rating:
+                                                    {{ book.average_rating|floatformat:1 }}
+                                                    out of 5">
+
+                                                    ★
+                                                    {{ book.average_rating|floatformat:1 }}
+
+                                                </span>
+
+                                            {% endif %}
+
+                                        </p>
+
+
+                                        <p class="book-card-price">
+                                            £{{ book.price }}
+                                        </p>
+
+                                    </div>
+
+                                </article>
+
+                            </div>
+
+                        {% empty %}
+
+                            <div class="col-12">
+
+                                <div class="catalogue-empty">
+
+                                    <i
+                                        class="fa-solid fa-book-open"
+                                        aria-hidden="true">
+                                    </i>
+
+                                    <h2 class="logo-font">
+                                        No books found
+                                    </h2>
+
+                                    <p>
+                                        Try changing your search or
+                                        removing one of the filters.
+                                    </p>
+
+                                    <a
+                                        href="{% url 'book_list' %}"
+                                        class="btn nook-primary-button">
+                                        View all books
+                                    </a>
+
+                                </div>
+
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block postloadjs %}
+
+{{ block.super }}
+
+<script>
+    const sortSelector = document.getElementById('catalogue-sort');
+
+    if (sortSelector) {
+        sortSelector.addEventListener('change', function () {
+            this.form.submit();
+        });
+    }
+</script>
+
+{% endblock %}
