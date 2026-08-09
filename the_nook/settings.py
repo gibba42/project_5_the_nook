@@ -73,6 +73,10 @@ INSTALLED_APPS = [
     # Profiles
     'profiles',
 
+    # Bookstore
+    'authors',
+    'books',
+
     # Forms
     'crispy_forms',
     'crispy_bootstrap5',
