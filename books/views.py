@@ -1,5 +1,9 @@
+from django.contrib import messages
+from django.contrib.admin.views.decorators import staff_member_required
 from django.db.models import Avg, Q
-from django.shortcuts import get_object_or_404, render
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils import timezone
+from django.views.decorators.http import require_POST
 
 from .models import Book, Genre
 
@@ -112,3 +116,106 @@ def book_detail(request, book_id):
         'books/book_detail.html',
         context
     )
+
+@staff_member_required
+def approval_dashboard(request):
+    """
+    Display books awaiting staff approval.
+    """
+
+    pending_books = (
+        Book.objects
+        .filter(status=Book.Status.PENDING)
+        .select_related('author', 'genre')
+        .order_by('created_at')
+    )
+
+    context = {
+        'pending_books': pending_books,
+    }
+
+    return render(
+        request,
+        'books/approval_dashboard.html',
+        context
+    )
+
+
+@staff_member_required
+def approval_detail(request, book_id):
+    """
+    Display a pending book for staff review.
+    """
+
+    book = get_object_or_404(
+        Book.objects.select_related('author', 'genre'),
+        pk=book_id,
+        status=Book.Status.PENDING
+    )
+
+    context = {
+        'book': book,
+    }
+
+    return render(
+        request,
+        'books/approval_detail.html',
+        context
+    )
+
+
+@require_POST
+@staff_member_required
+def approve_book(request, book_id):
+    """
+    Approve a pending book and make it eligible for public display.
+    """
+
+    book = get_object_or_404(
+        Book,
+        pk=book_id,
+        status=Book.Status.PENDING
+    )
+
+    book.status = Book.Status.APPROVED
+    book.rejection_reason = ''
+    book.reviewed_by = request.user
+    book.reviewed_at = timezone.now()
+    book.save()
+
+    messages.success(
+        request,
+        f'"{book.title}" has been approved.'
+    )
+
+    return redirect('approval_dashboard')
+
+
+@require_POST
+@staff_member_required
+def reject_book(request, book_id):
+    """
+    Reject a pending book and store the optional rejection reason.
+    """
+
+    book = get_object_or_404(
+        Book,
+        pk=book_id,
+        status=Book.Status.PENDING
+    )
+
+    book.status = Book.Status.REJECTED
+    book.rejection_reason = request.POST.get(
+        'rejection_reason',
+        ''
+    ).strip()
+    book.reviewed_by = request.user
+    book.reviewed_at = timezone.now()
+    book.save()
+
+    messages.success(
+        request,
+        f'"{book.title}" has been rejected.'
+    )
+
+    return redirect('approval_dashboard')
