@@ -2,27 +2,393 @@
 
 {% load static %}
 
-{% block page_header %}
-    <div class="container header-container">
-        <div class="row">
-            <div class="col"></div>
-        </div>
-    </div>
+{% block extra_title %}
+| Independent Books & Authors
 {% endblock %}
 
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+
 {% block content %}
-    <div class="container h-100">
-        <div class="row h-100">
-            <div class="col-7 col-md-6 my-auto">
-                <h1 class="display-4 logo-font text-black">
-                    The new collections are here
-                </h1>
-                <div class="my-5">
-                    <h4>
-                        <a href="{% url 'products' %}" class="shop-now-button btn btn-lg rounded-0 text-uppercase py-3">Shop Now</a>
-                    </h4>
+
+<!-- Hero -->
+<section class="home-hero">
+
+    <div class="container">
+
+        <div class="row align-items-center min-vh-hero">
+
+            <!-- Hero text -->
+            <div class="col-12 col-lg-6">
+
+                <div class="hero-content">
+
+                    <p class="hero-eyebrow">
+                        Independent stories. Thoughtfully chosen.
+                    </p>
+
+                    <h1 class="hero-heading logo-font">
+                        Find your next
+                        <span>favourite story.</span>
+                    </h1>
+
+                    <p class="hero-description">
+                        Discover original books from independent authors
+                        and find stories you might not see anywhere else.
+                    </p>
+
+                    <div class="hero-actions">
+
+                        <a
+                            href="{% url 'products' %}"
+                            class="btn nook-primary-button">
+                            Browse Books
+                        </a>
+
+                        <a
+                            href="#discover"
+                            class="btn nook-secondary-button">
+                            Discover The Nook
+                        </a>
+
+                    </div>
+
                 </div>
+
             </div>
+
+            <!-- Hero illustration -->
+            <div class="col-12 col-lg-6">
+
+                <div
+                    class="hero-art"
+                    aria-hidden="true">
+
+                    <div class="hero-blob"></div>
+
+                    <div class="book-stack">
+
+                        <div class="book book-one">
+                            <span></span>
+                        </div>
+
+                        <div class="book book-two">
+                            <span></span>
+                        </div>
+
+                        <div class="book book-three">
+                            <span></span>
+                        </div>
+
+                    </div>
+
+                    <div class="hero-plant">
+
+                        <span class="plant-stem"></span>
+                        <span class="plant-leaf leaf-one"></span>
+                        <span class="plant-leaf leaf-two"></span>
+                        <span class="plant-leaf leaf-three"></span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
+
     </div>
+
+</section>
+
+
+<!-- Introduction -->
+<section
+    id="discover"
+    class="home-intro">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-lg-8 text-center">
+
+                <p class="section-eyebrow">
+                    Welcome to The Nook
+                </p>
+
+                <h2 class="section-heading logo-font">
+                    Come in. Stay awhile.
+                </h2>
+
+                <p class="section-description">
+                    The Nook is a curated online bookshop built around
+                    independent authors and the readers looking for
+                    something new. Browse stories, discover writers and
+                    support independently published books.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Discovery cards -->
+<section class="home-discover">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- Browse -->
+            <div class="col-12 col-md-4">
+
+                <article class="discover-card">
+
+                    <div class="discover-icon">
+                        <i
+                            class="fa-solid fa-book-open"
+                            aria-hidden="true">
+                        </i>
+                    </div>
+
+                    <h3 class="logo-font">
+                        Find your next read
+                    </h3>
+
+                    <p>
+                        Explore a growing collection of independently
+                        published books across a range of genres.
+                    </p>
+
+                    <a
+                        href="{% url 'products' %}"
+                        class="discover-link">
+                        Browse books
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </article>
+
+            </div>
+
+            <!-- Authors -->
+            <div class="col-12 col-md-4">
+
+                <article class="discover-card discover-card-rose">
+
+                    <div class="discover-icon">
+                        <i
+                            class="fa-solid fa-feather-pointed"
+                            aria-hidden="true">
+                        </i>
+                    </div>
+
+                    <h3 class="logo-font">
+                        Meet the authors
+                    </h3>
+
+                    <p>
+                        Get to know the independent writers behind the
+                        books and discover the stories they want to tell.
+                    </p>
+
+                    <a
+                        href="#"
+                        class="discover-link">
+                        Discover authors
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </article>
+
+            </div>
+
+            <!-- New books -->
+            <div class="col-12 col-md-4">
+
+                <article class="discover-card discover-card-gold">
+
+                    <div class="discover-icon">
+                        <i
+                            class="fa-solid fa-bookmark"
+                            aria-hidden="true">
+                        </i>
+                    </div>
+
+                    <h3 class="logo-font">
+                        Something new
+                    </h3>
+
+                    <p>
+                        See the newest books to arrive at The Nook and
+                        discover your next unexpected favourite.
+                    </p>
+
+                    <a
+                        href="{% url 'products' %}"
+                        class="discover-link">
+                        See new arrivals
+                        <span aria-hidden="true">→</span>
+                    </a>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Author feature -->
+<section class="author-feature">
+
+    <div class="container">
+
+        <div class="row align-items-center g-5">
+
+            <!-- Decorative image area -->
+            <div class="col-12 col-lg-6">
+
+                <div
+                    class="author-feature-art"
+                    aria-hidden="true">
+
+                    <div class="author-art-paper">
+
+                        <i class="fa-solid fa-feather"></i>
+
+                    </div>
+
+                    <div class="author-art-accent"></div>
+
+                </div>
+
+            </div>
+
+            <!-- Text -->
+            <div class="col-12 col-lg-6">
+
+                <div class="author-feature-content">
+
+                    <p class="section-eyebrow">
+                        For independent authors
+                    </p>
+
+                    <h2 class="section-heading logo-font">
+                        Your story deserves
+                        a place on the shelf.
+                    </h2>
+
+                    <p>
+                        The Nook gives independent authors a place to
+                        showcase their books while helping readers discover
+                        stories beyond the traditional bestseller lists.
+                    </p>
+
+                    <p>
+                        Author listings are reviewed before publication so
+                        readers can browse a curated collection with
+                        confidence.
+                    </p>
+
+                    <a
+                        href="#"
+                        class="btn nook-primary-button">
+                        Learn about selling
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- Newsletter -->
+<section class="newsletter-preview">
+
+    <div class="container">
+
+        <div class="newsletter-panel">
+
+            <div class="row justify-content-center">
+
+                <div class="col-12 col-lg-8 text-center">
+
+                    <div class="newsletter-icon">
+                        <i
+                            class="fa-regular fa-envelope"
+                            aria-hidden="true">
+                        </i>
+                    </div>
+
+                    <p class="section-eyebrow">
+                        Notes from The Nook
+                    </p>
+
+                    <h2 class="section-heading logo-font">
+                        New books, recommendations
+                        and stories worth finding.
+                    </h2>
+
+                    <p class="newsletter-description">
+                        Join our newsletter for new releases,
+                        independent author features and reading
+                        recommendations.
+                    </p>
+
+                    <form
+                        class="newsletter-form"
+                        action="#"
+                        method="post">
+
+                        {% csrf_token %}
+
+                        <label
+                            for="newsletter-email"
+                            class="visually-hidden">
+                            Email address
+                        </label>
+
+                        <input
+                            id="newsletter-email"
+                            class="form-control"
+                            type="email"
+                            name="email"
+                            placeholder="Your email address"
+                            required>
+
+                        <button
+                            type="submit"
+                            class="btn nook-primary-button">
+                            Join The Nook
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
 {% endblock %}

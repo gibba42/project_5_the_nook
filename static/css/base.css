@@ -570,3 +570,587 @@ textarea:focus-visible {
         top: 120px;
     }
 }
+
+/* ------------------------------------------------ Hero */
+
+.home-hero {
+    background-color: var(--nook-cream);
+    overflow: hidden;
+    padding: 5rem 0;
+}
+
+.min-vh-hero {
+    min-height: 580px;
+}
+
+.hero-content {
+    max-width: 620px;
+}
+
+.hero-eyebrow,
+.section-eyebrow {
+    color: var(--nook-sage-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.hero-heading {
+    color: var(--nook-ink);
+    font-size: clamp(2.8rem, 6vw, 5.3rem);
+    letter-spacing: -0.06em;
+    line-height: 1.05;
+    margin-bottom: 1.5rem;
+}
+
+.hero-heading span {
+    color: var(--nook-sage-dark);
+    display: block;
+}
+
+.hero-description {
+    color: var(--nook-muted);
+    font-size: 1.15rem;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 540px;
+}
+
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+
+/* ------------------------------------------------ Nook buttons */
+
+.nook-primary-button {
+    background-color: var(--nook-sage-dark);
+    border: 2px solid var(--nook-sage-dark);
+    border-radius: 999px;
+    color: #fff;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+}
+
+.nook-primary-button:hover,
+.nook-primary-button:focus {
+    background-color: var(--nook-sage);
+    border-color: var(--nook-sage);
+    color: #fff;
+}
+
+.nook-secondary-button {
+    background-color: transparent;
+    border: 2px solid var(--nook-sage-dark);
+    border-radius: 999px;
+    color: var(--nook-sage-dark);
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+}
+
+.nook-secondary-button:hover,
+.nook-secondary-button:focus {
+    background-color: var(--nook-sage-dark);
+    border-color: var(--nook-sage-dark);
+    color: #fff;
+}
+
+
+/* ------------------------------------------------ Hero artwork */
+
+.hero-art {
+    height: 480px;
+    margin: 0 auto;
+    max-width: 560px;
+    position: relative;
+}
+
+.hero-blob {
+    background:
+        radial-gradient(
+            circle at 35% 35%,
+            rgba(255, 255, 255, 0.35),
+            transparent 45%
+        ),
+        var(--nook-sage);
+    border-radius:
+        42% 58% 52% 48% /
+        54% 42% 58% 46%;
+    height: 400px;
+    left: 50%;
+    opacity: 0.55;
+    position: absolute;
+    top: 45%;
+    transform:
+        translate(-50%, -50%)
+        rotate(-4deg);
+    width: 430px;
+}
+
+
+/* ------------------------------------------------ Book stack */
+
+.book-stack {
+    bottom: 75px;
+    left: 50%;
+    position: absolute;
+    transform: translateX(-50%);
+    width: 300px;
+}
+
+.book {
+    border-radius: 4px 8px 8px 4px;
+    box-shadow: 0 8px 15px rgba(47, 51, 45, 0.12);
+    height: 62px;
+    margin: 0 auto 8px;
+    position: relative;
+}
+
+.book::before {
+    background-color: rgba(255, 255, 255, 0.28);
+    content: "";
+    height: 100%;
+    left: 12px;
+    position: absolute;
+    top: 0;
+    width: 4px;
+}
+
+.book span {
+    background-color: rgba(255, 255, 255, 0.65);
+    height: 3px;
+    left: 35px;
+    position: absolute;
+    top: 50%;
+    width: 70px;
+}
+
+.book-one {
+    background-color: var(--nook-rose);
+    transform: rotate(-3deg);
+    width: 275px;
+}
+
+.book-two {
+    background-color: var(--nook-gold);
+    transform: rotate(2deg);
+    width: 300px;
+}
+
+.book-three {
+    background-color: var(--nook-sage-dark);
+    transform: rotate(-1deg);
+    width: 260px;
+}
+
+
+/* ------------------------------------------------ Decorative plant */
+
+.hero-plant {
+    bottom: 115px;
+    height: 180px;
+    position: absolute;
+    right: 35px;
+    width: 120px;
+}
+
+.plant-stem {
+    background-color: var(--nook-sage-dark);
+    bottom: 0;
+    height: 150px;
+    left: 55px;
+    position: absolute;
+    transform: rotate(6deg);
+    width: 3px;
+}
+
+.plant-leaf {
+    background-color: var(--nook-sage-dark);
+    border-radius: 100% 0 100% 0;
+    height: 55px;
+    position: absolute;
+    width: 30px;
+}
+
+.leaf-one {
+    left: 55px;
+    top: 25px;
+    transform: rotate(-35deg);
+}
+
+.leaf-two {
+    left: 25px;
+    top: 65px;
+    transform: rotate(75deg);
+}
+
+.leaf-three {
+    left: 60px;
+    top: 95px;
+    transform: rotate(-45deg);
+}
+
+
+/* ------------------------------------------------ Introduction */
+
+.home-intro {
+    background-color: var(--nook-paper);
+    padding: 6rem 0 4rem;
+}
+
+.section-heading {
+    color: var(--nook-ink);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    letter-spacing: -0.04em;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+}
+
+.section-description {
+    color: var(--nook-muted);
+    font-size: 1.1rem;
+    line-height: 1.9;
+    margin: 0 auto;
+    max-width: 760px;
+}
+
+
+/* ------------------------------------------------ Discovery */
+
+.home-discover {
+    background-color: var(--nook-paper);
+    padding: 1rem 0 7rem;
+}
+
+.discover-card {
+    background-color: rgba(124, 143, 118, 0.13);
+    border-radius: 1.5rem;
+    height: 100%;
+    padding: 2.4rem;
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.discover-card:hover {
+    box-shadow: 0 15px 35px rgba(47, 51, 45, 0.08);
+    transform: translateY(-4px);
+}
+
+.discover-card-rose {
+    background-color: rgba(201, 145, 134, 0.15);
+}
+
+.discover-card-gold {
+    background-color: rgba(197, 161, 91, 0.16);
+}
+
+.discover-icon {
+    align-items: center;
+    background-color: var(--nook-paper);
+    border-radius: 50%;
+    color: var(--nook-sage-dark);
+    display: flex;
+    font-size: 1.35rem;
+    height: 52px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 52px;
+}
+
+.discover-card h3 {
+    font-size: 1.35rem;
+    margin-bottom: 1rem;
+}
+
+.discover-card p {
+    color: var(--nook-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.discover-link {
+    color: var(--nook-sage-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.discover-link span {
+    display: inline-block;
+    margin-left: 0.25rem;
+    transition: transform 0.2s ease;
+}
+
+.discover-link:hover span {
+    transform: translateX(4px);
+}
+
+
+/* ------------------------------------------------ Author feature */
+
+.author-feature {
+    background-color: var(--nook-cream);
+    padding: 7rem 0;
+}
+
+.author-feature-content {
+    max-width: 580px;
+}
+
+.author-feature-content > p:not(.section-eyebrow) {
+    color: var(--nook-muted);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+.author-feature-art {
+    height: 420px;
+    margin: 0 auto;
+    max-width: 500px;
+    position: relative;
+}
+
+.author-art-paper {
+    align-items: center;
+    background-color: var(--nook-paper);
+    border-radius: 42% 58% 55% 45%;
+    box-shadow: 0 18px 45px rgba(47, 51, 45, 0.1);
+    color: var(--nook-sage-dark);
+    display: flex;
+    font-size: 5rem;
+    height: 320px;
+    justify-content: center;
+    left: 50%;
+    position: absolute;
+    top: 45%;
+    transform:
+        translate(-50%, -50%)
+        rotate(-4deg);
+    width: 340px;
+    z-index: 2;
+}
+
+.author-art-accent {
+    background-color: var(--nook-rose);
+    border-radius: 55% 45% 40% 60%;
+    bottom: 20px;
+    height: 270px;
+    left: 60px;
+    opacity: 0.45;
+    position: absolute;
+    transform: rotate(8deg);
+    width: 330px;
+}
+
+
+/* ------------------------------------------------ Newsletter */
+
+.newsletter-preview {
+    background-color: var(--nook-paper);
+    padding: 6rem 0;
+}
+
+.newsletter-panel {
+    background-color: rgba(124, 143, 118, 0.14);
+    border-radius: 2rem;
+    padding: 5rem 2rem;
+}
+
+.newsletter-icon {
+    align-items: center;
+    background-color: var(--nook-paper);
+    border-radius: 50%;
+    color: var(--nook-sage-dark);
+    display: inline-flex;
+    font-size: 1.5rem;
+    height: 58px;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+    width: 58px;
+}
+
+.newsletter-description {
+    color: var(--nook-muted);
+    line-height: 1.8;
+    margin: 0 auto 2rem;
+    max-width: 600px;
+}
+
+.newsletter-form {
+    display: flex;
+    gap: 0.75rem;
+    margin: 0 auto;
+    max-width: 620px;
+}
+
+.newsletter-form .form-control {
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 999px;
+    padding: 0.8rem 1.25rem;
+}
+
+.newsletter-form .form-control:focus {
+    border-color: var(--nook-sage);
+    box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.15);
+}
+
+
+/* ------------------------------------------------ Homepage responsive */
+
+@media (max-width: 991px) {
+
+    .home-hero {
+        padding-bottom: 3rem;
+        padding-top: 3rem;
+    }
+
+    .min-vh-hero {
+        min-height: auto;
+    }
+
+    .hero-content {
+        margin: 0 auto;
+        max-width: 680px;
+        text-align: center;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-actions {
+        justify-content: center;
+    }
+
+    .hero-art {
+        height: 380px;
+        margin-top: 2rem;
+    }
+
+    .hero-blob {
+        height: 320px;
+        width: 350px;
+    }
+
+    .book-stack {
+        bottom: 45px;
+        transform:
+            translateX(-50%)
+            scale(0.85);
+    }
+
+    .hero-plant {
+        bottom: 75px;
+        right: 12%;
+        transform: scale(0.85);
+    }
+
+    .author-feature-content {
+        margin: 0 auto;
+        text-align: center;
+    }
+
+}
+
+
+@media (max-width: 576px) {
+
+    .home-hero {
+        padding-top: 2rem;
+    }
+
+    .hero-heading {
+        font-size: 2.65rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .hero-actions {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+    }
+
+    .hero-art {
+        height: 310px;
+    }
+
+    .hero-blob {
+        height: 255px;
+        width: 280px;
+    }
+
+    .book-stack {
+        bottom: 20px;
+        transform:
+            translateX(-50%)
+            scale(0.7);
+    }
+
+    .hero-plant {
+        bottom: 45px;
+        right: 2%;
+        transform: scale(0.65);
+    }
+
+    .home-intro {
+        padding-bottom: 3rem;
+        padding-top: 4rem;
+    }
+
+    .home-discover {
+        padding-bottom: 4rem;
+    }
+
+    .discover-card {
+        padding: 2rem;
+    }
+
+    .author-feature {
+        padding: 4rem 0;
+    }
+
+    .author-feature-art {
+        height: 310px;
+    }
+
+    .author-art-paper {
+        height: 240px;
+        width: 260px;
+    }
+
+    .author-art-accent {
+        height: 210px;
+        left: 30px;
+        width: 260px;
+    }
+
+    .newsletter-preview {
+        padding: 4rem 0;
+    }
+
+    .newsletter-panel {
+        border-radius: 1.25rem;
+        padding: 3rem 1.25rem;
+    }
+
+    .newsletter-form {
+        flex-direction: column;
+    }
+
+    .newsletter-form .btn {
+        width: 100%;
+    }
+
+}
