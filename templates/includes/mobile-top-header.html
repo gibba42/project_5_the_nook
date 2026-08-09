@@ -101,6 +101,14 @@
 
         {% if request.user.is_authenticated %}
 
+            <!-- Available to every authenticated user -->
+            <a
+                href="{% url 'author_dashboard' %}"
+                class="dropdown-item">
+                Author Dashboard
+            </a>
+
+            <!-- Available only to staff -->
             {% if request.user.is_staff %}
 
                 <a
@@ -111,6 +119,7 @@
 
             {% endif %}
 
+            <!-- Legacy product management -->
             {% if request.user.is_superuser %}
 
                 <a

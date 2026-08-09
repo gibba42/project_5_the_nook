@@ -1,0 +1,249 @@
+{% extends "base.html" %}
+
+{% block extra_title %}
+| Author Dashboard
+{% endblock %}
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="mb-5">
+
+        <p class="section-eyebrow">
+            Author area
+        </p>
+
+        <h1 class="logo-font">
+            Author dashboard
+        </h1>
+
+    </div>
+
+    {% if author_profile %}
+
+        <div class="card mb-5">
+
+            <div class="card-body">
+
+                <div class="row align-items-center g-4">
+
+                    {% if author_profile.profile_image %}
+
+                        <div class="col-12 col-md-3">
+
+                            <img
+                                src="{{ author_profile.profile_image.url }}"
+                                class="img-fluid rounded"
+                                alt="{{ author_profile.display_name }}">
+
+                        </div>
+
+                    {% endif %}
+
+                    <div class="col">
+
+                        <h2 class="logo-font">
+                            {{ author_profile.display_name }}
+                        </h2>
+
+                        {% if author_profile.bio %}
+
+                            <div class="mb-3">
+                                {{ author_profile.bio|linebreaks }}
+                            </div>
+
+                        {% endif %}
+
+                        {% if author_profile.website %}
+
+                            <p>
+                                <a
+                                    href="{{ author_profile.website }}"
+                                    target="_blank"
+                                    rel="noopener noreferrer">
+                                    Visit author website
+                                </a>
+                            </p>
+
+                        {% endif %}
+
+                        <a
+                            href="{% url 'edit_author_profile' %}"
+                            class="btn nook-secondary-button">
+                            Edit profile
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h2 class="logo-font mb-0">
+                Your books
+            </h2>
+
+            <span
+                class="btn nook-primary-button disabled"
+                aria-disabled="true">
+                Submit a book — coming next
+            </span>
+
+        </div>
+
+        {% if books %}
+
+            <div class="table-responsive">
+
+                <table class="table align-middle">
+
+                    <thead>
+
+                        <tr>
+                            <th scope="col">Book</th>
+                            <th scope="col">Genre</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Status</th>
+                            <th scope="col">Updated</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        {% for book in books %}
+
+                            <tr>
+
+                                <td>
+                                    <strong>{{ book.title }}</strong>
+
+                                    {% if book.status == 'rejected' and book.rejection_reason %}
+
+                                        <div class="text-danger small mt-2">
+
+                                            <strong>
+                                                Feedback:
+                                            </strong>
+
+                                            {{ book.rejection_reason }}
+
+                                        </div>
+
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    {% if book.genre %}
+                                        {{ book.genre.name }}
+                                    {% else %}
+                                        —
+                                    {% endif %}
+                                </td>
+
+                                <td>
+                                    £{{ book.price }}
+                                </td>
+
+                                <td>
+
+                                    {% if book.status == 'approved' %}
+
+                                        <span class="badge text-bg-success">
+                                            {{ book.get_status_display }}
+                                        </span>
+
+                                    {% elif book.status == 'rejected' %}
+
+                                        <span class="badge text-bg-danger">
+                                            {{ book.get_status_display }}
+                                        </span>
+
+                                    {% elif book.status == 'pending' %}
+
+                                        <span class="badge text-bg-warning">
+                                            {{ book.get_status_display }}
+                                        </span>
+
+                                    {% else %}
+
+                                        <span class="badge text-bg-secondary">
+                                            {{ book.get_status_display }}
+                                        </span>
+
+                                    {% endif %}
+
+                                </td>
+
+                                <td>
+                                    {{ book.updated_at|date:"j M Y" }}
+                                </td>
+
+                            </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        {% else %}
+
+            <div class="alert alert-info">
+
+                You have not submitted any books yet. Book submission
+                will be added next.
+
+            </div>
+
+        {% endif %}
+
+    {% else %}
+
+        <div class="row">
+
+            <div class="col-12 col-lg-7">
+
+                <div class="card">
+
+                    <div class="card-body p-4">
+
+                        <h2 class="logo-font">
+                            Create your author profile
+                        </h2>
+
+                        <p>
+                            Before submitting a book, create a profile
+                            that introduces you to readers.
+                        </p>
+
+                        <a
+                            href="{% url 'create_author_profile' %}"
+                            class="btn nook-primary-button">
+                            Create author profile
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+{% endblock %}
