@@ -160,6 +160,49 @@ header {
     box-shadow: 0 0 0 0.2rem rgba(124, 143, 118, 0.15);
 }
 
+/* ------------------------------------------------ Nook main navigation */
+
+.nook-main-nav {
+    gap: 1.5rem;
+}
+
+.nook-main-nav .nav-link {
+    color: var(--nook-ink);
+    font-size: 0.95rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    padding: 0.75rem 0.5rem;
+    position: relative;
+}
+
+.nook-main-nav .nav-link:hover,
+.nook-main-nav .nav-link:focus {
+    color: var(--nook-sage-dark);
+}
+
+.nook-main-nav .nav-link::after {
+    transition: border-color 0.2s ease;
+}
+
+@media (min-width: 992px) {
+
+    .nook-main-nav > .nav-item > .nav-link::before {
+        background-color: var(--nook-sage);
+        bottom: 0.35rem;
+        content: "";
+        height: 2px;
+        left: 50%;
+        position: absolute;
+        transform: translateX(-50%);
+        transition: width 0.2s ease;
+        width: 0;
+    }
+
+    .nook-main-nav > .nav-item > .nav-link:hover::before,
+    .nook-main-nav > .nav-item > .nav-link:focus::before {
+        width: calc(100% - 1rem);
+    }
+}
 
 /* ------------------------------------------------ Dropdowns */
 
