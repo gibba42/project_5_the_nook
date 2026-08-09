@@ -31,6 +31,12 @@ class Book(models.Model):
     A book available for purchase through The Nook.
     """
 
+    class Status(models.TextChoices):
+        DRAFT = 'draft', 'Draft'
+        PENDING = 'pending', 'Pending approval'
+        APPROVED = 'approved', 'Approved'
+        REJECTED = 'rejected', 'Rejected'
+
     author = models.ForeignKey(
         AuthorProfile,
         on_delete=models.PROTECT,
@@ -84,6 +90,29 @@ class Book(models.Model):
 
     is_active = models.BooleanField(
         default=True
+    )
+
+    status = models.CharField(
+        max_length=10,
+        choices=Status.choices,
+        default=Status.DRAFT
+    )
+
+    rejection_reason = models.TextField(
+        blank=True
+    )
+
+    reviewed_by = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        related_name='reviewed_books'
+    )
+
+    reviewed_at = models.DateTimeField(
+        null=True,
+        blank=True
     )
 
     created_at = models.DateTimeField(

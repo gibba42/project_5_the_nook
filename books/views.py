@@ -6,7 +6,7 @@ from .models import Book, Genre
 
 def book_list(request):
     """
-    Display all active books in The Nook catalogue.
+    Display all approved and active books in The Nook catalogue.
 
     Books can be searched, filtered by genre and sorted using
     query parameters supplied through the catalogue page.
@@ -14,9 +14,17 @@ def book_list(request):
 
     books = (
         Book.objects
-        .filter(is_active=True)
+        .filter(
+            is_active=True,
+            status=Book.Status.APPROVED
+        )
         .select_related('author', 'genre')
-        .annotate(average_rating=Avg('reviews__rating'))
+        .annotate(
+            average_rating=Avg(
+                'reviews__rating',
+                filter=Q(reviews__is_approved=True)
+            )
+        )
     )
 
     genres = Genre.objects.all()
@@ -29,6 +37,7 @@ def book_list(request):
         books = books.filter(
             Q(title__icontains=search_term)
             | Q(description__icontains=search_term)
+            | Q(author__display_name__icontains=search_term)
         )
 
     if selected_genres:
@@ -65,16 +74,25 @@ def book_list(request):
         context
     )
 
+
 def book_detail(request, book_id):
     """
-    Display the details for one active book.
+    Display the details for one approved and active book.
     """
 
     book = get_object_or_404(
         Book.objects
-        .filter(is_active=True)
+        .filter(
+            is_active=True,
+            status=Book.Status.APPROVED
+        )
         .select_related('author', 'genre')
-        .annotate(average_rating=Avg('reviews__rating')),
+        .annotate(
+            average_rating=Avg(
+                'reviews__rating',
+                filter=Q(reviews__is_approved=True)
+            )
+        ),
         pk=book_id
     )
 

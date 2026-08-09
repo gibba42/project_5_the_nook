@@ -23,12 +23,15 @@ class BookAdmin(admin.ModelAdmin):
         'author',
         'genre',
         'price',
+        'status',
+        'reviewed_by',
         'stock_quantity',
         'is_active',
         'is_featured',
     )
 
     list_filter = (
+        'status',
         'is_active',
         'is_featured',
         'genre',
