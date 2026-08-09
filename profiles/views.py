@@ -1,55 +1,94 @@
-from django.shortcuts import render, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
 
-from .models import UserProfile
-from .forms import UserProfileForm
-
+from authors.models import AuthorProfile
 from checkout.models import Order
+
+from .forms import UserProfileForm
+from .models import UserProfile
+
 
 @login_required
 def profile(request):
-    """ Display the user's profile. """
-    profile = get_object_or_404(UserProfile, user=request.user)
+    """Display and update the signed-in user's account profile."""
 
-    if request.method == 'POST':
-        form = UserProfileForm(request.POST, instance=profile)
+    user_profile = get_object_or_404(
+        UserProfile,
+        user=request.user,
+    )
+
+    if request.method == "POST":
+        form = UserProfileForm(
+            request.POST,
+            instance=user_profile,
+        )
+
         if form.is_valid():
             form.save()
-            messages.success(request, 'Profile updated successfully')
-        else:
-            messages.error(request, 'Update failed. Please ensure the form is valid.')
-    else:
-        form = UserProfileForm(instance=profile)
-    orders = profile.orders.all()
+            messages.success(
+                request,
+                "Your delivery details have been updated.",
+            )
+            return redirect("profile")
 
-    template = 'profiles/profile.html'
+        messages.error(
+            request,
+            "We could not update your details. "
+            "Please check the form and try again.",
+        )
+    else:
+        form = UserProfileForm(instance=user_profile)
+
+    orders = (
+        user_profile.orders
+        .prefetch_related("lineitems__product")
+        .order_by("-date")
+    )
+
+    try:
+        author_profile = request.user.author_profile
+    except AuthorProfile.DoesNotExist:
+        author_profile = None
+
     context = {
-        'form': form,
-        'orders': orders,
-        'on_profile_page': True
+        "form": form,
+        "orders": orders,
+        "author_profile": author_profile,
+        "on_profile_page": True,
     }
 
-    return render(request, template, context)
+    return render(
+        request,
+        "profiles/profile.html",
+        context,
+    )
 
 
 @login_required
 def order_history(request, order_number):
+    """Show an order belonging to the signed-in user."""
+
     order = get_object_or_404(
         Order,
         order_number=order_number,
-        user_profile=request.user.userprofile
+        user_profile=request.user.userprofile,
     )
 
-    messages.info(request, (
-        f'This is a past confirmation for order number {order_number}. '
-        'A confirmation email was sent on the order date.'
-    ))
+    messages.info(
+        request,
+        f"This is a previous order confirmation for "
+        f"{order_number}. A confirmation email was sent "
+        f"when the order was placed.",
+    )
 
-    template = 'checkout/checkout_success.html'
     context = {
-        'order': order,
-        'from_profile': True,
+        "order": order,
+        "from_profile": True,
     }
 
-    return render(request, template, context)
+    return render(
+        request,
+        "checkout/checkout_success.html",
+        context,
+    )
