@@ -1,13 +1,29 @@
+{% with current_url=request.resolver_match.url_name %}
 <div class="collapse navbar-collapse" id="main-nav">
 
     <ul class="navbar-nav w-auto mx-auto nook-main-nav">
 
-        <!-- Browse Books -->
+        <!-- Home -->
         <li class="nav-item">
             <a
-                class="nav-link"
-                href="{% url 'book_list' %}">
-                Browse Books
+                class="nav-link{% if current_url == 'home' %} active{% endif %}"
+                href="{% url 'home' %}"
+                {% if current_url == 'home' %}
+                    aria-current="page"
+                {% endif %}>
+                Home
+            </a>
+        </li>
+
+        <!-- Books -->
+        <li class="nav-item">
+            <a
+                class="nav-link{% if current_url == 'book_list' or current_url == 'book_detail' %} active{% endif %}"
+                href="{% url 'book_list' %}"
+                {% if current_url == 'book_list' or current_url == 'book_detail' %}
+                    aria-current="page"
+                {% endif %}>
+                Books
             </a>
         </li>
 
@@ -20,15 +36,6 @@
             </a>
         </li>
 
-        <!-- Authors -->
-        <li class="nav-item">
-            <a
-                class="nav-link"
-                href="#">
-                Authors
-            </a>
-        </li>
-
         <!-- New Releases -->
         <li class="nav-item">
             <a
@@ -38,15 +45,16 @@
             </a>
         </li>
 
-        <!-- About -->
+        <!-- Newsletter -->
         <li class="nav-item">
             <a
                 class="nav-link"
-                href="#">
-                About
+                href="{% url 'home' %}#newsletter">
+                Newsletter
             </a>
         </li>
 
     </ul>
 
 </div>
+{% endwith %}

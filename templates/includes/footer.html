@@ -1,0 +1,128 @@
+<footer class="site-footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-12 col-lg-5">
+
+                <a
+                    href="{% url 'home' %}"
+                    class="site-footer-brand logo-font">
+                    The Nook
+                </a>
+
+                <p class="site-footer-description">
+                    Independent stories, thoughtfully chosen for readers
+                    looking for something new.
+                </p>
+
+            </div>
+
+            <div class="col-6 col-lg-3">
+
+                <h2 class="site-footer-heading">
+                    Explore
+                </h2>
+
+                <nav aria-label="Footer navigation">
+
+                    <ul class="site-footer-links">
+
+                        <li>
+                            <a href="{% url 'home' %}">
+                                Home
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'book_list' %}">
+                                Books
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'book_list' %}#catalogue-filters">
+                                Genres
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'home' %}#newsletter">
+                                Newsletter
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+            <div class="col-6 col-lg-3 offset-lg-1">
+
+                <h2 class="site-footer-heading">
+                    Your Nook
+                </h2>
+
+                <ul class="site-footer-links">
+
+                    {% if request.user.is_authenticated %}
+
+                        <li>
+                            <a href="{% url 'profile' %}">
+                                My Account
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'author_dashboard' %}">
+                                Author Dashboard
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'account_logout' %}">
+                                Logout
+                            </a>
+                        </li>
+
+                    {% else %}
+
+                        <li>
+                            <a href="{% url 'account_login' %}">
+                                Login
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'account_signup' %}">
+                                Register
+                            </a>
+                        </li>
+
+                    {% endif %}
+
+                    <li>
+                        <a href="{% url 'view_bag' %}">
+                            Basket
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+        <div class="site-footer-bottom">
+
+            <p>
+                &copy; {% now "Y" %} The Nook
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>

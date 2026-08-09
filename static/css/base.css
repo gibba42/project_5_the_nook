@@ -22,8 +22,14 @@ html {
 body {
     background-color: var(--nook-cream);
     color: var(--nook-ink);
+    display: flex;
+    flex-direction: column;
     font-family: 'DM Sans', sans-serif;
     min-height: 100vh;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 h1,
@@ -180,6 +186,11 @@ header {
     color: var(--nook-sage-dark);
 }
 
+.nook-main-nav .nav-link.active {
+    color: var(--nook-sage-dark);
+    font-weight: 700;
+}
+
 .nook-main-nav .nav-link::after {
     transition: border-color 0.2s ease;
 }
@@ -199,9 +210,82 @@ header {
     }
 
     .nook-main-nav > .nav-item > .nav-link:hover::before,
-    .nook-main-nav > .nav-item > .nav-link:focus::before {
+    .nook-main-nav > .nav-item > .nav-link:focus::before,
+    .nook-main-nav > .nav-item > .nav-link.active::before {
         width: calc(100% - 1rem);
     }
+}
+
+
+/* ------------------------------------------------ Footer */
+
+.site-footer {
+    background-color: var(--nook-paper);
+    border-top: 1px solid var(--nook-border);
+    flex-shrink: 0;
+    padding: 3.5rem 0 1.5rem;
+}
+
+.site-footer-brand {
+    color: var(--nook-sage-dark);
+    display: inline-block;
+    font-size: 1.7rem;
+    margin-bottom: 0.8rem;
+    text-decoration: none;
+}
+
+.site-footer-brand:hover,
+.site-footer-brand:focus {
+    color: var(--nook-sage);
+}
+
+.site-footer-description {
+    color: var(--nook-muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 390px;
+}
+
+.site-footer-heading {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+.site-footer-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-footer-links li + li {
+    margin-top: 0.55rem;
+}
+
+.site-footer-links a {
+    color: var(--nook-muted);
+    text-decoration: none;
+}
+
+.site-footer-links a:hover,
+.site-footer-links a:focus {
+    color: var(--nook-sage-dark);
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+
+.site-footer-bottom {
+    border-top: 1px solid var(--nook-border);
+    color: var(--nook-muted);
+    font-size: 0.85rem;
+    margin-top: 2.5rem;
+    padding-top: 1.25rem;
+}
+
+.site-footer-bottom p {
+    margin: 0;
 }
 
 /* ------------------------------------------------ Dropdowns */
