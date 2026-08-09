@@ -3,6 +3,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.views.decorators.http import require_POST
 
 from .models import Product, Category
 from .forms import ProductForm
@@ -127,6 +128,7 @@ def edit_product(request, product_id):
 
 
 @login_required
+@require_POST
 def delete_product(request, product_id):
     """ Delete a product from the store """
     if not request.user.is_superuser:
