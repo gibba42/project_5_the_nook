@@ -26,7 +26,7 @@
         <form
             class="form"
             method="GET"
-            action="{% url 'products' %}">
+            action="{% url 'book_list' %}">
 
             <div class="input-group w-100">
 
@@ -137,9 +137,9 @@
             <p class="my-0">
 
                 {% if grand_total %}
-                    ${{ grand_total|floatformat:2 }}
+                    £{{ grand_total|floatformat:2 }}
                 {% else %}
-                    $0.00
+                    £0.00
                 {% endif %}
 
             </p>

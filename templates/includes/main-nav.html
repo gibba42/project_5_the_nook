@@ -6,74 +6,18 @@
         <li class="nav-item">
             <a
                 class="nav-link"
-                href="{% url 'products' %}">
+                href="{% url 'book_list' %}">
                 Browse Books
             </a>
         </li>
 
         <!-- Genres -->
-        <li class="nav-item dropdown">
-
+        <li class="nav-item">
             <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                id="genres-link"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false">
+                class="nav-link"
+                href="{% url 'book_list' %}#catalogue-filters">
                 Genres
             </a>
-
-            <ul
-                class="dropdown-menu"
-                aria-labelledby="genres-link">
-
-                <li>
-                    <a
-                        class="dropdown-item"
-                        href="{% url 'products' %}?category=fantasy">
-                        Fantasy
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        class="dropdown-item"
-                        href="{% url 'products' %}?category=romance">
-                        Romance
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        class="dropdown-item"
-                        href="{% url 'products' %}?category=crime">
-                        Crime &amp; Mystery
-                    </a>
-                </li>
-
-                <li>
-                    <a
-                        class="dropdown-item"
-                        href="{% url 'products' %}?category=science_fiction">
-                        Science Fiction
-                    </a>
-                </li>
-
-                <li>
-                    <hr class="dropdown-divider">
-                </li>
-
-                <li>
-                    <a
-                        class="dropdown-item"
-                        href="{% url 'products' %}">
-                        View All Books
-                    </a>
-                </li>
-
-            </ul>
-
         </li>
 
         <!-- Authors -->
@@ -89,7 +33,7 @@
         <li class="nav-item">
             <a
                 class="nav-link"
-                href="{% url 'book_list' %}?sort=created_at&direction=desc">
+                href="{% url 'book_list' %}?sort=newest">
                 New Releases
             </a>
         </li>
