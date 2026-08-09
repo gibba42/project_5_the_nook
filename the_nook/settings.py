@@ -13,17 +13,20 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 
-if os.path.isfile('env.py'):
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+
+if (BASE_DIR / 'env.py').is_file():
     import env
+
 
 STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 STRIPE_WH_SECRET = os.environ.get('STRIPE_WH_SECRET')
 STRIPE_CURRENCY = 'gbp'
-DEFAULT_FROM_EMAIL = 'thenook@example.com'
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+DEFAULT_FROM_EMAIL = 'thenook@example.com'
 
 ALLOWED_HOSTS = [
     '127.0.0.1', # Local preview
@@ -39,9 +42,6 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
