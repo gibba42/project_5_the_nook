@@ -36,6 +36,7 @@ def book_list(request):
     search_term = request.GET.get('q', '').strip()
     selected_genres = request.GET.getlist('genre')
     sort = request.GET.get('sort', 'newest')
+    show_filters = request.GET.get('show_filters') == '1'
 
     if search_term:
         books = books.filter(
@@ -70,6 +71,7 @@ def book_list(request):
         'search_term': search_term,
         'selected_genres': selected_genres,
         'current_sort': sort,
+        'show_filters': show_filters,
     }
 
     return render(

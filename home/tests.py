@@ -40,7 +40,7 @@ class NavigationTests(TestCase):
         expected_links = (
             reverse('home'),
             reverse('book_list'),
-            f"{reverse('book_list')}#catalogue-filters",
+            f"{reverse('book_list')}?show_filters=1#catalogue-filters",
             f"{reverse('home')}#newsletter",
             reverse('account_login'),
             reverse('account_signup'),
@@ -141,3 +141,29 @@ class NavigationTests(TestCase):
                     'aria-current="page"',
                     count=1,
                 )
+
+def test_genres_navigation_opens_filter_panel(self):
+    """The Genres link should reveal the collapsible genre controls."""
+
+    response = self.client.get(
+        reverse('book_list'),
+        {'show_filters': '1'},
+    )
+
+    self.assertEqual(response.status_code, 200)
+
+    self.assertContains(
+        response,
+        'collapse show',
+    )
+
+    self.assertContains(
+        response,
+        'aria-expanded="true"',
+    )
+
+    self.assertContains(
+        response,
+        'aria-current="page"',
+        count=1,
+    )

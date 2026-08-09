@@ -73,7 +73,7 @@
                         type="button"
                         data-bs-toggle="collapse"
                         data-bs-target="#catalogue-filters"
-                        aria-expanded="false"
+                        aria-expanded="{% if show_filters %}true{% else %}false{% endif %}"
                         aria-controls="catalogue-filters">
 
                         Filters

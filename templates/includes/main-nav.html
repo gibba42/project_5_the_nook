@@ -3,7 +3,6 @@
 
     <ul class="navbar-nav w-auto mx-auto nook-main-nav">
 
-        <!-- Home -->
         <li class="nav-item">
             <a
                 class="nav-link{% if current_url == 'home' %} active{% endif %}"
@@ -15,28 +14,28 @@
             </a>
         </li>
 
-        <!-- Books -->
         <li class="nav-item">
             <a
-                class="nav-link{% if current_url == 'book_list' or current_url == 'book_detail' %} active{% endif %}"
+                class="nav-link{% if current_url == 'book_detail' or current_url == 'book_list' and request.GET.show_filters != '1' %} active{% endif %}"
                 href="{% url 'book_list' %}"
-                {% if current_url == 'book_list' or current_url == 'book_detail' %}
+                {% if current_url == 'book_detail' or current_url == 'book_list' and request.GET.show_filters != '1' %}
                     aria-current="page"
                 {% endif %}>
                 Books
             </a>
         </li>
 
-        <!-- Genres -->
         <li class="nav-item">
             <a
-                class="nav-link"
-                href="{% url 'book_list' %}#catalogue-filters">
+                class="nav-link{% if current_url == 'book_list' and request.GET.show_filters == '1' %} active{% endif %}"
+                href="{% url 'book_list' %}?show_filters=1#catalogue-filters"
+                {% if current_url == 'book_list' and request.GET.show_filters == '1' %}
+                    aria-current="page"
+                {% endif %}>
                 Genres
             </a>
         </li>
 
-        <!-- New Releases -->
         <li class="nav-item">
             <a
                 class="nav-link"
@@ -45,7 +44,6 @@
             </a>
         </li>
 
-        <!-- Newsletter -->
         <li class="nav-item">
             <a
                 class="nav-link"
