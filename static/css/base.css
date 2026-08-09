@@ -1361,6 +1361,14 @@ textarea:focus-visible {
     transform: translateY(-5px);
 }
 
+.book-card-title a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.book-card-title a:hover {
+    color: var(--nook-sage-dark);
+}
 
 /* ------------------------------------------------ Placeholder covers */
 

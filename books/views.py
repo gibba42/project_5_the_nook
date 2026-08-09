@@ -1,5 +1,5 @@
 from django.db.models import Avg, Q
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from .models import Book, Genre
 
@@ -62,5 +62,35 @@ def book_list(request):
     return render(
         request,
         'books/book_list.html',
+        context
+    )
+
+def book_detail(request, book_id):
+    """
+    Display the details for one active book.
+    """
+
+    book = get_object_or_404(
+        Book.objects
+        .filter(is_active=True)
+        .select_related('author', 'genre')
+        .annotate(average_rating=Avg('reviews__rating')),
+        pk=book_id
+    )
+
+    reviews = (
+        book.reviews
+        .filter(is_approved=True)
+        .select_related('user')
+    )
+
+    context = {
+        'book': book,
+        'reviews': reviews,
+    }
+
+    return render(
+        request,
+        'books/book_detail.html',
         context
     )
