@@ -77,6 +77,9 @@ INSTALLED_APPS = [
     'authors',
     'books',
 
+    # Newsletter
+    'newsletter',
+
     # Forms
     'crispy_forms',
     'crispy_bootstrap5',
