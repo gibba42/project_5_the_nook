@@ -13,6 +13,30 @@ The application is built using Django. It includes authentication, role-based au
 - Live site: **To be added following deployment**
 - Repository: [The Nook GitHub Repository](https://github.com/gibba42/project_5_the_nook)
 
+- ## Technologies Used
+
+- **HTML5** – used to structure the application’s pages and content.
+- **CSS3** – used for the custom styling, responsive layouts and watercolour-inspired visual design.
+- **JavaScript** – used to provide interactive behaviour, including the checkout process.
+- **Python** – used for the application’s back-end logic.
+- **Django 5.2.16** – used as the main web application framework.
+- **SQLite** – used as the relational database during local development.
+- **Bootstrap 5** – used to support responsive layouts and reusable interface components.
+- **jQuery** – used for interface behaviour and displaying Django toast messages.
+- **Django Allauth** – used for account registration, login, logout and authentication.
+- **Django Crispy Forms** and **Crispy Bootstrap 5** – used to render and style application forms.
+- **Stripe** – used to process payments securely.
+- **Django Countries** – used to provide country choices within checkout and delivery forms.
+- **Pillow** – used to support image uploads and processing for book covers and author profiles.
+- **Font Awesome** – used to provide icons throughout the application.
+- **Google Fonts** – used to provide the Libre Baskerville and DM Sans typefaces.
+- **Git** – used for version control.
+- **GitHub** – used to store the repository and manage the project through epics, user stories and tasks.
+- **Figma** – used to plan the application’s page layouts and responsive design.
+- **Visual Studio Code** – used as the main development environment.
+- **ChatGPT** – used to support debugging, particularly updating the project to the latest versions of Django and Bootstrap. All generated suggestions were reviewed, adapted and tested before being included in the project.
+- **Heroku** - used to host the live deployment of the project.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
