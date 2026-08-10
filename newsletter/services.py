@@ -50,10 +50,22 @@ def subscribe_to_mailchimp(email):
         response.raise_for_status()
 
     except requests.RequestException as error:
-        logger.exception(
-            "Mailchimp subscription failed for %s",
-            normalized_email,
-        )
+        response = getattr(error, "response", None)
+
+        if response is not None:
+            logger.error(
+                "Mailchimp subscription failed for %s. "
+                "Status: %s. Response: %s",
+                normalized_email,
+                response.status_code,
+                response.text,
+            )
+        else:
+            logger.exception(
+                "Mailchimp subscription failed for %s",
+                normalized_email,
+            )
+
         raise MailchimpError from error
 
     return response.json()

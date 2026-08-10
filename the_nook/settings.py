@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     # Bag
     'bag',
 
+    # Legacy Products app
     'products',
 
     # Checkout
