@@ -66,11 +66,10 @@ INSTALLED_APPS = [
     # Home
     'home',
 
-    # Products
-    'products',
-
     # Bag
     'bag',
+
+    'products',
 
     # Checkout
     'checkout',

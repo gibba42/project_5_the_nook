@@ -119,17 +119,6 @@
 
             {% endif %}
 
-            <!-- Legacy product management -->
-            {% if request.user.is_superuser %}
-
-                <a
-                    href="{% url 'add_product' %}"
-                    class="dropdown-item">
-                    Product Management
-                </a>
-
-            {% endif %}
-
             <a
                 href="{% url 'profile' %}"
                 class="dropdown-item">
@@ -187,8 +176,8 @@
 
             <p class="my-0">
 
-                {% if grand_total %}
-                    £{{ grand_total|floatformat:2 }}
+                {% if total %}
+                    £{{ total|floatformat:2 }}
                 {% else %}
                     £0.00
                 {% endif %}
