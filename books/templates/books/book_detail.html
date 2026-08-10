@@ -2,6 +2,10 @@
 
 {% load static %}
 
+{% block meta_description %}
+{{ book.description|striptags|truncatechars:155 }}
+{% endblock %}
+
 {% block extra_title %}
 | {{ book.title }}
 {% endblock %}

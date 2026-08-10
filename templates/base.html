@@ -12,9 +12,12 @@
     name="viewport"
     content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta
-    name="description"
-    content="The Nook is an independent online bookshop helping readers discover books and support independent authors.">
-  {% endblock %}
+  name="description"
+  content="{% block meta_description %}The Nook is an independent online bookshop helping readers discover books and support independent authors.{% endblock %}">
+
+  <link
+  rel="canonical"
+  href="{{ request.scheme }}://{{ request.get_host }}{{ request.path }}">
 
   {% block extra_meta %}
   {% endblock %}
