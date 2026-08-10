@@ -96,6 +96,130 @@ The submitted application uses a controlled catalogue rather than allowing autho
 
 This approach gives the site owner control over product quality, pricing and the customer experience. It also avoids the additional payment, commission and seller-management requirements of a multi-vendor marketplace.
 
+## UX Design
+
+The user experience for The Nook was designed around three connected journeys:
+
+- Readers discovering and purchasing independent books.
+- Authors creating profiles and submitting books.
+- Staff reviewing submissions before they enter the public catalogue.
+
+The design aims to make The Nook feel calm, trustworthy and easy to navigate while still giving it a recognisable independent-bookshop identity.
+
+### UX Strategy
+
+The main UX goals were to:
+
+- Make the purpose of the application immediately clear to new visitors.
+- Allow readers to move from discovery to purchase with as little friction as possible.
+- Present important purchasing information before asking users to add a book to their basket.
+- Give authors a clear view of their submitted books and their approval status.
+- Separate reader, author and staff functionality without making the main navigation overly complicated.
+- Provide clear feedback after important actions such as updating a basket, submitting a listing or completing an order.
+- Maintain a consistent experience across desktop and mobile devices.
+- Support keyboard navigation, screen readers and users who require clearly visible focus states.
+
+### User Needs
+
+| User | Need | Design Response |
+|------|------|-----------------|
+| Visitor | Understand what The Nook offers | The homepage opens with a clear description and a prominent Browse Books call to action. |
+| Reader | Find books that interest them | The catalogue provides search, genre filters and sorting controls. |
+| Reader | Make an informed purchase | Book pages prioritise the cover, author, description, rating, price and stock information. |
+| Customer | Complete a purchase confidently | The basket and checkout designs retain a visible order summary and provide clear confirmation after payment. |
+| Registered user | Review previous activity | The account area groups personal details, reviews and order history in one location. |
+| Author | Present themselves professionally | Authors can create a public profile containing their name, biography and published books. |
+| Author | Understand the status of submitted books | The author dashboard displays each listing and its current approval status. |
+| Staff member | Review submissions efficiently | The approval queue groups pending books and provides clear approval or change-request actions. |
+
+### Primary User Journeys
+
+| Journey | Intended Route |
+|---------|----------------|
+| Discover and purchase a book | Home → Catalogue → Book Details → Basket → Checkout → Order Confirmation |
+| Manage a reader account | Sign In → Account → Order History or Reviews |
+| Submit a book | Register or Sign In → Author Profile → Author Dashboard → Add Listing → Submit for Approval |
+| Review a submission | Staff Sign In → Approval Queue → Review Listing → Approve or Request Changes |
+
+### Information Architecture
+
+The main navigation was kept deliberately concise. It provides access to Home, Books, Genres, New Releases and the Newsletter, while search, account and basket actions remain visible in the header.
+
+Account-specific actions are grouped within the account menu. The options shown change depending on whether the user is logged out, logged in, an author or a staff member. This reduces clutter and prevents users from being offered actions they cannot access.
+
+On smaller screens, the navigation collapses into a mobile menu. Search and basket access remain available without requiring users to navigate through multiple pages.
+
+### Wireframes and High-Fidelity Mock-ups
+
+Responsive mock-ups were created in Figma for desktop screens at 1440 pixels and mobile screens at 390 pixels. These were used to plan information hierarchy, page structure, responsive behaviour and the visual relationship between the reader, author and staff journeys.
+
+#### Homepage
+
+The homepage was designed to explain the purpose of The Nook immediately. Its primary call to action directs readers to the catalogue, while supporting content introduces the independent-author focus of the shop.
+
+#### Catalogue
+
+The catalogue combines search, genre filtering and sorting without hiding the books beneath excessive controls. Filters remain visible in a desktop sidebar but collapse behind a button on smaller screens.
+
+#### Book Details
+
+The book detail page places the information needed for a purchasing decision near the top of the page. The cover, title, author, rating, price, description, stock status and basket action are grouped together. Reader reviews appear beneath the main product information as supporting social proof.
+
+#### Checkout
+
+The checkout was designed as a focused process with delivery and payment fields presented alongside a persistent order summary. On mobile devices, the sections stack into a single column while retaining the same information.
+
+#### Author Dashboard
+
+The author dashboard provides a summary of the author's listings and their current status. The add, edit and submission actions are kept close to the relevant book so that authors can manage their work without using the Django administration interface.
+
+#### Staff Approval
+
+The approval queue separates staff moderation from the public catalogue. Pending submissions are presented with their status and a clear review action. Approval and change-request actions are only available to authorised staff members.
+
+### Visual Design
+
+The visual design is intended to suggest a quiet independent bookshop without reducing readability or making the interface feel old-fashioned. The palette uses warm paper tones, muted sage green, dusty rose and gold accents.
+
+Decorative elements are restrained so that book information, forms and calls to action remain the focus of each page.
+
+#### Colour Palette
+
+| Colour | Hex Value | Use |
+|--------|-----------|-----|
+| Cream | `#f7f3eb` | Main page background |
+| Paper | `#fffdf8` | Headers, cards and content surfaces |
+| Sage | `#7c8f76` | Secondary accents and hover states |
+| Dark Sage | `#53664f` | Primary buttons, links and branding |
+| Dusty Rose | `#c99186` | Decorative accents |
+| Gold | `#c5a15b` | Ratings and keyboard focus indicators |
+| Ink | `#2f332d` | Primary text |
+| Muted Grey | `#6f746d` | Supporting text |
+| Border | `#ddd6c9` | Dividers, fields and card borders |
+
+### Typography
+
+The Nook uses two typefaces:
+
+- **Libre Baskerville** is used for the logo, headings and book-related titles. Its serif design supports the traditional bookshop identity.
+- **DM Sans** is used for body text, navigation, buttons and forms. It remains clear at smaller sizes and provides contrast with the heading typeface.
+
+Heading sizes use responsive CSS so that the information hierarchy remains clear without causing text to overflow on smaller screens.
+
+### Responsive Design
+
+The interface uses Bootstrap's responsive grid together with custom CSS media queries.
+
+The principal responsive changes include:
+
+- The desktop navigation changing to a collapsible mobile menu.
+- Book grids reducing from three or four columns to two columns.
+- Catalogue filters collapsing behind a mobile filter button.
+- Book details changing from a side-by-side layout to a vertical layout.
+- Basket summaries and checkout forms stacking into a single column.
+- Author and staff dashboards replacing wide rows with vertically stacked cards.
+- Buttons and form fields expanding where additional width improves touch accessibility.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
