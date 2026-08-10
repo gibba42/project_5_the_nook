@@ -67,6 +67,35 @@ The application is also aimed at independent authors who want to increase the vi
 
 Staff members are responsible for managing the shop and maintaining the quality of its catalogue. They can review submitted books, approve or reject listings, and manage the application’s users, products and orders through the Django administration interface.
 
+## E-commerce Business Model
+
+The Nook operates as a curated, direct-to-consumer online bookshop specialising in books from independent authors. It uses a single-vendor retail model: customers purchase books from The Nook rather than directly from individual authors.
+
+### Value Proposition
+
+For readers, The Nook provides a focused alternative to larger online retailers. Customers can discover independent books through a catalogue in which each listing has been reviewed before publication. Detailed book pages, author profiles and customer reviews help readers make informed purchasing decisions.
+
+For independent authors, the platform provides an additional way to promote their work. Authors can create a public profile and submit books for consideration without needing to build and manage their own e-commerce website.
+
+### Revenue Model
+
+The business generates revenue through individual book sales. The site owner controls the catalogue and selling prices, while customers pay securely through Stripe during checkout.
+
+The difference between the selling price and the costs associated with sourcing, processing and fulfilling each order would provide the business with its operating margin.
+
+### Operating Model
+
+The submitted application uses a controlled catalogue rather than allowing authors to sell directly to customers. The process is:
+
+1. A registered author creates an author profile.
+2. The author submits a book listing for review.
+3. A staff member reviews and approves or rejects the submission.
+4. Approved books become available in the public catalogue.
+5. A reader adds books to their basket and completes payment through Stripe.
+6. The Nook records and manages the resulting order.
+
+This approach gives the site owner control over product quality, pricing and the customer experience. It also avoids the additional payment, commission and seller-management requirements of a multi-vendor marketplace.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
