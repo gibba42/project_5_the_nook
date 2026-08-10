@@ -1,5 +1,17 @@
-# project_5_the_nook
-A full stack e-commerce project that allows authors to publish their own books and for readers to buy them.
+# The Nook
+
+The Nook is a full-stack e-commerce application designed to help readers discover and purchase books from independent authors.
+
+Readers can browse and search a curated catalogue, view detailed book and author information, add books to their basket, complete purchases securely and leave reviews. Registered authors can create an author profile and submit their books for consideration, while staff members review listings before they become available in the public catalogue.
+
+The submitted application is designed as a controlled bookshop rather than an unrestricted multi-vendor marketplace. The Nook manages the catalogue and sales process while giving independent authors a platform through which they can showcase their work. This approval process helps maintain a consistent standard across the catalogue and gives readers confidence in the books being offered.
+
+The application is built using Django. It includes authentication, role-based author and staff functionality, user-owned account information, catalogue management and Stripe payment processing.
+
+## Live Site
+
+- Live site: **To be added following deployment**
+- Repository: [The Nook GitHub Repository](https://github.com/gibba42/project_5_the_nook)
 
 ## Bugs
 
