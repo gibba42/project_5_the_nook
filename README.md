@@ -51,6 +51,22 @@ The project therefore has three main goals:
 - Give independent authors a structured way to showcase their work.
 - Provide the site owner with a manageable e-commerce model through which listings, customers and purchases can be administered.
 
+- ## Target Audience
+
+The Nook is designed for three main user groups:
+
+### Readers
+
+The primary audience is readers who want to discover and purchase books from independent authors. These users need a straightforward way to browse the catalogue, search for books, view detailed book and author information, complete secure purchases, and leave reviews.
+
+### Independent Authors
+
+The application is also aimed at independent authors who want to increase the visibility of their work. Registered authors can create a public author profile, submit books for approval, and manage their submitted listings through an author dashboard.
+
+### Site Administrators
+
+Staff members are responsible for managing the shop and maintaining the quality of its catalogue. They can review submitted books, approve or reject listings, and manage the application’s users, products and orders through the Django administration interface.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
