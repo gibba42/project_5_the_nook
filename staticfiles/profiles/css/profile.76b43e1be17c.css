@@ -1,0 +1,195 @@
+.profile-page {
+    padding: 3.5rem 0 6rem;
+    background-color: var(--nook-cream);
+}
+
+.profile-heading {
+    max-width: 760px;
+    margin-bottom: 2.5rem;
+}
+
+.profile-eyebrow,
+.profile-panel-eyebrow {
+    margin-bottom: 0.4rem;
+    color: var(--nook-rust);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+}
+
+.profile-heading h1 {
+    margin-bottom: 0.75rem;
+    color: var(--nook-ink);
+}
+
+.profile-introduction {
+    max-width: 620px;
+    color: var(--nook-muted);
+    font-size: 1.1rem;
+}
+
+.profile-signed-in {
+    margin-bottom: 1.25rem;
+    color: var(--nook-muted);
+}
+
+.profile-account-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.profile-panel {
+    padding: 1.75rem;
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(55, 45, 35, 0.08);
+}
+
+.profile-panel + .profile-panel {
+    margin-top: 1.5rem;
+}
+
+.profile-panel-header {
+    margin-bottom: 1.5rem;
+}
+
+.profile-panel-header h2,
+.author-account-panel h2 {
+    margin-bottom: 0.6rem;
+    color: var(--nook-ink);
+    font-size: 1.5rem;
+}
+
+.profile-panel-header p:last-child,
+.author-account-panel p {
+    margin-bottom: 0;
+    color: var(--nook-muted);
+}
+
+.profile-form .form-label {
+    color: var(--nook-ink);
+    font-weight: 600;
+}
+
+.profile-form .form-control,
+.profile-form .form-select {
+    min-height: 46px;
+    color: var(--nook-ink);
+    background-color: #fff;
+    border: 1px solid var(--nook-border);
+    border-radius: 0.55rem;
+}
+
+.profile-form .form-control:focus,
+.profile-form .form-select:focus {
+    border-color: var(--nook-rust);
+    box-shadow: 0 0 0 0.2rem rgba(166, 93, 64, 0.16);
+}
+
+.profile-form .btn {
+    width: 100%;
+    margin-top: 0.5rem;
+}
+
+.order-history-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.order-history-card {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px solid var(--nook-border);
+    border-radius: 0.75rem;
+}
+
+.order-reference,
+.order-total {
+    margin-bottom: 0.3rem;
+    color: var(--nook-ink);
+    font-weight: 700;
+}
+
+.order-date,
+.order-items {
+    margin-bottom: 0.2rem;
+    color: var(--nook-muted);
+    font-size: 0.92rem;
+}
+
+.order-history-summary {
+    flex-shrink: 0;
+    text-align: right;
+}
+
+.order-history-link {
+    color: var(--nook-rust);
+    font-weight: 700;
+    text-decoration: underline;
+    text-underline-offset: 0.2rem;
+}
+
+.order-history-link:hover {
+    color: var(--nook-ink);
+}
+
+.profile-empty-state {
+    padding: 2rem;
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.55);
+    border: 1px dashed var(--nook-border);
+    border-radius: 0.75rem;
+}
+
+.profile-empty-state h3 {
+    color: var(--nook-ink);
+}
+
+.profile-empty-state p {
+    color: var(--nook-muted);
+}
+
+.author-account-panel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+}
+
+.author-account-panel .btn {
+    flex-shrink: 0;
+}
+
+@media (max-width: 767.98px) {
+    .profile-page {
+        padding: 2rem 0 4rem;
+    }
+
+    .profile-panel {
+        padding: 1.25rem;
+    }
+
+    .order-history-card {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .order-history-summary {
+        text-align: left;
+    }
+
+    .author-account-panel {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .author-account-panel .btn {
+        width: 100%;
+    }
+}
