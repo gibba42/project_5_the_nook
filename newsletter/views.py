@@ -18,11 +18,17 @@ def newsletter_signup(request):
 
         messages.success(
             request,
-            "You're subscribed to The Nook newsletter."
+            "Thanks for subscribing to The Nook newsletter!"
         )
     else:
-        for errors in form.errors.values():
-            for error in errors:
+        if "email" in form.errors:
+            for error in form.errors["email"]:
                 messages.error(request, error)
+        else:
+            messages.error(
+                request,
+                "We couldn't complete your newsletter signup. "
+                "Please check your details and try again."
+            )
 
     return redirect(request.POST.get("next", "home"))

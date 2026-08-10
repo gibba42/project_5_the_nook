@@ -34,7 +34,8 @@ class NewsletterSignupForm(forms.ModelForm):
             is_active=True,
         ).exists():
             raise forms.ValidationError(
-                "This email address is already subscribed."
+                "This email address is already subscribed "
+                "to The Nook newsletter."
             )
 
         return email
