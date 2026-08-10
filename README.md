@@ -37,6 +37,20 @@ The application is built using Django. It includes authentication, role-based au
 - **ChatGPT** – used to support debugging, particularly updating the project to the latest versions of Django and Bootstrap. All generated suggestions were reviewed, adapted and tested before being included in the project.
 - **Heroku** - used to host the live deployment of the project.
 
+- ## Project Purpose
+
+Independent authors can struggle to gain visibility through traditional booksellers, while readers may find it difficult to discover new books outside established publishing channels. The Nook is designed to bring these two groups together through an accessible online bookshop.
+
+The application allows readers to discover independent books, learn more about their authors, make secure purchases and share their opinions through reviews. Authors can create a public profile and submit book listings, giving them a dedicated space to present their work to potential readers.
+
+Unlike an unrestricted marketplace, every submitted book must be approved by a staff member before it appears in the public catalogue. This controlled approach allows The Nook to maintain the quality and consistency of its listings while providing readers with a more trustworthy shopping experience.
+
+The project therefore has three main goals:
+
+- Help readers discover and purchase books from independent authors.
+- Give independent authors a structured way to showcase their work.
+- Provide the site owner with a manageable e-commerce model through which listings, customers and purchases can be administered.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
