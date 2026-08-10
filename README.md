@@ -220,6 +220,69 @@ The principal responsive changes include:
 - Author and staff dashboards replacing wide rows with vertically stacked cards.
 - Buttons and form fields expanding where additional width improves touch accessibility.
 
+- ## Agile Development
+
+The Nook was planned and managed using an iterative Agile approach. GitHub Issues were used to divide the application into epics, user stories, acceptance criteria and individual development tasks.
+
+This allowed the project to be developed in manageable sections while maintaining a clear connection between the application’s purpose, user needs and technical implementation.
+
+### Epics
+
+The project requirements were divided into eight epics:
+
+| Epic | Scope |
+|------|-------|
+| [Epic 1 – Project Setup and Core Architecture](https://github.com/gibba42/project_5_the_nook/issues/1) | Django setup, reusable templates, navigation, database configuration and static files |
+| [Epic 2 – Accounts, Authentication and Roles](https://github.com/gibba42/project_5_the_nook/issues/2) | Registration, authentication, user profiles and role-based permissions |
+| [Epic 3 – Book Catalogue and Author Listings](https://github.com/gibba42/project_5_the_nook/issues/3) | Public catalogue, book details, author profiles and listing management |
+| [Epic 4 – Admin Approval](https://github.com/gibba42/project_5_the_nook/issues/4) | Staff review, approval and rejection of submitted books |
+| [Epic 5 – Basket, Checkout and Purchasing](https://github.com/gibba42/project_5_the_nook/issues/5) | Basket management, Stripe payments, purchase feedback and order history |
+| [Epic 6 – Reviews](https://github.com/gibba42/project_5_the_nook/issues/6) | Creating, editing, deleting and displaying reader reviews |
+| [Epic 7 – Newsletter, SEO and Marketing](https://github.com/gibba42/project_5_the_nook/issues/7) | Newsletter registration, search-engine optimisation and marketing evidence |
+| [Epic 8 – Documentation, Testing and Deployment](https://github.com/gibba42/project_5_the_nook/issues/8) | README documentation, testing, validation, security and deployment |
+
+### User Stories
+
+Each epic was divided into user stories written from the perspective of a visitor, reader, author, staff member, site owner or developer.
+
+The following format was used:
+
+> As a **type of user**, I want to **perform an action** so that I can **receive a particular benefit**.
+
+Each user story also contains:
+
+- Acceptance criteria written using Given, When and Then statements.
+- A priority based on the importance of the requirement.
+- A checklist of the development tasks required to complete the story.
+- A GitHub Issue status showing whether the story remains open or has been completed.
+
+### Prioritisation
+
+A MoSCoW-inspired method was used to prioritise the user stories:
+
+| Priority | Meaning |
+|----------|---------|
+| Must Have | Required for the application to meet its core purpose |
+| Should Have | Important functionality that improves the finished application but is not essential to its basic operation |
+| Could Have | Additional functionality implemented after higher-priority requirements where time allows |
+
+Must Have stories were given priority because they cover essential functionality such as navigation, authentication, catalogue access, author submissions, staff approval, payments, reviews, testing and deployment.
+
+### Development Process
+
+Development was completed incrementally. Each user story was broken into smaller tasks so that individual pieces of functionality could be implemented and tested before moving to the next requirement.
+
+The general process was:
+
+1. Select the next high-priority user story.
+2. Review its acceptance criteria and task checklist.
+3. Implement the required model, view, URL, template or supporting logic.
+4. Test the functionality and permissions.
+5. Resolve any bugs discovered during testing.
+6. Update the task checklist and close the issue once its acceptance criteria had been met.
+
+This process was also used when previously completed functionality required further work. For example, the navigation user story was revisited when the Genres link did not open the expected catalogue filters. The issue was only closed after the link behaviour and automated navigation tests had been corrected.
+
 ## Bugs
 
 | Title | Description | Fix | Status |
