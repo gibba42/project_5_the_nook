@@ -1,146 +1,260 @@
 {% extends "base.html" %}
+
 {% load static %}
 {% load bag_tools %}
 
-{% block extra_title %}| Basket{% endblock %}
+{% block extra_title %}
+| Basket
+{% endblock %}
 
 {% block page_header %}
-    <div class="header-container"></div>
+<div class="header-container"></div>
 {% endblock %}
 
 {% block content %}
+
 <section class="basket-page">
+
     <div class="container">
+
         <header class="basket-heading">
-            <p class="basket-eyebrow">Your selection</p>
-            <h1 class="logo-font">Basket</h1>
+
+            <p class="basket-eyebrow">
+                Your selection
+            </p>
+
+            <h1 class="logo-font">
+                Basket
+            </h1>
+
         </header>
 
         {% if bag_items %}
-            <div class="row g-4 align-items-start">
+
+            <div class="row g-4 g-xl-5 align-items-start">
+
                 <div class="col-12 col-lg-8">
+
                     <div class="basket-list">
+
                         {% for item in bag_items %}
+
                             <article class="basket-item">
+
                                 <a
                                     href="{% url 'book_detail' item.book.id %}"
-                                    class="basket-cover-link"
-                                    aria-label="View {{ item.book.title }}">
+                                    class="basket-cover-link">
+
                                     {% if item.book.cover_image %}
+
                                         <img
                                             src="{{ item.book.cover_image.url }}"
                                             alt="Cover of {{ item.book.title }}"
                                             class="basket-cover">
+
                                     {% else %}
-                                        <div class="basket-cover book-cover-placeholder" aria-hidden="true">
-                                            <span class="placeholder-line"></span>
-                                            <span class="placeholder-circle"></span>
+
+                                        <div
+                                            class="
+                                            basket-cover
+                                            basket-cover-placeholder"
+                                            aria-hidden="true">
+
+                                            <span class="basket-placeholder-line">
+                                            </span>
+
+                                            <span class="basket-placeholder-circle">
+                                            </span>
+
                                         </div>
+
                                     {% endif %}
+
                                 </a>
 
-                                <div class="basket-item-details">
-                                    <div class="basket-item-copy">
-                                        <h2>
-                                            <a href="{% url 'book_detail' item.book.id %}">
-                                                {{ item.book.title }}
-                                            </a>
-                                        </h2>
-                                        <p>by {{ item.book.author.display_name }}</p>
-                                        <p class="basket-item-price">
-                                            £{{ item.book.price|floatformat:2 }} each
-                                        </p>
-                                    </div>
+                                <div class="basket-item-copy">
 
-                                    <p class="basket-line-total">
-                                        £{{ item.book.price|calc_subtotal:item.quantity|floatformat:2 }}
+                                    <h2>
+                                        <a href="{% url 'book_detail' item.book.id %}">
+                                            {{ item.book.title }}
+                                        </a>
+                                    </h2>
+
+                                    <p>
+                                        by {{ item.book.author.display_name }}
                                     </p>
 
-                                    <div class="basket-item-actions">
-                                        <form
-                                            method="POST"
-                                            action="{% url 'adjust_bag' item.item_id %}"
-                                            class="basket-quantity-form">
-                                            {% csrf_token %}
-                                            <label for="quantity-{{ item.item_id }}">
-                                                Quantity
-                                            </label>
-                                            <input
-                                                id="quantity-{{ item.item_id }}"
-                                                name="quantity"
-                                                type="number"
-                                                value="{{ item.quantity }}"
-                                                min="1"
-                                                max="{{ item.book.stock_quantity }}"
-                                                required>
-                                            <button type="submit" class="basket-text-button">
-                                                Update
-                                            </button>
-                                        </form>
+                                    <p class="basket-item-price">
+                                        £{{ item.book.price|floatformat:2 }} each
+                                    </p>
 
-                                        <form
-                                            method="POST"
-                                            action="{% url 'remove_from_bag' item.item_id %}">
-                                            {% csrf_token %}
-                                            <button type="submit" class="basket-remove-button">
-                                                Remove
-                                            </button>
-                                        </form>
-                                    </div>
                                 </div>
+
+                                <p class="basket-line-total">
+                                    £{{ item.book.price|calc_subtotal:item.quantity|floatformat:2 }}
+                                </p>
+
+                                <div class="basket-item-actions">
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'adjust_bag' item.item_id %}"
+                                        class="basket-quantity-form">
+
+                                        {% csrf_token %}
+
+                                        <label for="quantity-{{ item.item_id }}">
+                                            Quantity
+                                        </label>
+
+                                        <input
+                                            id="quantity-{{ item.item_id }}"
+                                            type="number"
+                                            name="quantity"
+                                            value="{{ item.quantity }}"
+                                            min="1"
+                                            max="{{ item.book.stock_quantity }}"
+                                            aria-label="Quantity of {{ item.book.title }}">
+
+                                        <button
+                                            type="submit"
+                                            class="basket-text-button">
+                                            Update
+                                        </button>
+
+                                    </form>
+
+                                    <form
+                                        method="POST"
+                                        action="{% url 'remove_from_bag' item.item_id %}">
+
+                                        {% csrf_token %}
+
+                                        <button
+                                            type="submit"
+                                            class="basket-remove-button"
+                                            aria-label="Remove {{ item.book.title }} from basket">
+                                            Remove
+                                        </button>
+
+                                    </form>
+
+                                </div>
+
                             </article>
+
                         {% endfor %}
+
                     </div>
 
-                    <a href="{% url 'book_list' %}" class="basket-continue-link">
-                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    <a
+                        href="{% url 'book_list' %}"
+                        class="basket-continue-link">
+
+                        <i
+                            class="fa-solid fa-arrow-left"
+                            aria-hidden="true">
+                        </i>
+
                         Continue browsing
+
                     </a>
+
                 </div>
 
                 <div class="col-12 col-lg-4">
-                    <aside class="basket-summary" aria-labelledby="basket-summary-heading">
-                        <h2 id="basket-summary-heading" class="logo-font">
+
+                    <aside class="basket-summary">
+
+                        <h2 class="logo-font">
                             Order summary
                         </h2>
+
                         <dl>
+
                             <div>
                                 <dt>Subtotal</dt>
                                 <dd>£{{ total|floatformat:2 }}</dd>
                             </div>
+
                             <div>
                                 <dt>Delivery</dt>
                                 <dd>£{{ delivery|floatformat:2 }}</dd>
                             </div>
+
                             <div class="basket-summary-total">
                                 <dt>Total</dt>
                                 <dd>£{{ grand_total|floatformat:2 }}</dd>
                             </div>
+
                         </dl>
 
                         {% if free_delivery_delta > 0 %}
+
                             <p class="basket-delivery-note">
-                                Spend £{{ free_delivery_delta|floatformat:2 }} more for free delivery.
+                                Spend
+                                <strong>
+                                    £{{ free_delivery_delta|floatformat:2 }}
+                                </strong>
+                                more for free delivery.
                             </p>
+
+                        {% else %}
+
+                            <p class="basket-delivery-note">
+                                Your order qualifies for free delivery.
+                            </p>
+
                         {% endif %}
 
-                        <a href="{% url 'checkout' %}" class="btn nook-primary-button">
+                        <a
+                            href="{% url 'checkout' %}"
+                            class="btn nook-primary-button">
+
                             Secure checkout
-                            <i class="fa-solid fa-lock" aria-hidden="true"></i>
+
+                            <i
+                                class="fa-solid fa-lock"
+                                aria-hidden="true">
+                            </i>
+
                         </a>
+
                     </aside>
+
                 </div>
+
             </div>
+
         {% else %}
+
             <div class="basket-empty-state">
-                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-                <h2 class="logo-font">Your basket is empty</h2>
-                <p>Browse the shelves and choose your next read.</p>
-                <a href="{% url 'book_list' %}" class="btn nook-primary-button">
+
+                <i
+                    class="fa-solid fa-basket-shopping"
+                    aria-hidden="true">
+                </i>
+
+                <h2 class="logo-font">
+                    Your basket is empty
+                </h2>
+
+                <p>
+                    Browse the collection and find your next favourite book.
+                </p>
+
+                <a
+                    href="{% url 'book_list' %}"
+                    class="btn nook-primary-button">
                     Browse books
                 </a>
+
             </div>
+
         {% endif %}
+
     </div>
+
 </section>
+
 {% endblock %}
