@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+
+{% block extra_title %}
+| Page Not Found
+{% endblock %}
+
+
+{% block meta_description %}
+The page you were looking for could not be found. Search The Nook's collection or return to the bookshop.
+{% endblock %}
+
+
+{% block extra_meta %}
+{{ block.super }}
+<meta name="robots" content="noindex, follow">
+{% endblock %}
+
+
+{% block extra_css %}
+{{ block.super }}
+<link
+    rel="stylesheet"
+    href="{% static 'css/404.css' %}">
+{% endblock %}
+
+
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="error-page">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-lg-10">
+
+                <div class="error-content">
+
+                    <div
+                        class="error-mark"
+                        aria-hidden="true">
+
+                        <span></span>
+                        <span></span>
+
+                    </div>
+
+                    <p class="section-eyebrow">
+                        404 · Page not found
+                    </p>
+
+                    <h1 class="error-heading logo-font">
+                        This page seems to have slipped
+                        between the shelves.
+                    </h1>
+
+                    <p class="error-description">
+                        The link may be old, or the page may have moved.
+                        Try searching our books or return to the front
+                        of the shop.
+                    </p>
+
+
+                    <!-- Search -->
+                    <form
+                        method="GET"
+                        action="{% url 'book_list' %}"
+                        class="error-search-form"
+                        role="search">
+
+                        <label
+                            for="error-search"
+                            class="error-search-label">
+                            Search The Nook
+                        </label>
+
+                        <input
+                            id="error-search"
+                            class="form-control error-search-input"
+                            type="search"
+                            name="q"
+                            placeholder="Title, author or keyword"
+                            aria-label="Search The Nook">
+
+                        <div class="error-actions">
+
+                            <button
+                                type="submit"
+                                class="btn nook-primary-button">
+                                Search
+                            </button>
+
+                            <a
+                                href="{% url 'home' %}"
+                                class="btn btn-outline-black">
+                                Return home
+                            </a>
+
+                        </div>
+
+                    </form>
+
+
+                    <p class="error-browse-link">
+                        Or
+                        <a href="{% url 'book_list' %}">
+                            browse all books
+                        </a>.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
