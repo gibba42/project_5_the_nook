@@ -42,7 +42,7 @@ def profile(request):
 
     orders = (
         user_profile.orders
-        .prefetch_related("lineitems__product")
+        .prefetch_related("lineitems__book")
         .order_by("-date")
     )
 

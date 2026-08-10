@@ -34,7 +34,7 @@ The application is built using Django. It includes authentication, role-based au
 - **GitHub** – used to store the repository and manage the project through epics, user stories and tasks.
 - **Figma** – used to plan the application’s page layouts and responsive design.
 - **Visual Studio Code** – used as the main development environment.
-- **ChatGPT** – used to support debugging, particularly updating the project to the latest versions of Django and Bootstrap. All generated suggestions were reviewed, adapted and tested before being included in the project.
+- **ChatGPT** – used to support debugging, particularly updating the project to the latest versions of Django and Bootstrap. It was also used to generate fake book listing data. All generated suggestions were reviewed, adapted and tested before being included in the project.
 - **Heroku** - used to host the live deployment of the project.
 
 - ## Project Purpose

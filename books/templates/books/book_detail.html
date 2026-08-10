@@ -194,7 +194,12 @@
 
 
                     <!-- Purchase area -->
-                    <div class="book-purchase-panel">
+                    <form
+                        class="book-purchase-panel"
+                        action="{% url 'add_to_bag' book.id %}"
+                        method="POST">
+
+                        {% csrf_token %}
 
                         {% if book.stock_quantity > 0 %}
 
@@ -208,17 +213,18 @@
 
                                 <select
                                     id="quantity"
+                                    name="quantity"
                                     class="form-select quantity-select">
 
                                     <option value="1">
                                         1
                                     </option>
 
-                                    <option value="2">
+                                    <option value="2"{% if book.stock_quantity < 2 %} disabled{% endif %}>
                                         2
                                     </option>
 
-                                    <option value="3">
+                                    <option value="3"{% if book.stock_quantity < 3 %} disabled{% endif %}>
                                         3
                                     </option>
 
@@ -228,12 +234,15 @@
 
 
                             <button
-                                type="button"
-                                class="btn nook-primary-button"
-                                disabled
-                                title="Basket integration will be added next">
+                                type="submit"
+                                class="btn nook-primary-button">
                                 Add to basket
                             </button>
+
+                            <input
+                                type="hidden"
+                                name="redirect_url"
+                                value="{{ request.path }}">
 
                         {% else %}
 
@@ -246,12 +255,7 @@
 
                         {% endif %}
 
-                    </div>
-
-
-                    <p class="basket-development-note">
-                        Basket integration coming next.
-                    </p>
+                    </form>
 
 
                     <!-- Book metadata -->
