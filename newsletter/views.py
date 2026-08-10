@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.views.decorators.http import require_POST
 
 from .forms import NewsletterSignupForm
+from .services import MailchimpError, subscribe_to_mailchimp
 
 
 @require_POST
@@ -14,12 +15,26 @@ def newsletter_signup(request):
     form = NewsletterSignupForm(request.POST)
 
     if form.is_valid():
-        form.save()
+        email = form.cleaned_data["email"]
 
-        messages.success(
-            request,
-            "Thanks for subscribing to The Nook newsletter!"
-        )
+        try:
+            subscribe_to_mailchimp(email)
+
+        except MailchimpError:
+            messages.error(
+                request,
+                "We couldn't complete your newsletter signup right now. "
+                "Please try again later."
+            )
+
+        else:
+            form.save()
+
+            messages.success(
+                request,
+                "Thanks for subscribing to The Nook newsletter!"
+            )
+
     else:
         if "email" in form.errors:
             for error in form.errors["email"]:
