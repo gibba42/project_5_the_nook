@@ -201,17 +201,6 @@
 
                 {% endif %}
 
-                <!-- Legacy product management -->
-                {% if request.user.is_superuser %}
-
-                  <a
-                    href="{% url 'add_product' %}"
-                    class="dropdown-item">
-                    Product Management
-                  </a>
-
-                {% endif %}
-
                 <a
                   href="{% url 'profile' %}"
                   class="dropdown-item">
