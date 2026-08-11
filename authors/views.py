@@ -5,6 +5,27 @@ from django.shortcuts import get_object_or_404, redirect, render
 from .forms import AuthorProfileForm
 from .models import AuthorProfile
 
+def author_list(request):
+    """
+    Display approved authors with published books.
+    """
+
+    authors = (
+        AuthorProfile.objects
+        .filter(is_approved=True)
+        .prefetch_related('books')
+        .order_by('display_name')
+    )
+
+    context = {
+        'authors': authors,
+    }
+
+    return render(
+        request,
+        'authors/author_list.html',
+        context
+    )
 
 @login_required
 def author_dashboard(request):

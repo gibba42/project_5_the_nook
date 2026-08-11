@@ -2952,3 +2952,60 @@ textarea:focus-visible {
         padding: 2rem 1.25rem;
     }
 }
+
+/* ------------------------------- Authors page */
+
+.authors-page {
+    padding: 4rem 0 5rem;
+}
+
+.authors-page-header {
+    max-width: 720px;
+    margin: 0 auto 3rem;
+}
+
+.author-card {
+    height: 100%;
+    overflow: hidden;
+
+    background: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 20px;
+}
+
+.author-card-image {
+    height: 240px;
+    overflow: hidden;
+}
+
+.author-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.author-card-placeholder {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+
+    background: rgba(124, 143, 118, 0.12);
+    color: var(--nook-sage-dark);
+    font-size: 3rem;
+}
+
+.author-card-body {
+    padding: 1.75rem;
+}
+
+.author-card-body h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.author-card-body p {
+    color: var(--nook-muted);
+}

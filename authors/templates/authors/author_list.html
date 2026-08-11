@@ -1,0 +1,134 @@
+{% extends "base.html" %}
+
+{% block meta_description %}
+Discover independent authors publishing their books through The Nook.
+{% endblock %}
+
+{% block extra_title %}
+| Discover Authors
+{% endblock %}
+
+{% block content %}
+
+<section class="authors-page">
+
+    <div class="container">
+
+        <div class="authors-page-header text-center">
+
+            <p class="section-eyebrow">
+                Independent voices
+            </p>
+
+            <h1 class="section-heading logo-font">
+                Discover Authors
+            </h1>
+
+            <p class="section-description">
+                Meet the independent writers behind the books at The Nook
+                and discover the stories they have chosen to tell.
+            </p>
+
+        </div>
+
+        {% if authors %}
+
+            <div class="row g-4">
+
+                {% for author in authors %}
+
+                    <div class="col-12 col-md-6 col-lg-4">
+
+                        <article class="author-card">
+
+                            <div class="author-card-image">
+
+                                {% if author.profile_image %}
+
+                                    <img
+                                        src="{{ author.profile_image.url }}"
+                                        alt="{{ author.display_name }}">
+
+                                {% else %}
+
+                                    <div class="author-card-placeholder">
+                                        <i
+                                            class="fa-solid fa-feather-pointed"
+                                            aria-hidden="true">
+                                        </i>
+                                    </div>
+
+                                {% endif %}
+
+                            </div>
+
+                            <div class="author-card-body">
+
+                                <h2 class="logo-font">
+                                    {{ author.display_name }}
+                                </h2>
+
+                                {% if author.bio %}
+
+                                    <p>
+                                        {{ author.bio|truncatewords:30 }}
+                                    </p>
+
+                                {% else %}
+
+                                    <p>
+                                        Independent author at The Nook.
+                                    </p>
+
+                                {% endif %}
+
+                                {% if author.website %}
+
+                                    <a
+                                        href="{{ author.website }}"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="discover-link">
+                                        Visit author website
+                                        <span aria-hidden="true">→</span>
+                                    </a>
+
+                                {% endif %}
+
+                            </div>
+
+                        </article>
+
+                    </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <div class="text-center py-5">
+
+                <h2 class="logo-font">
+                    More authors are coming soon.
+                </h2>
+
+                <p>
+                    We're building our shelves with new independent voices.
+                </p>
+
+                <a
+                    href="{% url 'book_list' %}"
+                    class="btn nook-primary-button">
+                    Browse books
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</section>
+
+{% endblock %}
