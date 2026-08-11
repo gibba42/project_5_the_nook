@@ -1050,25 +1050,15 @@ Minimal JavaScript was used for this project, the main functionality is handled 
 
 ![JSHint results](static/images/README/jshint_validation_results.png)
 
-### Lighthouse Results
-
-The live Heroku site was tested using Google's Lighthouse extension. Lighthouse tests for performance, accessibility, best practices and SEO. Tests were carried out on both desktop and mobile views:
-
-![Lighthouse results, desktop](static/images/README/lighthouse-desktop-results.png)
-
-![Lighthouse results, mobile](static/images/README/lighthouse-mobile-results.png)
-
-Both tests performed highly.
-
 ### Responsiveness Tests
 
 The live Heroku site was tested for mobile responsiveness using Google development tools. The site was tested to a width of 300px, which was considered the lowest screen size a user would reasonably use:
 
-![Home page mobile responsiveness](static/images/README/home-page-mobile-test.png)
+![Home page mobile responsiveness](static/images/README/home_page_responsiveness.png)
 
-![My Library mobile responsiveness](static/images/README/my-library-mobile-test.png)
+![Book list mobile responsiveness](static/images/README/book_list_responsiveness.png)
 
-![Book search mobile responsiveness](static/images/README/book-search-mobile-test.png)
+![Checkout mobile responsiveness](static/images/README/checkout_responsiveness.png)
 
 As shown above, elements scale appropriately at different resolutions.
 
