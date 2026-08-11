@@ -88,6 +88,10 @@ INSTALLED_APPS = [
     # Forms
     'crispy_forms',
     'crispy_bootstrap5',
+
+    # Cloudinary
+    'cloudinary_storage',
+    'cloudinary',
 ]
 
 SITE_ID = 1
@@ -224,7 +228,10 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 STORAGES = {
     'default': {
-        'BACKEND': 'django.core.files.storage.FileSystemStorage',
+        'BACKEND': (
+            'cloudinary_storage.storage.'
+            'MediaCloudinaryStorage'
+        ),
     },
     'staticfiles': {
         'BACKEND': (

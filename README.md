@@ -13,7 +13,7 @@ The application is built using Django. It includes authentication, role-based au
 - Live site: **To be added following deployment**
 - Repository: [The Nook GitHub Repository](https://github.com/gibba42/project_5_the_nook)
 
-- ## Technologies Used
+## Technologies Used
 
 - **HTML5** – used to structure the application’s pages and content.
 - **CSS3** – used for the custom styling, responsive layouts and watercolour-inspired visual design.
@@ -37,7 +37,7 @@ The application is built using Django. It includes authentication, role-based au
 - **ChatGPT** – used to support debugging, particularly updating the project to the latest versions of Django and Bootstrap. It was also used to generate fake book listing data. All generated suggestions were reviewed, adapted and tested before being included in the project.
 - **Heroku** - used to host the live deployment of the project.
 
-- ## Project Purpose
+## Project Purpose
 
 Independent authors can struggle to gain visibility through traditional booksellers, while readers may find it difficult to discover new books outside established publishing channels. The Nook is designed to bring these two groups together through an accessible online bookshop.
 
@@ -51,7 +51,7 @@ The project therefore has three main goals:
 - Give independent authors a structured way to showcase their work.
 - Provide the site owner with a manageable e-commerce model through which listings, customers and purchases can be administered.
 
-- ## Target Audience
+## Target Audience
 
 The Nook is designed for three main user groups:
 
@@ -156,10 +156,11 @@ Responsive mock-ups were created in Figma for desktop screens at 1440 pixels and
 #### Homepage
 
 The homepage was designed to explain the purpose of The Nook immediately. Its primary call to action directs readers to the catalogue, while supporting content introduces the independent-author focus of the shop.
+![Homepage](static/images/README/home_screenshot.png)
 
-#### Catalogue
+#### Book List
 
-The catalogue combines search, genre filtering and sorting without hiding the books beneath excessive controls. Filters remain visible in a desktop sidebar but collapse behind a button on smaller screens.
+The book list combines search, genre filtering and sorting without hiding the books beneath excessive controls. Filters remain visible in a desktop sidebar but collapse behind a button on smaller screens.
 
 #### Book Details
 
@@ -220,7 +221,7 @@ The principal responsive changes include:
 - Author and staff dashboards replacing wide rows with vertically stacked cards.
 - Buttons and form fields expanding where additional width improves touch accessibility.
 
-- ## Agile Development
+## Agile Development
 
 The Nook was planned and managed using an iterative Agile approach. GitHub Issues were used to divide the application into epics, user stories, acceptance criteria and individual development tasks.
 
