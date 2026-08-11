@@ -8,6 +8,10 @@
 | {{ page_title }}
 {% endblock %}
 
+{% block page_header %}
+<div class="header-container"></div>
+{% endblock %}
+
 {% block content %}
 
 <section class="container py-5">
@@ -38,14 +42,17 @@
                     </strong>
 
                     {% if book.rejection_reason %}
+
                         <p class="mb-0 mt-2">
                             {{ book.rejection_reason }}
                         </p>
+
                     {% endif %}
 
                 </div>
 
             {% endif %}
+
 
             <form
                 method="POST"
@@ -54,6 +61,29 @@
                 {% csrf_token %}
 
                 {{ form|crispy }}
+
+
+                <!-- ISBN help -->
+                <div class="mt-2 mb-4">
+
+                    <p class="text-muted small mb-0">
+
+                        Not sure about ISBNs?
+
+                        <a
+                            href="https://www.isbn-international.org/"
+                            target="_blank"
+                            rel="noopener noreferrer">
+                            Learn more about ISBNs
+                            <span class="visually-hidden">
+                                (opens in a new tab)
+                            </span>
+                        </a>.
+
+                    </p>
+
+                </div>
+
 
                 <div class="d-flex flex-wrap gap-3 mt-4">
 
