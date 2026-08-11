@@ -9,7 +9,6 @@ urlpatterns = [
         views.book_list,
         name='book_list'
     ),
-
     path(
         'manage/create/',
         views.create_book,
@@ -30,7 +29,11 @@ urlpatterns = [
         views.submit_book,
         name='submit_book'
     ),
-
+    path(
+        'manage/<int:book_id>/remove/',
+        views.remove_book_from_shop,
+        name='remove_book_from_shop'
+    ),
     path(
         'manage/approvals/',
         views.approval_dashboard,

@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block delivery_banner %}{% endblock %}
+
 {% block extra_title %}
 | Author Dashboard
 {% endblock %}
@@ -27,6 +28,7 @@
 
     {% if author_profile %}
 
+        <!-- Author profile -->
         <div class="card mb-5">
 
             <div class="card-body">
@@ -60,19 +62,6 @@
 
                         {% endif %}
 
-                        {% if author_profile.website %}
-
-                            <p>
-                                <a
-                                    href="{{ author_profile.website }}"
-                                    target="_blank"
-                                    rel="noopener noreferrer">
-                                    Visit author website
-                                </a>
-                            </p>
-
-                        {% endif %}
-
                         <a
                             href="{% url 'edit_author_profile' %}"
                             class="btn nook-secondary-button">
@@ -87,7 +76,11 @@
 
         </div>
 
-        <div class="d-flex justify-content-between align-items-center mb-4">
+
+        <!-- Books heading -->
+        <div
+            class="d-flex flex-wrap justify-content-between
+            align-items-center gap-3 mb-4">
 
             <h2 class="logo-font mb-0">
                 Your books
@@ -100,6 +93,7 @@
             </a>
 
         </div>
+
 
         {% if books %}
 
@@ -126,8 +120,12 @@
 
                             <tr>
 
+                                <!-- Book -->
                                 <td>
-                                    <strong>{{ book.title }}</strong>
+
+                                    <strong>
+                                        {{ book.title }}
+                                    </strong>
 
                                     {% if book.status == 'rejected' and book.rejection_reason %}
 
@@ -142,27 +140,46 @@
                                         </div>
 
                                     {% endif %}
+
                                 </td>
 
+
+                                <!-- Genre -->
                                 <td>
+
                                     {% if book.genre %}
                                         {{ book.genre.name }}
                                     {% else %}
                                         —
                                     {% endif %}
+
                                 </td>
 
+
+                                <!-- Price -->
                                 <td>
                                     £{{ book.price }}
                                 </td>
 
+
+                                <!-- Status -->
                                 <td>
 
                                     {% if book.status == 'approved' %}
 
-                                        <span class="badge text-bg-success">
-                                            {{ book.get_status_display }}
-                                        </span>
+                                        {% if book.is_active %}
+
+                                            <span class="badge text-bg-success">
+                                                Approved
+                                            </span>
+
+                                        {% else %}
+
+                                            <span class="badge text-bg-secondary">
+                                                Removed
+                                            </span>
+
+                                        {% endif %}
 
                                     {% elif book.status == 'rejected' %}
 
@@ -186,14 +203,22 @@
 
                                 </td>
 
+
+                                <!-- Updated -->
                                 <td>
                                     {{ book.updated_at|date:"j M Y" }}
                                 </td>
 
+
+                                <!-- Actions -->
                                 <td>
 
-                                    <div class="d-flex flex-wrap gap-2">
+                                    <div
+                                        class="d-flex flex-wrap
+                                        align-items-center gap-2">
 
+
+                                        <!-- Draft / rejected -->
                                         {% if book.status == 'draft' or book.status == 'rejected' %}
 
                                             <a
@@ -204,7 +229,8 @@
 
                                             <form
                                                 method="POST"
-                                                action="{% url 'submit_book' book.id %}">
+                                                action="{% url 'submit_book' book.id %}"
+                                                class="d-inline-flex m-0">
 
                                                 {% csrf_token %}
 
@@ -234,19 +260,121 @@
 
                                             </form>
 
+
+                                        <!-- Pending -->
                                         {% elif book.status == 'pending' %}
 
                                             <span class="text-muted small">
                                                 Awaiting review
                                             </span>
 
+
+                                        <!-- Approved -->
                                         {% elif book.status == 'approved' %}
 
-                                            <a
-                                                href="{% url 'book_detail' book.id %}"
-                                                class="btn btn-sm nook-secondary-button">
-                                                View listing
-                                            </a>
+                                            {% if book.is_active %}
+
+                                                <a
+                                                    href="{% url 'book_detail' book.id %}"
+                                                    class="btn btn-sm nook-secondary-button">
+                                                    View listing
+                                                </a>
+
+                                                <button
+                                                    type="button"
+                                                    class="btn btn-sm btn-outline-danger"
+                                                    data-bs-toggle="modal"
+                                                    data-bs-target="#remove-book-modal-{{ book.id }}">
+                                                    Remove from shop
+                                                </button>
+
+                                                <!-- Remove confirmation modal -->
+                                                <div
+                                                    class="modal fade"
+                                                    id="remove-book-modal-{{ book.id }}"
+                                                    tabindex="-1"
+                                                    aria-labelledby="remove-book-title-{{ book.id }}"
+                                                    aria-hidden="true">
+
+                                                    <div
+                                                        class="modal-dialog modal-dialog-centered">
+
+                                                        <div class="modal-content">
+
+                                                            <div class="modal-header">
+
+                                                                <h2
+                                                                    class="modal-title h5 logo-font"
+                                                                    id="remove-book-title-{{ book.id }}">
+                                                                    Remove {{ book.title }}?
+                                                                </h2>
+
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn-close"
+                                                                    data-bs-dismiss="modal"
+                                                                    aria-label="Close">
+                                                                </button>
+
+                                                            </div>
+
+                                                            <div class="modal-body">
+
+                                                                <p>
+                                                                    This will remove the book
+                                                                    from The Nook and customers
+                                                                    will no longer be able to
+                                                                    view or purchase it.
+                                                                </p>
+
+                                                                <p class="mb-0">
+                                                                    The book will remain in your
+                                                                    author dashboard and previous
+                                                                    order records will not be
+                                                                    affected.
+                                                                </p>
+
+                                                            </div>
+
+                                                            <div class="modal-footer">
+
+                                                                <button
+                                                                    type="button"
+                                                                    class="btn nook-secondary-button"
+                                                                    data-bs-dismiss="modal">
+                                                                    Keep book
+                                                                </button>
+
+                                                                <form
+                                                                    method="POST"
+                                                                    action="{% url 'remove_book_from_shop' book.id %}"
+                                                                    class="m-0">
+
+                                                                    {% csrf_token %}
+
+                                                                    <button
+                                                                        type="submit"
+                                                                        class="btn btn-danger">
+                                                                        Remove from shop
+                                                                    </button>
+
+                                                                </form>
+
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+                                                </div>
+
+                                            {% else %}
+
+                                                <span class="text-muted small">
+                                                    Removed from shop
+                                                </span>
+
+                                            {% endif %}
 
                                         {% endif %}
 
@@ -264,26 +392,29 @@
 
             </div>
 
+
         {% else %}
 
-        <div class="alert alert-info">
+            <div class="alert alert-info">
 
-            <p class="mb-3">
-                You have not added any books yet.
-            </p>
+                <p class="mb-3">
+                    You have not added any books yet.
+                </p>
 
-            <a
-                href="{% url 'create_book' %}"
-                class="btn nook-primary-button">
-                Add your first book
-            </a>
+                <a
+                    href="{% url 'create_book' %}"
+                    class="btn nook-primary-button">
+                    Add your first book
+                </a>
 
-        </div>
+            </div>
 
         {% endif %}
 
+
     {% else %}
 
+        <!-- No author profile -->
         <div class="row">
 
             <div class="col-12 col-lg-7">

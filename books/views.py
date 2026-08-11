@@ -432,3 +432,34 @@ def submit_book(request, book_id):
     )
 
     return redirect('author_dashboard')
+
+@login_required
+@require_POST
+def remove_book_from_shop(request, book_id):
+    """
+    Allow an author to remove their approved book from the public shop
+    without deleting its historical record.
+    """
+
+    book = get_object_or_404(
+        Book,
+        pk=book_id,
+        author__user=request.user
+    )
+
+    if book.status != Book.Status.APPROVED:
+        messages.error(
+            request,
+            'Only approved books can be removed from the shop.'
+        )
+        return redirect('author_dashboard')
+
+    book.is_active = False
+    book.save(update_fields=['is_active', 'updated_at'])
+
+    messages.success(
+        request,
+        f'"{book.title}" has been removed from the shop.'
+    )
+
+    return redirect('author_dashboard')
