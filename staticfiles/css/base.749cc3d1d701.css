@@ -440,25 +440,7 @@ a.category-badge > span.badge:hover {
 }
 
 .custom-toast {
-    background-color: var(--nook-paper);
-    border: 1px solid var(--nook-border);
-    border-radius: 0.75rem;
-    box-shadow: 0 10px 30px rgba(47, 51, 45, 0.18);
-    color: var(--nook-ink);
-    overflow: hidden;
-}
-
-.custom-toast .toast-header {
-    background-color: var(--nook-paper);
-    border-bottom: 1px solid var(--nook-border);
-    color: var(--nook-ink);
-    padding: 0.85rem 1rem;
-}
-
-.custom-toast .toast-body {
-    background-color: var(--nook-paper);
-    color: var(--nook-ink);
-    padding: 1rem;
+    overflow: visible;
 }
 
 .toast-capper {
@@ -3127,31 +3109,4 @@ textarea:focus-visible {
 
 .selling-cta h2 {
     margin-bottom: 0;
-}
-
-.mobile-search-dropdown {
-    max-width: calc(100vw - 20px);
-    min-width: 320px;
-    width: 420px;
-}
-
-.mobile-search-dropdown form,
-.mobile-search-dropdown .input-group {
-    width: 100%;
-}
-
-@media (max-width: 575.98px) {
-
-    .mobile-search-dropdown {
-        left: 10px !important;
-        right: 10px !important;
-        top: 68px !important;
-        transform: none !important;
-
-        max-width: none;
-        min-width: 0;
-        width: auto !important;
-
-        position: fixed !important;
-    }
 }

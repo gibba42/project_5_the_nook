@@ -7,17 +7,32 @@
     aria-live="assertive"
     aria-atomic="true">
 
-    <div class="toast-header">
         <strong class="me-auto">
+
             {% if order %}
+
                 Order successful
-            {% elif bag_items %}
+
+            {% elif 'basket-add' in message.tags %}
+
                 Added to your basket
+
+            {% elif 'basket-update' in message.tags %}
+
+                Basket updated
+
+            {% elif 'basket-remove' in message.tags %}
+
+                Removed from basket
+
             {% else %}
+
                 Success
+
             {% endif %}
+
         </strong>
-        
+
         <button
             type="button"
             class="btn-close"

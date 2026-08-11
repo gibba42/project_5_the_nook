@@ -3141,17 +3141,11 @@ textarea:focus-visible {
 }
 
 @media (max-width: 575.98px) {
-
     .mobile-search-dropdown {
-        left: 10px !important;
-        right: 10px !important;
-        top: 68px !important;
-        transform: none !important;
-
-        max-width: none;
+        left: 50% !important;
+        max-width: calc(100vw - 20px);
         min-width: 0;
-        width: auto !important;
-
-        position: fixed !important;
+        transform: translateX(-50%) !important;
+        width: calc(100vw - 20px);
     }
 }
