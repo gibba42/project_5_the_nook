@@ -25,4 +25,16 @@ urlpatterns = [
         views.edit_author_profile,
         name='edit_author_profile'
     ),
+
+    path(
+        'selling/',
+        views.selling_info,
+        name='selling_info'
+    ),
+
+    path(
+        'profile/image/delete/',
+        views.delete_author_image,
+        name='delete_author_image'
+    ),
 ]

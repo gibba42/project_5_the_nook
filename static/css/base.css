@@ -3009,3 +3009,65 @@ textarea:focus-visible {
 .author-card-body p {
     color: var(--nook-muted);
 }
+
+/* ------------------------------- Selling page */
+
+.selling-page {
+    padding: 4rem 0 5rem;
+}
+
+.selling-header {
+    max-width: 760px;
+    margin: 0 auto 4rem;
+}
+
+.selling-step {
+    height: 100%;
+    padding: 2rem;
+
+    background: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 20px;
+
+    box-shadow: 0 6px 20px rgba(38, 56, 44, 0.05);
+}
+
+.selling-step-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 52px;
+    height: 52px;
+    margin-bottom: 1.25rem;
+
+    background: var(--nook-sage-dark);
+    border-radius: 50%;
+
+    color: #fff;
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.selling-step h2 {
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.selling-step p {
+    margin-bottom: 0;
+    color: var(--nook-muted);
+}
+
+.selling-cta {
+    margin-top: 4rem;
+    padding: 3rem 2rem;
+
+    background: rgba(124, 143, 118, 0.12);
+    border-radius: 20px;
+}
+
+.selling-cta h2 {
+    margin-bottom: 0;
+}

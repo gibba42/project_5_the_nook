@@ -1,6 +1,7 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
+from django.views.decorators.http import require_POST
 
 from .forms import AuthorProfileForm
 from .models import AuthorProfile
@@ -25,6 +26,15 @@ def author_list(request):
         request,
         'authors/author_list.html',
         context
+    )
+
+def selling_info(request):
+    """
+    Explain how independent authors can list books through The Nook.
+    """
+    return render(
+        request,
+        'authors/selling_info.html'
     )
 
 @login_required
@@ -160,3 +170,27 @@ def edit_author_profile(request):
         'authors/author_profile_form.html',
         context
     )
+
+@login_required
+@require_POST
+def delete_author_image(request):
+    """
+    Remove the logged-in author's profile image.
+    """
+
+    author_profile = get_object_or_404(
+        AuthorProfile,
+        user=request.user
+    )
+
+    if author_profile.profile_image:
+        author_profile.profile_image.delete(save=False)
+        author_profile.profile_image = None
+        author_profile.save(update_fields=['profile_image'])
+
+        messages.success(
+            request,
+            'Your author image has been removed.'
+        )
+
+    return redirect('edit_author_profile')

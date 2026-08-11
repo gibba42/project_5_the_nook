@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block delivery_banner %}{% endblock %}
+
 {% block extra_title %}
 | {{ page_title }}
 {% endblock %}
@@ -31,6 +32,45 @@
                 This information will help readers learn more about
                 the person behind your books.
             </p>
+
+            {% if form.instance.profile_image %}
+
+                <div class="author-current-image mb-4">
+
+                    <p class="fw-semibold mb-2">
+                        Current author image
+                    </p>
+
+                    <img
+                        src="{{ form.instance.profile_image.url }}"
+                        alt="Current image for {{ form.instance.display_name }}"
+                        class="author-profile-preview">
+
+                    <form
+                        method="POST"
+                        action="{% url 'delete_author_image' %}"
+                        class="mt-3">
+
+                        {% csrf_token %}
+
+                        <button
+                            type="submit"
+                            class="btn btn-outline-danger btn-sm">
+
+                            <i
+                                class="fa-regular fa-trash-can me-1"
+                                aria-hidden="true">
+                            </i>
+
+                            Delete image
+
+                        </button>
+
+                    </form>
+
+                </div>
+
+            {% endif %}
 
             <form
                 method="POST"

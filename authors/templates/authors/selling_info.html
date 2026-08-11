@@ -1,0 +1,124 @@
+{% extends "base.html" %}
+
+{% block delivery_banner %}{% endblock %}
+{% block meta_description %}
+Learn how independent authors can submit books for listing at The Nook.
+{% endblock %}
+
+{% block extra_title %}
+| Sell Through The Nook
+{% endblock %}
+
+{% block content %}
+
+<section class="selling-page">
+
+    <div class="container">
+
+        <div class="selling-header text-center">
+
+            <p class="section-eyebrow">
+                For independent authors
+            </p>
+
+            <h1 class="section-heading logo-font">
+                Put your story on the shelf.
+            </h1>
+
+            <p class="section-description">
+                The Nook gives independent authors a place to showcase
+                their work while helping readers discover books beyond
+                the traditional bestseller lists.
+            </p>
+            <br>
+        </div>
+
+        <div class="row g-4 selling-steps">
+
+            <div class="col-12 col-md-4">
+
+                <article class="selling-step">
+
+                    <h2 class="logo-font">
+                        Create your profile
+                    </h2>
+
+                    <p>
+                        Register for an account and create an author
+                        profile so readers can learn more about you.
+                    </p>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-md-4">
+
+                <article class="selling-step">
+
+                    <h2 class="logo-font">
+                        Add your book
+                    </h2>
+
+                    <p>
+                        Submit your book details, cover image, price
+                        and description through your author dashboard.
+                    </p>
+
+                </article>
+
+            </div>
+
+            <div class="col-12 col-md-4">
+
+                <article class="selling-step">
+
+                    <h2 class="logo-font">
+                        Get approved
+                    </h2>
+
+                    <p>
+                        Listings are reviewed before publication so
+                        readers can browse a curated collection.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+        <br>
+        <div class="selling-cta text-center">
+
+            <p class="section-eyebrow">
+                Ready to get started?
+            </p>
+
+            <h2 class="logo-font">
+                Join The Nook as an author.
+            </h2>
+
+            {% if request.user.is_authenticated %}
+
+                <a
+                    href="{% url 'author_dashboard' %}"
+                    class="btn nook-primary-button mt-3">
+                    Go to Author Dashboard
+                </a>
+
+            {% else %}
+
+                <a
+                    href="{% url 'account_signup' %}"
+                    class="btn nook-primary-button mt-3">
+                    Create an Account
+                </a>
+
+            {% endif %}
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -39,4 +39,5 @@ class AuthorProfileForm(forms.ModelForm):
                     'placeholder': 'https://example.com',
                 }
             ),
+            'profile_image': forms.FileInput(),
         }
