@@ -335,6 +335,41 @@
                     What readers think
                 </h2>
 
+                <div class="mt-3">
+
+                    {% if request.user.is_authenticated %}
+
+                        {% if user_review %}
+
+                            <a
+                                href="{% url 'edit_review' user_review.id %}"
+                                class="btn nook-secondary-button">
+                                Edit your review
+                            </a>
+
+                        {% else %}
+
+                            <a
+                                href="{% url 'add_review' book.id %}"
+                                class="btn nook-primary-button">
+                                Write a review
+                            </a>
+
+                        {% endif %}
+
+                    {% else %}
+
+                        <p class="text-muted">
+                            <a href="{% url 'account_login' %}?next={{ request.path }}">
+                                Sign in
+                            </a>
+                            to leave a review.
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
             </div>
 
 
@@ -397,6 +432,35 @@
                                     ·
                                     {{ review.created_at|date:"j M Y" }}
                                 </p>
+
+                                {% if request.user == review.user %}
+
+                                    <div class="d-flex flex-wrap align-items-center gap-2 mt-3">
+
+                                        <a
+                                            href="{% url 'edit_review' review.id %}"
+                                            class="btn btn-sm nook-secondary-button">
+                                            Edit
+                                        </a>
+
+                                        <form
+                                            method="POST"
+                                            action="{% url 'delete_review' review.id %}"
+                                            class="d-inline-flex m-0">
+
+                                            {% csrf_token %}
+
+                                            <button
+                                                type="submit"
+                                                class="btn btn-sm btn-outline-danger">
+                                                Delete
+                                            </button>
+
+                                        </form>
+
+                                    </div>
+
+                                {% endif %}
 
                             </article>
 

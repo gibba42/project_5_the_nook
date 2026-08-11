@@ -6,8 +6,8 @@ from django.utils import timezone
 from django.views.decorators.http import require_POST
 from django.contrib.auth.decorators import login_required
 
-from .models import Book, Genre
-from .forms import BookForm
+from .models import Book, Genre, Review
+from .forms import BookForm, ReviewForm
 from authors.models import AuthorProfile
 
 
@@ -111,9 +111,18 @@ def book_detail(request, book_id):
         .select_related('user')
     )
 
+    user_review = None
+
+    if request.user.is_authenticated:
+        user_review = Review.objects.filter(
+            book=book,
+            user=request.user
+        ).first()
+
     context = {
         'book': book,
         'reviews': reviews,
+        'user_review' : user_review,
     }
 
     return render(
@@ -463,3 +472,143 @@ def remove_book_from_shop(request, book_id):
     )
 
     return redirect('author_dashboard')
+
+@login_required
+def add_review(request, book_id):
+    """
+    Allow a logged-in reader to review an approved book.
+    """
+
+    book = get_object_or_404(
+        Book,
+        pk=book_id,
+        status=Book.Status.APPROVED,
+        is_active=True
+    )
+
+    existing_review = Review.objects.filter(
+        book=book,
+        user=request.user
+    ).first()
+
+    if existing_review:
+        messages.info(
+            request,
+            'You have already reviewed this book.'
+        )
+        return redirect(
+            'edit_review',
+            review_id=existing_review.id
+        )
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+
+        if form.is_valid():
+            review = form.save(commit=False)
+
+            review.book = book
+            review.user = request.user
+
+            review.save()
+
+            messages.success(
+                request,
+                'Thank you. Your review has been added.'
+            )
+
+            return redirect(
+                'book_detail',
+                book_id=book.id
+            )
+
+    else:
+        form = ReviewForm()
+
+    context = {
+        'form': form,
+        'book': book,
+        'page_title': 'Review this book',
+        'button_text': 'Post review',
+    }
+
+    return render(
+        request,
+        'books/review_form.html',
+        context
+    )
+
+@login_required
+def edit_review(request, review_id):
+    """
+    Allow a reader to edit their own review.
+    """
+
+    review = get_object_or_404(
+        Review,
+        pk=review_id,
+        user=request.user
+    )
+
+    if request.method == 'POST':
+        form = ReviewForm(
+            request.POST,
+            instance=review
+        )
+
+        if form.is_valid():
+            form.save()
+
+            messages.success(
+                request,
+                'Your review has been updated.'
+            )
+
+            return redirect(
+                'book_detail',
+                book_id=review.book.id
+            )
+
+    else:
+        form = ReviewForm(instance=review)
+
+    context = {
+        'form': form,
+        'book': review.book,
+        'review': review,
+        'page_title': 'Edit your review',
+        'button_text': 'Save review',
+    }
+
+    return render(
+        request,
+        'books/review_form.html',
+        context
+    )
+
+@login_required
+@require_POST
+def delete_review(request, review_id):
+    """
+    Allow a reader to delete their own review.
+    """
+
+    review = get_object_or_404(
+        Review,
+        pk=review_id,
+        user=request.user
+    )
+
+    book_id = review.book.id
+
+    review.delete()
+
+    messages.success(
+        request,
+        'Your review has been deleted.'
+    )
+
+    return redirect(
+        'book_detail',
+        book_id=book_id
+    )

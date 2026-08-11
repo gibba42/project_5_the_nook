@@ -1,6 +1,6 @@
 from django import forms
 
-from .models import Book
+from .models import Book, Review
 
 
 class BookForm(forms.ModelForm):
@@ -59,4 +59,50 @@ class BookForm(forms.ModelForm):
                 }
             ),
             'cover_image': forms.FileInput(),
+        }
+
+
+class ReviewForm(forms.ModelForm):
+    """
+    Form used by readers to create and edit book reviews.
+    """
+
+    class Meta:
+        model = Review
+
+        fields = (
+            'rating',
+            'title',
+            'body',
+        )
+
+        labels = {
+            'rating': 'Rating',
+            'title': 'Review title',
+            'body': 'Your review',
+        }
+
+        widgets = {
+            'rating': forms.Select(
+                choices=[
+                    (5, '5 - Excellent'),
+                    (4, '4 - Very good'),
+                    (3, '3 - Good'),
+                    (2, '2 - Fair'),
+                    (1, '1 - Poor'),
+                ]
+            ),
+            'title': forms.TextInput(
+                attrs={
+                    'placeholder': 'Optional short title',
+                }
+            ),
+            'body': forms.Textarea(
+                attrs={
+                    'rows': 5,
+                    'placeholder': (
+                        'What did you think of the book?'
+                    ),
+                }
+            ),
         }

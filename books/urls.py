@@ -54,7 +54,21 @@ urlpatterns = [
         views.reject_book,
         name='reject_book'
     ),
-
+    path(
+        '<int:book_id>/review/',
+        views.add_review,
+        name='add_review'
+    ),
+    path(
+        'reviews/<int:review_id>/edit/',
+        views.edit_review,
+        name='edit_review'
+    ),
+    path(
+        'reviews/<int:review_id>/delete/',
+        views.delete_review,
+        name='delete_review'
+    ),
     path(
         '<int:book_id>/',
         views.book_detail,
