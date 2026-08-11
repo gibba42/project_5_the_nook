@@ -3156,22 +3156,25 @@ textarea:focus-visible {
     }
 }
 
-.main-logo-link.nook-brand {
+.nook-brand {
     align-items: center;
     display: inline-flex;
     gap: 0.65rem;
-    width: auto;
 }
 
 .nook-brand-logo {
-    display: block;
-    flex-shrink: 0;
-    height: 44px;
-    width: 44px;
+    height: 42px;
     object-fit: contain;
+    width: 42px;
 }
 
 .nook-brand .nook-logo {
-    display: inline-block;
     margin: 0;
+}
+
+@media (max-width: 991px) {
+    .nook-brand-logo {
+        height: 34px;
+        width: 34px;
+    }
 }

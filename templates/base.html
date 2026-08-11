@@ -4,6 +4,15 @@
 <html lang="en">
 
 <head>
+  <!-- Site icon -->
+  <link
+      rel="icon"
+      type="image/png"
+      href="{% static 'images/feather-pen.png' %}">
+
+  <link
+      rel="apple-touch-icon"
+      href="{% static 'images/feather-pen.png' %}">
 
   {% block meta %}
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -92,12 +101,18 @@
         text-center text-lg-start">
 
         <a
-          href="{% url 'home' %}"
-          class="nav-link main-logo-link">
+            href="{% url 'home' %}"
+            class="nav-link main-logo-link nook-brand">
 
-          <h2 class="logo-font nook-logo my-0">
-            The Nook
-          </h2>
+            <img
+                src="{% static 'images/feather-pen.png' %}"
+                alt=""
+                class="nook-brand-logo"
+                aria-hidden="true">
+
+            <span class="logo-font nook-logo">
+                The Nook
+            </span>
 
         </a>
 
