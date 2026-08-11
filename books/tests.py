@@ -4,6 +4,7 @@ from django.contrib.auth import get_user_model
 from django.db.models.deletion import ProtectedError
 from django.test import TestCase
 from django.utils import timezone
+from django.urls import reverse
 
 from authors.models import AuthorProfile
 
@@ -206,3 +207,132 @@ class BookModelTests(TestCase):
         self.assertTrue(
             Book.objects.filter(pk=self.book.pk).exists()
         )
+
+        class BookSubmissionTests(TestCase):
+            """
+            Tests for the author book submission workflow.
+            """
+
+            def setUp(self):
+                self.user = get_user_model().objects.create_user(
+                    username='testauthor',
+                    email='author@example.com',
+                    password='test-password-123'
+                )
+
+                self.other_user = get_user_model().objects.create_user(
+                    username='otherauthor',
+                    email='other@example.com',
+                    password='test-password-123'
+                )
+
+                self.author = AuthorProfile.objects.create(
+                    user=self.user,
+                    display_name='Test Author',
+                    is_approved=True
+                )
+
+                self.other_author = AuthorProfile.objects.create(
+                    user=self.other_user,
+                    display_name='Other Author',
+                    is_approved=True
+                )
+
+                self.genre = Genre.objects.create(
+                    name='Science Fiction'
+                )
+
+                self.book = Book.objects.create(
+                    author=self.author,
+                    genre=self.genre,
+                    title='Draft Book',
+                    description='Test description.',
+                    price=Decimal('9.99'),
+                    stock_quantity=5
+                )
+
+            def test_author_can_submit_own_draft_book(self):
+                self.client.login(
+                    username='testauthor',
+                    password='test-password-123'
+                )
+
+                response = self.client.post(
+                    reverse(
+                        'submit_book',
+                        args=[self.book.id]
+                    )
+                )
+
+                self.book.refresh_from_db()
+
+                self.assertEqual(
+                    self.book.status,
+                    Book.Status.PENDING
+                )
+
+                self.assertRedirects(
+                    response,
+                    reverse('author_dashboard')
+                )
+
+            def test_author_cannot_edit_another_authors_book(self):
+                self.client.login(
+                    username='otherauthor',
+                    password='test-password-123'
+                )
+
+                response = self.client.get(
+                    reverse(
+                        'edit_book',
+                        args=[self.book.id]
+                    )
+                )
+
+                self.assertEqual(
+                    response.status_code,
+                    404
+                )
+
+            def test_pending_book_cannot_be_edited(self):
+                self.book.status = Book.Status.PENDING
+                self.book.save()
+
+                self.client.login(
+                    username='testauthor',
+                    password='test-password-123'
+                )
+
+                response = self.client.get(
+                    reverse(
+                        'edit_book',
+                        args=[self.book.id]
+                    )
+                )
+
+                self.assertRedirects(
+                    response,
+                    reverse('author_dashboard')
+                )
+
+            def test_author_cannot_delete_approved_book(self):
+                self.book.status = Book.Status.APPROVED
+                self.book.save()
+
+                self.client.login(
+                    username='testauthor',
+                    password='test-password-123'
+                )
+
+                self.client.post(
+                    reverse(
+                        'delete_book',
+                        args=[self.book.id]
+                    )
+                )
+
+                self.assertTrue(
+                    Book.objects.filter(
+                        pk=self.book.pk
+                    ).exists()
+                )
