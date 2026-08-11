@@ -556,6 +556,15 @@ The following functionality was manually tested on Heroku:
 
 The production application was found to match the expected functionality of the development version.
 
+## Security
+
+The final deployed version of the site uses the following security features:
+
+ - `SECRET_KEY` is not hardcoded in the repository. It is stored in `env.py` which is included in `.gitignore` so that the key is not pushed to the repository.
+ - `DEBUG` is set to `False` in `settings.py`
+ - User data is protected using Django's built-in authentication.
+ - Sensitive pages are protected using `@login_required`
+
 
 ## UX Design
 
@@ -1015,6 +1024,56 @@ This combination of automated regression testing, user-story-based manual testin
 
 ## Validation
 
+### W3C HTML Validation Results
+
+The live Heroku site was used for this test. The test passed with no errors or warnings:
+
+![W3C results](static/images/README/html_validation_results.png)
+
+### W3C Jigsaw Validation Results
+
+The live Heroku site was used for this test. The test passed with no errors or warnings:
+
+![W3C results](static/images/README/css_validation_results.png)
+
+### Pycodestyle Results
+
+The final version of the code was tested against PEP8 using the pycodestyle command:
+
+![pycodestyle results](static/images/README/python_validation_results.png)
+
+The shown flagged issues are considered acceptable. They all relate to lines being over 79 characters. In most cases they are only slightly over, or they are the default settings.py values.
+
+### JSHint results
+
+Minimal JavaScript was used for this project, the main functionality is handled through Django and Python. Javascript was used to improve the appearance of message notifications. This was tested using JSHint:
+
+![JSHint results](static/images/README/jshint_validation_results.png)
+
+### Lighthouse Results
+
+The live Heroku site was tested using Google's Lighthouse extension. Lighthouse tests for performance, accessibility, best practices and SEO. Tests were carried out on both desktop and mobile views:
+
+![Lighthouse results, desktop](static/images/README/lighthouse-desktop-results.png)
+
+![Lighthouse results, mobile](static/images/README/lighthouse-mobile-results.png)
+
+Both tests performed highly.
+
+### Responsiveness Tests
+
+The live Heroku site was tested for mobile responsiveness using Google development tools. The site was tested to a width of 300px, which was considered the lowest screen size a user would reasonably use:
+
+![Home page mobile responsiveness](static/images/README/home-page-mobile-test.png)
+
+![My Library mobile responsiveness](static/images/README/my-library-mobile-test.png)
+
+![Book search mobile responsiveness](static/images/README/book-search-mobile-test.png)
+
+As shown above, elements scale appropriately at different resolutions.
+
+---
+
 
 ## Bugs
 
@@ -1032,3 +1091,15 @@ This combination of automated regression testing, user-story-based manual testin
 | Product image field did not work in add and edit forms | Images selected through the product-management forms were not rendered or processed correctly. | Added a custom clearable file-input widget, ensured uploaded files were passed through `request.FILES` and updated the add and edit templates. | Resolved |
 | User profile table did not exist locally | Accessing the administration or profile pages raised `OperationalError: no such table: profiles_userprofile` after the profiles application was introduced. | Created the profiles migration and applied the outstanding migrations to the local database. | Resolved |
 | Author dashboard link raised `NoReverseMatch` | The profile page attempted to reverse an `authors` namespace that had not been registered in the project URLs. | Updated the template links to use the registered `author_dashboard` URL name. | Resolved |
+
+## Tutorials and guides used
+
+### Django
+
+This project uses the Django authentication system. This was implemented using the Django documentation:
+
+[Using the Django authentication system](https://docs.djangoproject.com/en/6.0/topics/auth/default/)
+
+To add css styling to the project, I followed this guide:
+
+[How to manage static files in Django](https://docs.djangoproject.com/en/dev/howto/static-files/)
