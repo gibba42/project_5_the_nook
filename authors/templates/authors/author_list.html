@@ -82,18 +82,12 @@ Discover independent authors publishing their books through The Nook.
 
                                 {% endif %}
 
-                                {% if author.website %}
-
-                                    <a
-                                        href="{{ author.website }}"
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        class="discover-link">
-                                        Visit author website
-                                        <span aria-hidden="true">→</span>
-                                    </a>
-
-                                {% endif %}
+                                <a
+                                    href="{% url 'book_list' %}?q={{ author.display_name|urlencode }}"
+                                    class="discover-link">
+                                    View books by {{ author.display_name }}
+                                    <span aria-hidden="true">→</span>
+                                </a>
 
                             </div>
 
