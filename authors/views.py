@@ -6,6 +6,7 @@ from django.views.decorators.http import require_POST
 from .forms import AuthorProfileForm
 from .models import AuthorProfile
 
+
 def author_list(request):
     """
     Display approved authors with published books.
@@ -28,6 +29,7 @@ def author_list(request):
         context
     )
 
+
 def selling_info(request):
     """
     Explain how independent authors can list books through The Nook.
@@ -36,6 +38,7 @@ def selling_info(request):
         request,
         'authors/selling_info.html'
     )
+
 
 @login_required
 def author_dashboard(request):
@@ -170,6 +173,7 @@ def edit_author_profile(request):
         'authors/author_profile_form.html',
         context
     )
+
 
 @login_required
 @require_POST

@@ -96,7 +96,7 @@ def adjust_bag(request, item_id):
     else:
         bag[item_key] = quantity
         request.session["bag"] = bag
-        messages.success(request, f"Updated {book.title} quantity to {quantity}.",extra_tags="basket-update")
+        messages.success(request, f"Updated {book.title} quantity to {quantity}.", extra_tags="basket-update")
 
     return redirect("view_bag")
 
@@ -112,6 +112,6 @@ def remove_from_bag(request, item_id):
     if item_key in bag:
         bag.pop(item_key)
         request.session["bag"] = bag
-        messages.success(request, f"Removed {book.title} from your basket.",extra_tags="basket-remove")
+        messages.success(request, f"Removed {book.title} from your basket.", extra_tags="basket-remove")
 
     return redirect("view_bag")

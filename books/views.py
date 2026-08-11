@@ -122,7 +122,7 @@ def book_detail(request, book_id):
     context = {
         'book': book,
         'reviews': reviews,
-        'user_review' : user_review,
+        'user_review': user_review,
     }
 
     return render(
@@ -130,6 +130,7 @@ def book_detail(request, book_id):
         'books/book_detail.html',
         context
     )
+
 
 @staff_member_required
 def approval_dashboard(request):
@@ -234,6 +235,7 @@ def reject_book(request, book_id):
 
     return redirect('approval_dashboard')
 
+
 @login_required
 def create_book(request):
     """
@@ -292,6 +294,7 @@ def create_book(request):
         'books/book_form.html',
         context
     )
+
 
 @login_required
 def edit_book(request, book_id):
@@ -360,6 +363,7 @@ def edit_book(request, book_id):
         context
     )
 
+
 @login_required
 @require_POST
 def delete_book(request, book_id):
@@ -396,6 +400,7 @@ def delete_book(request, book_id):
     )
 
     return redirect('author_dashboard')
+
 
 @login_required
 @require_POST
@@ -442,6 +447,7 @@ def submit_book(request, book_id):
 
     return redirect('author_dashboard')
 
+
 @login_required
 @require_POST
 def remove_book_from_shop(request, book_id):
@@ -472,6 +478,7 @@ def remove_book_from_shop(request, book_id):
     )
 
     return redirect('author_dashboard')
+
 
 @login_required
 def add_review(request, book_id):
@@ -538,6 +545,7 @@ def add_review(request, book_id):
         context
     )
 
+
 @login_required
 def edit_review(request, review_id):
     """
@@ -585,6 +593,7 @@ def edit_review(request, review_id):
         'books/review_form.html',
         context
     )
+
 
 @login_required
 @require_POST
