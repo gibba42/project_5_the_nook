@@ -15,6 +15,84 @@ The application is built using Django. It includes authentication, role-based au
 - Live site: [The Nook Heroku App](https://project-5-the-nook-bookshop-26884e3af76e.herokuapp.com)
 - Repository: [The Nook GitHub Repository](https://github.com/gibba42/project_5_the_nook)
 
+## Table of Contents
+
+- [Technologies Used](#technologies-used)
+- [Project Purpose](#project-purpose)
+- [Target Audience](#target-audience)
+  - [Readers](#readers)
+  - [Independent Authors](#independent-authors)
+  - [Site Administrators](#site-administrators)
+- [E-commerce Business Model](#e-commerce-business-model)
+  - [Value Proposition](#value-proposition)
+  - [Revenue Model](#revenue-model)
+  - [Operating Model](#operating-model)
+- [Target Market](#target-market)
+  - [Brand Positioning](#brand-positioning)
+  - [Search Engine Optimisation](#search-engine-optimisation)
+  - [Email Marketing](#email-marketing)
+  - [Social Media](#social-media)
+  - [Facebook Business Page](#facebook-business-page
+  )
+  - [Author-Led Promotion](#author-led-promotion)
+  - [Customer Retention](#customer-retention)
+  - [Future Marketing Opportunities](#future-marketing-opportunities)
+- [Data Model](#data-model)
+  - [Entity Relationship Diagram](#entity-relationship-diagram)
+  - [Data Model Overview](#data-model-overview)
+  - [Model Relationships](#model-relationships)
+  - [User](#user)
+  - [UserProfile](#userprofile)
+  - [AuthorProfile](#authorprofile)
+  - [Genre](#genre)
+  - [Book](#book)
+  - [Review](#review)
+  - [Order](#order)
+  - [OrderLineItem](#orderlineitem)
+  - [NewsletterSubscriber](#newslettersubscriber)
+  - [Data Integrity](#data-integrity)
+- [Deployment](#deployment)
+  - [Local Preparation](#local-preparation)
+  - [Database Configuration](#database-configuration)
+  - [Security and Environment Variables](#security-and-environment-variables)
+  - [Heroku Deployment](#heroku-deployment)
+  - [Production Database Setup](#production-database-setup)
+  - [Cloudinary](#cloudinary)
+  - [Stripe Configuration](#stripe-configuration)
+  - [Django Sites and SEO](#django-sites-and-seo)
+  - [Mailchimp](#mailchimp)
+  - [Production Testing](#production-testing)
+- [Security](#security)
+- [UX Design](#ux-design)
+  - [UI Design](#ui-design)
+  - [UX Strategy](#ux-strategy)
+  - [User Needs](#user-needs)
+  - [Primary User Journeys](#primary-user-journeys)
+  - [Information Architecture](#information-architecture)
+  - [Wireframes and High-Fidelity Mock-ups](#wireframes-and-high-fidelity-mock-ups)
+  - [Visual Design](#visual-design)
+  - [Typography](#typography)
+  - [Responsive Design](#responsive-design)
+- [Agile Development](#agile-development)
+  - [Github Project](#github-project)
+  - [Epics](#epics)
+  - [User Stories](#user-stories)
+  - [MoSCoW Prioritisation](#moscow-prioritisation)
+  - [Development Process](#development-process)
+- [Testing](#testing)
+  - [Manual Testing](#manual-testing)
+  - [Automated Testing](#automated-testing)
+  - [Testing During Development](#testing-during-development)
+- [Validation](#validation)
+  - [W3C HTML Validation Results](#w3c-html-validation-results)
+  - [W3C Jigsaw Validation Results](#w3c-jigsaw-validation-results)
+  - [Pycodestyle Results](#pycodestyle-results)
+  - [JSHint Results](#jshint-results)
+  - [Responsiveness Tests](#responsiveness-tests)
+- [Bugs](#bugs)
+- [Tutorials and Guides Used](#tutorials-and-guides-used)
+  - [Django](#django)
+
 ## Technologies Used
 
 - **HTML5** – used to structure the application’s pages and content.
@@ -103,6 +181,128 @@ The submitted application uses a controlled catalogue rather than allowing autho
 6. The Nook records and manages the resulting order.
 
 This approach gives the site owner control over product quality, pricing and the customer experience. It also avoids the additional payment, commission and seller-management requirements of a multi-vendor marketplace.
+
+## Marketing Strategy
+
+The marketing strategy for The Nook is built around a clear niche: helping readers discover books from independent authors.
+
+Rather than competing directly with large general-purpose book retailers, The Nook positions itself as a curated destination for readers who are specifically interested in discovering lesser-known authors and independently published books.
+
+The strategy combines search visibility, email marketing, social media and the platform's author-focused identity.
+
+### Target Market
+
+The primary audience is readers who:
+
+* Enjoy discovering new and independent authors.
+* Prefer curated recommendations rather than browsing a very large catalogue.
+* Are interested in supporting smaller or emerging writers.
+* Value author biographies, reviews and detailed book information when deciding what to purchase.
+
+Independent authors form a secondary audience because they can use The Nook to increase the visibility of their work through public author profiles and approved book listings.
+
+### Brand Positioning
+
+The Nook is positioned as a small, welcoming and curated online bookshop.
+
+The visual design supports this positioning through its warm colour palette, bookshop-inspired typography and watercolour-style presentation.
+
+The approval process also forms part of the brand proposition. Books submitted by authors do not immediately appear in the catalogue; they must first be reviewed by staff. This allows The Nook to present itself as a curated store rather than an unrestricted marketplace.
+
+### Search Engine Optimisation
+
+SEO is used to help potential customers discover The Nook through search engines.
+
+The project includes:
+
+* Descriptive page titles and metadata.
+* Semantic HTML structure.
+* A `sitemap.xml` containing public site pages and book listings.
+* A `robots.txt` file directing search engines to the sitemap while restricting areas that should not be indexed.
+* Descriptive book and author content that provides search engines with relevant page-specific information.
+* A custom 404 page to maintain the user experience when invalid URLs are requested.
+
+The production sitemap uses the live deployed domain so that search engines are directed towards canonical production URLs.
+
+SEO is particularly relevant to The Nook because individual book titles, author names and genre-related searches provide opportunities for users to discover the site through specific search queries rather than only through searches for the business itself.
+
+### Email Marketing
+
+The Nook includes a newsletter signup form integrated with Mailchimp.
+
+Visitors can subscribe from the website and their email address is added to the configured Mailchimp audience.
+
+The newsletter could be used to communicate regularly with interested readers about:
+
+* Newly approved books.
+* Featured titles.
+* New independent authors joining the catalogue.
+* Genre-based recommendations.
+* Seasonal promotions.
+* Reviews and editorial recommendations.
+
+Email marketing provides a way to retain visitors who may not be ready to purchase during their first visit and encourage them to return as the catalogue grows.
+
+### Social Media
+
+Social media provides an additional channel for reaching readers outside the website.
+
+A business social-media presence for The Nook was created as part of the project's marketing evidence.
+
+Social posts could promote:
+
+* New book releases.
+* Featured independent authors.
+* Book recommendations.
+* Reader reviews.
+* Newsletter registration.
+* Links directly to relevant catalogue and book-detail pages.
+
+The visual identity used on social media should remain consistent with the website so that users can easily recognise The Nook across different platforms.
+
+### Facebook Business Page
+
+![Facebook Page Mockup](static/images/README/facebook_page.png)
+
+As the site owner does not have a personal Facebook account, a mock-up of a potential Facebook Business page was created that could support the social media marketing aspects of the business plan. It retains the theme of the main site, but would feature the ability to post short-form content to drive engagement with customers.
+
+### Author-Led Promotion
+
+Independent authors also provide a potential source of organic promotion.
+
+Because each approved author receives a public profile and their books receive dedicated product pages, authors can share links to their own listings with existing readers and followers.
+
+This creates a mutually beneficial relationship: authors gain additional exposure while The Nook receives traffic from the audiences those authors have already developed.
+
+### Customer Retention
+
+The marketing strategy is not focused solely on acquiring new visitors.
+
+The application also includes features intended to encourage repeat engagement, including:
+
+* Reader reviews.
+* Order history.
+* Newsletter subscriptions.
+* Featured and new books.
+* Author profile pages.
+* Search and genre-based catalogue discovery.
+
+As additional books and authors are added, these features provide customers with reasons to return to the site rather than treating each purchase as an isolated transaction.
+
+### Future Marketing Opportunities
+
+If The Nook were developed beyond the submitted MVP, the marketing strategy could be expanded through:
+
+* Automated Mailchimp campaigns for new releases.
+* Genre-specific newsletter segments.
+* Promotional discount codes.
+* Social-media advertising.
+* Author interviews and editorial content.
+* Referral campaigns.
+* Abandoned-basket email reminders.
+* Analytics to identify the highest-converting acquisition channels.
+
+For the submitted project, the combination of SEO, Mailchimp integration, social-media presence and a clearly defined independent-book niche provides the foundation for a realistic digital marketing strategy.
 
 ## Data Model
 
@@ -575,6 +775,26 @@ The user experience for The Nook was designed around three connected journeys:
 - Staff reviewing submissions before they enter the public catalogue.
 
 The design aims to make The Nook feel calm, trustworthy and easy to navigate while still giving it a recognisable independent-bookshop identity.
+
+### UI Design
+
+![Home page wireframe](static/images/README/01-home.png)
+
+![Book list wireframe](static/images/README/02-catalogue.png)
+
+![Book detail wireframe](static/images/README/03-book-detail.png)
+
+![Basket wireframe](static/images/README/04-basket.png)
+
+![Checkout wireframe](static/images/README/05-checkout.png)
+
+![Order confirmation wireframe](static/images/README/06-order-confirmation.png)
+
+![Author profile wireframe](static/images/README/09-author-profile.png)
+
+![Author dashboard wireframe](static/images/README/10-author-dashboard.png)
+
+![Admin approval wireframe](static/images/README/12-admin-approval.png)
 
 ### UX Strategy
 
