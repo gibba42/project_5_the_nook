@@ -738,17 +738,18 @@ Each user story also contains:
 - A checklist of the development tasks required to complete the story.
 - A GitHub Issue status showing whether the story remains open or has been completed.
 
-### Prioritisation
+### MoSCoW Prioritisation
 
-A MoSCoW-inspired method was used to prioritise the user stories:
+MoSCoW prioritisation was used to decide which features were essential for the minimum viable product and which could be deferred.
 
-| Priority | Meaning |
-|----------|---------|
-| Must Have | Required for the application to meet its core purpose |
-| Should Have | Important functionality that improves the finished application but is not essential to its basic operation |
-| Could Have | Additional functionality implemented after higher-priority requirements where time allows |
+| Priority | Description |
+|----------|-------------|
+| Must Have | Essential features required for the application to meet its core purpose. |
+| Should Have | Useful features that would improve the application but were not essential for the MVP. |
+| Could Have | Desirable stretch features that could be added if time allowed. |
+| Won't Have This Time | Features intentionally deferred from the final submitted version. |
 
-Must Have stories were given priority because they cover essential functionality such as navigation, authentication, catalogue access, author submissions, staff approval, payments, reviews, testing and deployment.
+---
 
 ### Development Process
 
