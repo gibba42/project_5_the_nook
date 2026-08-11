@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% load crispy_forms_tags %}
+
+{% block delivery_banner %}{% endblock %}
+
+{% block extra_title %}
+| {{ page_title }}
+{% endblock %}
+
+{% block content %}
+
+<section class="container py-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-12 col-md-9 col-lg-7">
+
+            <p class="section-eyebrow">
+                Author area
+            </p>
+
+            <h1 class="logo-font mb-3">
+                {{ page_title }}
+            </h1>
+
+            <p class="text-muted mb-4">
+                Add the information readers will see when your book
+                appears in The Nook.
+            </p>
+
+            {% if book and book.status == 'rejected' %}
+
+                <div class="alert alert-danger mb-4">
+
+                    <strong>
+                        This book was rejected.
+                    </strong>
+
+                    {% if book.rejection_reason %}
+                        <p class="mb-0 mt-2">
+                            {{ book.rejection_reason }}
+                        </p>
+                    {% endif %}
+
+                </div>
+
+            {% endif %}
+
+            <form
+                method="POST"
+                enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                {{ form|crispy }}
+
+                <div class="d-flex flex-wrap gap-3 mt-4">
+
+                    <button
+                        type="submit"
+                        class="btn nook-primary-button">
+                        {{ button_text }}
+                    </button>
+
+                    <a
+                        href="{% url 'author_dashboard' %}"
+                        class="btn nook-secondary-button">
+                        Cancel
+                    </a>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

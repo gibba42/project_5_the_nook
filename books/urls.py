@@ -9,6 +9,28 @@ urlpatterns = [
         views.book_list,
         name='book_list'
     ),
+
+    path(
+        'manage/create/',
+        views.create_book,
+        name='create_book'
+    ),
+    path(
+        'manage/<int:book_id>/edit/',
+        views.edit_book,
+        name='edit_book'
+    ),
+    path(
+        'manage/<int:book_id>/delete/',
+        views.delete_book,
+        name='delete_book'
+    ),
+    path(
+        'manage/<int:book_id>/submit/',
+        views.submit_book,
+        name='submit_book'
+    ),
+
     path(
         'manage/approvals/',
         views.approval_dashboard,
@@ -29,6 +51,7 @@ urlpatterns = [
         views.reject_book,
         name='reject_book'
     ),
+
     path(
         '<int:book_id>/',
         views.book_detail,
