@@ -10,10 +10,14 @@ The submitted application is designed as a controlled bookshop rather than an un
 
 The application is built using Django. It includes authentication, role-based author and staff functionality, user-owned account information, catalogue management and Stripe payment processing.
 
+---
+
 ## Live Site
 
 - Live site: [The Nook Heroku App](https://project-5-the-nook-bookshop-26884e3af76e.herokuapp.com)
 - Repository: [The Nook GitHub Repository](https://github.com/gibba42/project_5_the_nook)
+
+---
 
 ## Table of Contents
 
@@ -93,6 +97,8 @@ The application is built using Django. It includes authentication, role-based au
 - [Tutorials and Guides Used](#tutorials-and-guides-used)
   - [Django](#django)
 
+---
+
 ## Technologies Used
 
 - **HTML5** – used to structure the application’s pages and content.
@@ -123,6 +129,8 @@ The application is built using Django. It includes authentication, role-based au
 - **Cloudinary** – used to store uploaded media such as book covers.
 - **Mailchimp** – used to manage newsletter subscriptions.
 
+---
+
 ## Project Purpose
 
 Independent authors can struggle to gain visibility through traditional booksellers, while readers may find it difficult to discover new books outside established publishing channels. The Nook is designed to bring these two groups together through an accessible online bookshop.
@@ -136,6 +144,8 @@ The project therefore has three main goals:
 - Help readers discover and purchase books from independent authors.
 - Give independent authors a structured way to showcase their work.
 - Provide the site owner with a manageable e-commerce model through which listings, customers and purchases can be administered.
+
+---
 
 ## Target Audience
 
@@ -181,6 +191,8 @@ The submitted application uses a controlled catalogue rather than allowing autho
 6. The Nook records and manages the resulting order.
 
 This approach gives the site owner control over product quality, pricing and the customer experience. It also avoids the additional payment, commission and seller-management requirements of a multi-vendor marketplace.
+
+---
 
 ## Marketing Strategy
 
@@ -303,6 +315,8 @@ If The Nook were developed beyond the submitted MVP, the marketing strategy coul
 * Analytics to identify the highest-converting acquisition channels.
 
 For the submitted project, the combination of SEO, Mailchimp integration, social-media presence and a clearly defined independent-book niche provides the foundation for a realistic digital marketing strategy.
+
+---
 
 ## Data Model
 
@@ -544,6 +558,7 @@ Several database and Django model features are used to protect data integrity:
 * `SET_NULL` is used for optional relationships where the related record can safely continue to exist independently.
 * Django forms provide additional validation before data reaches the database.
 
+---
 
 ## Deployment
 
@@ -756,6 +771,8 @@ The following functionality was manually tested on Heroku:
 
 The production application was found to match the expected functionality of the development version.
 
+---
+
 ## Security
 
 The final deployed version of the site uses the following security features:
@@ -765,6 +782,7 @@ The final deployed version of the site uses the following security features:
  - User data is protected using Django's built-in authentication.
  - Sensitive pages are protected using `@login_required`
 
+---
 
 ## UX Design
 
@@ -921,6 +939,8 @@ The principal responsive changes include:
 - Author and staff dashboards replacing wide rows with vertically stacked cards.
 - Buttons and form fields expanding where additional width improves touch accessibility.
 
+---
+
 ## Agile Development
 
 The Nook was planned and managed using an iterative Agile approach. GitHub Issues were used to divide the application into epics, user stories, acceptance criteria and individual development tasks.
@@ -994,6 +1014,8 @@ The general process was:
 6. Update the task checklist and close the issue once its acceptance criteria had been met.
 
 This process was also used when previously completed functionality required further work. For example, the navigation user story was revisited when the Genres link did not open the expected catalogue filters. The issue was only closed after the link behaviour and automated navigation tests had been corrected.
+
+---
 
 ## Testing
 
@@ -1242,6 +1264,8 @@ Bugs identified during this process are documented separately in the [Bugs](#bug
 
 This combination of automated regression testing, user-story-based manual testing and final production testing was used to verify functionality, usability, responsiveness and data management across the application.
 
+---
+
 ## Validation
 
 ### W3C HTML Validation Results
@@ -1284,7 +1308,6 @@ As shown above, elements scale appropriately at different resolutions.
 
 ---
 
-
 ## Bugs
 
 | Title | Description | Fix | Status |
@@ -1301,6 +1324,8 @@ As shown above, elements scale appropriately at different resolutions.
 | Product image field did not work in add and edit forms | Images selected through the product-management forms were not rendered or processed correctly. | Added a custom clearable file-input widget, ensured uploaded files were passed through `request.FILES` and updated the add and edit templates. | Resolved |
 | User profile table did not exist locally | Accessing the administration or profile pages raised `OperationalError: no such table: profiles_userprofile` after the profiles application was introduced. | Created the profiles migration and applied the outstanding migrations to the local database. | Resolved |
 | Author dashboard link raised `NoReverseMatch` | The profile page attempted to reverse an `authors` namespace that had not been registered in the project URLs. | Updated the template links to use the registered `author_dashboard` URL name. | Resolved |
+
+---
 
 ## Tutorials and guides used
 
