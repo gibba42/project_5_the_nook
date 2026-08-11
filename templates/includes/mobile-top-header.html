@@ -28,6 +28,7 @@
     <!-- Mobile search form -->
     <div
         class="dropdown-menu border-0 p-3 rounded-0 my-0 mobile-search-dropdown"
+        role="menu"
         aria-labelledby="mobile-search">
 
         <form
@@ -97,6 +98,7 @@
     <!-- Mobile account dropdown -->
     <div
         class="dropdown-menu dropdown-menu-end border-0"
+        role="menu"
         aria-labelledby="mobile-user-options">
 
         {% if request.user.is_authenticated %}

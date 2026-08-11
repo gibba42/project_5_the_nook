@@ -698,6 +698,16 @@ The Nook was planned and managed using an iterative Agile approach. GitHub Issue
 
 This allowed the project to be developed in manageable sections while maintaining a clear connection between the application’s purpose, user needs and technical implementation.
 
+### Github Project
+
+The Epics, User Stories, and associated tasks were captured and managed in Github Projects:
+
+![Github Project Board](static/images/README/github_project.png)
+
+The Project Board can be found here:
+
+[The Nook GitHub Project](https://github.com/users/gibba42/projects/5)
+
 ### Epics
 
 The project requirements were divided into eight epics:
@@ -1001,6 +1011,8 @@ The general process was:
 Bugs identified during this process are documented separately in the [Bugs](#bugs) section.
 
 This combination of automated regression testing, user-story-based manual testing and final production testing was used to verify functionality, usability, responsiveness and data management across the application.
+
+## Validation
 
 
 ## Bugs
