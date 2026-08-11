@@ -382,21 +382,31 @@ The homepage was designed to explain the purpose of The Nook immediately. Its pr
 
 The book list combines search, genre filtering and sorting without hiding the books beneath excessive controls. Filters remain visible in a desktop sidebar but collapse behind a button on smaller screens.
 
+![Book List](static/images/README/book_list.png)
+
 #### Book Details
 
 The book detail page places the information needed for a purchasing decision near the top of the page. The cover, title, author, rating, price, description, stock status and basket action are grouped together. Reader reviews appear beneath the main product information as supporting social proof.
+
+![Book Details](static/images/README/book_detail.png)
 
 #### Checkout
 
 The checkout was designed as a focused process with delivery and payment fields presented alongside a persistent order summary. On mobile devices, the sections stack into a single column while retaining the same information.
 
+![Checkout](static/images/README/checkout.png)
+
 #### Author Dashboard
 
 The author dashboard provides a summary of the author's listings and their current status. The add, edit and submission actions are kept close to the relevant book so that authors can manage their work without using the Django administration interface.
 
-#### Staff Approval
+![Author Dashboard](static/images/README/author_dashboard.png)
+
+#### Book Approval
 
 The approval queue separates staff moderation from the public catalogue. Pending submissions are presented with their status and a clear review action. Approval and change-request actions are only available to authorised staff members.
+
+![Book Approval](static/images/README/book_approval.png)
 
 ### Visual Design
 
