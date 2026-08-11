@@ -2862,3 +2862,93 @@ textarea:focus-visible {
         flex-direction: column;
     }
 }
+
+/* ------------------------------- Account email page */
+
+.account-page-wrapper {
+    max-width: 760px;
+    margin: 3rem auto;
+    padding: 0 1.5rem;
+}
+
+.account-card {
+    background: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 22px;
+    padding: 3rem;
+    box-shadow: 0 8px 30px rgba(38, 56, 44, 0.06);
+}
+
+.account-card-header {
+    margin-bottom: 2.5rem;
+}
+
+.account-card-header h1 {
+    margin-bottom: 1rem;
+}
+
+.account-intro {
+    margin: 0;
+    max-width: 540px;
+}
+
+.account-current-email {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+
+    margin-bottom: 2.5rem;
+    padding: 1.25rem 1.5rem;
+
+    background: rgba(87, 111, 84, 0.08);
+    border-radius: 12px;
+}
+
+.account-field-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.account-form .form-group {
+    margin-bottom: 2rem;
+}
+
+.account-form label {
+    display: block;
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.account-form input {
+    display: block;
+    width: 100%;
+    padding: 0.9rem 1rem;
+}
+
+.account-submit-button {
+    display: inline-block;
+    margin-top: 0.75rem;
+    padding: 0.85rem 1.6rem;
+}
+
+.account-page-actions {
+    margin-top: 1.75rem;
+}
+
+.account-page-actions a {
+    font-weight: 600;
+    text-decoration: none;
+}
+
+@media (max-width: 576px) {
+    .account-page-wrapper {
+        margin: 2rem auto;
+        padding: 0 1rem;
+    }
+
+    .account-card {
+        padding: 2rem 1.25rem;
+    }
+}

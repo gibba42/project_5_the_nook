@@ -79,7 +79,7 @@
 
 <body>
 
-  <header class="container-fluid fixed-top">
+  <header class="container-fluid sticky-top">
 
     <!-- Desktop top navigation -->
     <div
@@ -306,18 +306,22 @@
     </div>
 
     <!-- Delivery banner -->
+    {% block delivery_banner %}
+
     <div
       id="delivery-banner"
       class="row text-center">
 
       <div class="col">
-
         <p class="delivery-message my-2">
           Free UK delivery on orders over
           £{{ free_delivery_threshold }}
         </p>
-
       </div>
+
+    </div>
+
+    {% endblock %}
 
     </div>
 
