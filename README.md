@@ -104,6 +104,247 @@ The submitted application uses a controlled catalogue rather than allowing autho
 
 This approach gives the site owner control over product quality, pricing and the customer experience. It also avoids the additional payment, commission and seller-management requirements of a multi-vendor marketplace.
 
+## Data Model
+
+The Nook uses a relational database to support authentication, reader accounts, author profiles, book listings, reviews, orders and newsletter subscriptions.
+
+SQLite is used during local development, while the deployed Heroku application uses PostgreSQL. Django's ORM is used to define and manage the data model, allowing the same model structure to be used across both environments.
+
+The application uses Django's built-in `User` model alongside several custom models distributed across the project's reusable Django applications.
+
+### Entity Relationship Diagram
+
+The following Entity Relationship Diagram shows the primary database models and relationships used by The Nook:
+
+![The Nook Entity Relationship Diagram](static/images/README/data_model.png)
+
+### Data Model Overview
+
+| Model                | App                   | Purpose                                                                                              |
+| -------------------- | --------------------- | ---------------------------------------------------------------------------------------------------- |
+| User                 | Django Authentication | Provides account registration, authentication and user identity.                                     |
+| UserProfile          | Profiles              | Stores default delivery information for registered customers and links users to their order history. |
+| AuthorProfile        | Authors               | Stores public author information and optionally links an author to a registered user account.        |
+| Genre                | Books                 | Stores the categories used to organise books within the catalogue.                                   |
+| Book                 | Books                 | Stores books available through The Nook, including pricing, stock and approval information.          |
+| Review               | Books                 | Stores reader ratings and written reviews linked to users and books.                                 |
+| Order                | Checkout              | Stores customer, delivery, payment reference and calculated order-total information.                 |
+| OrderLineItem        | Checkout              | Stores each individual book and quantity contained within an order.                                  |
+| NewsletterSubscriber | Newsletter            | Stores newsletter subscriber email addresses and subscription status.                                |
+
+### Model Relationships
+
+| Relationship          | Type                              | Description                                                                                                  |
+| --------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| User → UserProfile    | One-to-one                        | Each registered user has one customer profile containing their default delivery information.                 |
+| User → AuthorProfile  | One-to-one, optional              | A registered user can have one author profile. Author profiles may also exist without a linked user account. |
+| AuthorProfile → Book  | One-to-many                       | One author can have multiple books listed on The Nook.                                                       |
+| Genre → Book          | One-to-many                       | One genre can contain multiple books. A book can belong to one genre.                                        |
+| User → Review         | One-to-many                       | A registered user can create multiple reviews.                                                               |
+| Book → Review         | One-to-many                       | A book can receive multiple reader reviews.                                                                  |
+| UserProfile → Order   | One-to-many                       | A registered customer's profile can be associated with multiple orders.                                      |
+| Order → OrderLineItem | One-to-many                       | An order can contain multiple line items.                                                                    |
+| Book → OrderLineItem  | One-to-many                       | A book can appear in multiple order line items across different orders.                                      |
+| User → Book           | One-to-many through `reviewed_by` | Staff users can be recorded as the reviewer responsible for approving or rejecting book submissions.         |
+
+### User
+
+The application uses Django's built-in `User` model rather than implementing a custom authentication model.
+
+The `User` model provides:
+
+* Username and password authentication.
+* Email addresses.
+* Staff and superuser permissions.
+* Relationships to customer profiles.
+* Relationships to author profiles.
+* Ownership of reader reviews.
+* Staff ownership of book approval decisions.
+
+Authentication and password management are therefore handled using Django's established authentication framework rather than duplicating this functionality in a custom model.
+
+### UserProfile
+
+`UserProfile` extends the information stored against a registered customer.
+
+Each `UserProfile` has a one-to-one relationship with Django's `User` model.
+
+It stores default delivery information including:
+
+* Phone number.
+* Street addresses.
+* Town or city.
+* County.
+* Postcode.
+* Country.
+
+A profile is automatically created when a new Django user is created.
+
+The profile is also used to associate authenticated customers with their previous orders, allowing the account page to display order history.
+
+### AuthorProfile
+
+`AuthorProfile` represents an independent author whose work can be listed through The Nook.
+
+The model contains:
+
+* Display name.
+* Biography.
+* Website.
+* Profile image.
+* Approval status.
+* Created and updated timestamps.
+
+An author profile can optionally have a one-to-one relationship with a registered Django user.
+
+Allowing the user field to be optional also supports demonstration and curated catalogue records that are not managed by an active author account.
+
+One author can be linked to multiple books.
+
+### Genre
+
+`Genre` provides controlled catalogue categories.
+
+The model contains:
+
+* Unique genre name.
+* Optional description.
+
+A genre can be linked to multiple books, while each book can have a maximum of one genre.
+
+The relationship is optional so that removing a genre does not require the associated book record to be deleted.
+
+### Book
+
+`Book` is one of the central models within the application.
+
+It stores:
+
+* Author.
+* Genre.
+* Title.
+* ISBN.
+* Description.
+* Price.
+* Publication date.
+* Cover image.
+* Available stock.
+* Featured status.
+* Active status.
+* Approval status.
+* Rejection reason.
+* Reviewing staff member.
+* Review date and time.
+* Created and updated timestamps.
+
+The model supports the author-submission and staff-approval workflow through four status values:
+
+* `draft`
+* `pending`
+* `approved`
+* `rejected`
+
+The relationship to `AuthorProfile` uses `PROTECT`, preventing an author from being deleted while books still depend on that record.
+
+The optional genre relationship uses `SET_NULL`, allowing a genre to be removed without deleting the book.
+
+The optional `reviewed_by` relationship links a book to the staff user who most recently reviewed its submission.
+
+### Review
+
+`Review` stores reader feedback against books.
+
+Each review belongs to:
+
+* One registered user.
+* One book.
+
+The model stores:
+
+* Rating from 1 to 5.
+* Optional review title.
+* Review body.
+* Approval status.
+* Created and updated timestamps.
+
+Django validators restrict ratings to values between 1 and 5.
+
+A database uniqueness constraint prevents the same user from creating more than one review for the same book. A user can therefore review multiple different books, and a book can receive reviews from multiple different users.
+
+Deleting a user or book also removes the associated reviews because both relationships use cascading deletion.
+
+### Order
+
+`Order` stores the information associated with a completed checkout.
+
+It contains:
+
+* Unique generated order number.
+* Optional customer profile.
+* Customer name and email.
+* Phone number.
+* Delivery address.
+* Order date.
+* Delivery charge.
+* Order subtotal.
+* Grand total.
+* Original basket contents.
+* Stripe Payment Intent identifier.
+
+An order can optionally be linked to a registered `UserProfile`. This allows both authenticated and guest-style checkout data to be retained while enabling registered users to see their previous orders.
+
+Order numbers are automatically generated using UUID values.
+
+Order totals are calculated from the associated line items. Delivery charges are then calculated according to the configured free-delivery threshold and delivery percentage.
+
+### OrderLineItem
+
+`OrderLineItem` represents an individual book within an order.
+
+Each line item contains:
+
+* Parent order.
+* Book.
+* Quantity.
+* Calculated line-item total.
+
+One order can contain multiple line items.
+
+A book can also appear within multiple line items belonging to different orders.
+
+The book relationship uses `PROTECT`. This prevents a book record that forms part of an existing order history from being deleted and breaking historical transaction information.
+
+The line-item total is calculated automatically from:
+
+`book price × quantity`
+
+### NewsletterSubscriber
+
+`NewsletterSubscriber` stores local records of users who subscribe to The Nook newsletter.
+
+The model contains:
+
+* Unique email address.
+* Subscription date.
+* Active status.
+
+The application also sends subscriber information to the configured Mailchimp audience. The local model therefore provides an application-side record while Mailchimp provides the marketing mailing-list functionality.
+
+### Data Integrity
+
+Several database and Django model features are used to protect data integrity:
+
+* Unique ISBN values prevent duplicate book identifiers.
+* Genre names are unique.
+* Newsletter subscriber email addresses are unique.
+* A database constraint prevents a user from reviewing the same book more than once.
+* Review ratings are restricted to values between 1 and 5.
+* `PROTECT` is used where deleting a related record would damage important catalogue or order-history data.
+* `CASCADE` is used for records such as reviews that should be removed when their parent record is removed.
+* `SET_NULL` is used for optional relationships where the related record can safely continue to exist independently.
+* Django forms provide additional validation before data reaches the database.
+
+
 ## Deployment
 
 The Nook is deployed to Heroku and uses PostgreSQL as its production database. Static files are served using WhiteNoise, uploaded media is stored using Cloudinary, payments are processed through Stripe and newsletter subscriptions are integrated with Mailchimp.
