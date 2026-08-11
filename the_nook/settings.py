@@ -257,9 +257,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
 
-ACCOUNT_LOGIN_METHODS = {'email'}
+ACCOUNT_LOGIN_METHODS = {'username'}
 
 ACCOUNT_SIGNUP_FIELDS = [
+    'username*',
     'email*',
     'password1*',
     'password2*',

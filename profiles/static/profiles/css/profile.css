@@ -6,6 +6,12 @@
 .profile-heading {
     max-width: 760px;
     margin-bottom: 2.5rem;
+    padding: 1.5rem;
+
+    background-color: var(--nook-paper);
+    border: 1px solid var(--nook-border);
+    border-radius: 1rem;
+    box-shadow: 0 12px 30px rgba(55, 45, 35, 0.08);
 }
 
 .profile-eyebrow,

@@ -14,7 +14,6 @@
 {% block page_header %}
     <div class="header-container"></div>
 {% endblock %}
-
 {% block content %}
 <section class="profile-page">
     <div class="container">
@@ -22,7 +21,6 @@
             <p class="profile-eyebrow">Reader account</p>
 
             <h1>My account</h1>
-
             <p class="profile-introduction">
                 Manage your account, saved delivery details and
                 previous orders.
@@ -31,11 +29,7 @@
             <p class="profile-signed-in">
                 Signed in as
                 <strong>
-                    {% if request.user.email %}
-                        {{ request.user.email }}
-                    {% else %}
-                        {{ request.user.username }}
-                    {% endif %}
+                    {{ request.user.username }}
                 </strong>
             </p>
 
