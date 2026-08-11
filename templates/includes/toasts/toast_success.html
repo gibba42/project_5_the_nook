@@ -11,11 +11,13 @@
         <strong class="me-auto">
             {% if order %}
                 Order successful
-            {% else %}
+            {% elif bag_items %}
                 Added to your basket
+            {% else %}
+                Success
             {% endif %}
         </strong>
-
+        
         <button
             type="button"
             class="btn-close"
