@@ -3175,3 +3175,20 @@ textarea:focus-visible {
     display: inline-block;
     margin: 0;
 }
+
+/* ------------------------------------------------ Mobile logo */
+
+.mobile-nook-brand {
+    align-items: center;
+    align-self: stretch;
+    margin-left: 0.5rem;
+    text-decoration: none;
+}
+
+.mobile-nook-logo {
+    display: block;
+    height: 2rem;
+    max-height: 70%;
+    object-fit: contain;
+    width: auto;
+}
